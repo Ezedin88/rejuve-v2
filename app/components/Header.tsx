@@ -31,7 +31,7 @@ const Header = () => {
             height={35}
             quality={100}
             alt="rejuve logo"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover bg-white"
           />
         </Link>
 
