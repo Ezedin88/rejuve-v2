@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .primary-price-btn-text {
+    @apply font-bold text-2xl leading-[29px] text-primaryGreen;
+  }
+
+  .primary-hero-title-text {
+    @apply font-inter font-[700] text-[48px] leading-[130%]
+            max-sm:text-[24px] max-sm:leading-[120%]
+  }
+
+  .primary-hero-subtitle-text {
+    @apply text-lightSecondaryDark font-bold text-[15px] leading-[150%]
+            max-sm:text-[12px]
+  }
+
+  .primary-hero-description-text {
+    @apply text-lightSecondaryDark text-[16px] leading-[170%]
+            max-xls:text-[15px] max-xls:leading-[150%]
+            max-sm:text-[12px]
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-end-rgb: 255, 255, 255;

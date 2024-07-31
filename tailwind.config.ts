@@ -8,23 +8,31 @@ const config: Config = {
   ],
   theme: {
     screens: {
+      sm: '644px',
       xls: '1220px',
       xxl: '2000px',
       xxxl: '2500px',
     },
     extend: {
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        ellipsisBG: 'radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(255,255,255,0.5) 66%, rgba(255,255,255,0) 73%)',
+        ellipsisMediumBG: 'radial-gradient(circle, rgba(255,255,255,1) 41%, rgba(255,255,255,0.5) 49%, rgba(255,255,255,0) 62%)'
       },
       colors: {
         primaryGreen: '#32C0CC',
+        primaryGreenHover: '#2AB8C5',
         secondaryGreen: '#70DCAE',
         lightGreen: '#E3FAFF',
         extraLightGreen: '#F1FFF9',
         primaryDark: '#282D41',
-        secondaryDark: '#5A5F73',
+        secondaryDark: '#5A5F7399',
+        lightSecondaryDark: '#5A5F73',
         primaryWhite: '#FFFFFF',
         lightGrayBg: '#F5F5F5',
         lighterGrayBg: '#F8F8F8',
