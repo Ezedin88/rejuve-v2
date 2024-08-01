@@ -22,6 +22,45 @@
             max-xls:text-[15px] max-xls:leading-[150%]
             max-sm:text-[12px]
   }
+
+  .primary-why-rejuve-title {
+    @apply font-bold text-[48px] leading-[130%] text-center text-primaryDark
+           max-xls:text-[32px]
+  }
+
+  .secondary-why-rejuve-title {
+    @apply font-semibold text-[35.3px] leading-[36px]
+  }
+  .secondary-why-rejuve-sub-title {
+    @apply text-[24px] leading-[31.2px] capitalize text-center
+  }
+
+  .primary-why-rejuve-card-title {
+    @apply font-bold text-[32px] leading-[39px] text-center
+           max-xls:text-[24px] max-xls:leading-[29px] text-primaryDark
+  }
+
+  .secondary-why-rejuve-card-title {
+    @apply text-[14px] leading-[18px] font-semibold capitalize
+  }
+
+  .primary-why-rejuve-description {
+    @apply text-[16px] leading-[150%] text-center max-xls:text-[14px] text-lightSecondaryDark
+  }
+
+  .secondary-why-rejuve-description {
+    @apply text-[11.6px] leading-[17px]
+  }
+
+  .primary-why-rejuve-card-container {
+    @apply max-w-[541px] max-xls:max-w-[351px] max-sm:max-w-[360px]
+           flex flex-col justify-center items-center gap-[24px] min-h-[262px] max-xls:min-h-[254px] max-sm:min-h-[233px]
+    
+  }
+
+  .secondary-why-rejuve-card-container {
+    @apply max-w-[209.19px] w-full min-h-[242px] bg-lightGrayBg
+  }
 }
 
 :root {
@@ -38,7 +77,7 @@
 }
 
 body {
- 
+ color: #282D41;
 }
 
 @layer utilities {

@@ -15,7 +15,7 @@ export default function ProductHero() {
             bg-lightBlue
         '>
             <section className="product-image-wrapper overflow-hidden
-             relative h-[100%] max-h-[728px] max-sm:max-w-[100%]
+             relative h-full max-h-[728px] max-sm:max-w-full
             w-[749px]
             max-xls:w-[675px]
             max-[900px]:w-[110%]
@@ -34,14 +34,7 @@ export default function ProductHero() {
                     priority
                     width={0}
                     height={0}
-                    className="
-                        w-[100%] 
-                        max-w-[749px] 
-                        max-h-[728px] 
-                        h-[100%] 
-                        max-sm:max-h-[481px]
-                        max-sm:w-[251px]
-                        max-sm:scale-110"
+                    className="w-full max-w-[749px]  max-h-[728px]  h-[100%]  max-sm:max-h-[481px] max-sm:w-[251px] max-sm:scale-110"
                 />
             </section>
 

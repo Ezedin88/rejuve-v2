@@ -1,0 +1,137 @@
+
+/* Why Rejuve for IV Therapy? */
+.why-rejuve-description {
+  max-width: 540.67px ;
+  font-style: normal ;
+  font-weight: 400 ;
+  font-size: 16px ;
+  line-height: 150% ;
+  text-align: center ;
+  color: #5A5F73 ;
+}
+
+/* book weight loss section */
+.iv-therapy-context,
+.book-weight-loss-metabolic,
+.returning-customer,
+.click-to-login {
+  margin: 0
+}
+
+.book-weight-loss-section {
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-items: center ;
+  gap: 16px ;
+  margin-bottom: 100px ;
+}
+
+.book-weight-loss-section>.iv-therapy-top .iv-therapy-context {
+  max-width: 359px ;
+  font-style: normal ;
+  font-weight: 600 ;
+  font-size: 20px ;
+  line-height: 150% ;
+  text-align: center ;
+  /* Text/Dark Primary */
+  color: #282D41 ;
+}
+
+.middle-main .book-weight-loss-metabolic {
+  max-width: 1218px ;
+  font-style: normal ;
+  font-weight: 700 ;
+  font-size: 48px ;
+  /* identical to box height, or 58px */
+  text-align: center ;
+  /* Text/Dark Primary */
+  color: #282D41 ;
+}
+
+.returning-customer-context>.returning-customer {
+  /* Returning customer? Click here to login */
+  max-width: 1218px ;
+  font-style: normal ;
+  font-weight: 400 ;
+  font-size: 24px ;
+  line-height: 150% ;
+  /* identical to box height, or 36px */
+  text-align: center ;
+  /* Text/Dark Secondary */
+  color: #5A5F73 ;
+}
+
+.click-to-login>a {
+  font-style: normal ;
+  font-weight: 700 ;
+  font-size: 24px ;
+  line-height: 150% ;
+  /* identical to box height, or 36px */
+  text-align: center ;
+  /* Main */
+  color: #32C0CC ;
+  text-decoration: none ;
+}
+
+.returning-customer-context {
+  display: flex ;
+  align-items: center ;
+  gap: 5px ;
+}
+
+/* small screen */
+@media (max-width: 768px) {
+
+  .book-weight-loss-section {
+    margin-top: 50px ;
+    margin-bottom: 100px ;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .returning-customer-context {
+    flex-direction: column;
+  }
+
+  .click-to-login>a {
+    /* Returning customer? Click here to login. */
+    max-width: 359px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+  }
+
+  .returning-customer-context>.returning-customer {
+    /* Returning customer? Click here to login. */
+    max-width: 359px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+  }
+
+  p#book-weight-loss-metabolic-id {
+    /* Book Weight Loss-Metabolic */
+    max-width: 359px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    /* identical to box height, or 29px */
+    text-align: center;
+    /* Text/Dark Primary */
+    color: #282D41 ;
+  }
+
+  .why-rejuve-description {
+    font-size: 1rem ;
+  }
+
+}
+
+/* The Right Team of Doctors */

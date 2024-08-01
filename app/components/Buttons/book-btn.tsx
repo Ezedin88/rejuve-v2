@@ -18,7 +18,7 @@ export default function BookBtn({
         rounded-[5px]
         p-4
         w-[166px]
-        h-[59px]+
+        h-[59px]
         cursor-pointer
         hover:scale-105
         hover:bg-primaryGreenHover

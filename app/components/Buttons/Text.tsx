@@ -1,12 +1,17 @@
-export default function Text({ children, textName }: {
+export default function Text({
+    children,
+    textName = '',
+    className = ''
+}: {
     children: React.ReactNode,
-    textName: string
+    textName?: string,
+    className?: string
 }) {
     return (
-        <div className="lg:font-inter">
-            <p className={`${textName ? textName : ''}`}>
-                {children}
-            </p>
-        </div>
+        <p className={`${textName ? textName : ''}
+                ${className ? className : ''}
+            `}>
+            {children}
+        </p>
     );
 }
