@@ -66,6 +66,19 @@ export default function UserDetails() {
                                             className="field-error"
                                         />
                                     </div>
+                                    <div className="col">
+                                        <label htmlFor={`userData.${index}.billing.phone`}>Date of Birth</label>
+                                        <Field
+                                            name={`userData.${index}.billing.dateOfBirth`}
+                                            placeholder="Phone"
+                                            type="text"
+                                        />
+                                        <ErrorMessage
+                                            name={`userData.${index}.billing.line_items`}
+                                            component="div"
+                                            className="field-error"
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         <button
@@ -79,6 +92,7 @@ export default function UserDetails() {
                                         email: '',
                                         phone: '',
                                         dateOfBirth: '',
+                                        line_items: [{}],
                                     },
                                 })
                             }

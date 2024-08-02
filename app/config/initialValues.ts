@@ -12,6 +12,7 @@ export const initialValues: IInitialValues = {
             line_items: [],
         },
     ],
+    meta_data: [],
     bookingAddress: {
         address_1: '',
         address_2: '',

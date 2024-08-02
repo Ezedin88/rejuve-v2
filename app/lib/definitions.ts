@@ -16,8 +16,19 @@ interface Billing {
     dateOfBirth: string;
 }
 
+interface MetaData {
+    key: string;
+    value: string;
+}
+
 interface LineItem {
-    // Add properties for line items if they exist, or leave empty if not specified
+    meta_data: MetaData[];
+    price: number;
+    productName: string;
+    product_id: number;
+    quantity: number;
+    variation_id?: number;
+    userIndex: number;
 }
 
 interface UserData {
@@ -62,4 +73,5 @@ export interface IInitialValues {
     createAccount: boolean;
     paymentMethod: string;
     specialInstructions: string;
+    meta_data: MetaData[];
 }
