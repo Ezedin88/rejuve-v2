@@ -13,6 +13,7 @@ export default function ProductHero() {
             max-sm:grid-cols-1
             max-sm:h-[969px]
             bg-lightBlue
+            min-w-[215px]
         '>
             <section className="product-image-wrapper overflow-hidden
              relative h-full max-h-[728px] max-sm:max-w-full

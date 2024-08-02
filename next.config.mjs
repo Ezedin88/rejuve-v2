@@ -7,6 +7,12 @@ const nextConfig = {
                 hostname: 'rejuve.md',
                 port: '',
                 pathname: '/wp-content/uploads/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'rejuve.com',
+                port: '',
+                pathname: '/wp-content/uploads/**',
             }
         ]
     }

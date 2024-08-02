@@ -25,6 +25,7 @@ export default function BookBtn({
                        active:scale-100
                        transition
                        duration-200
+                       max-[167px]:w-[100%]
                     "
         >
             {children}
