@@ -9,7 +9,7 @@ import { IInitialValues } from "@/app/lib/definitions";
 
 export default function FormSection() {
     return (
-        <div>
+        <div className="w-full max-w-[1257px] mx-auto">
             <Formik
                 initialValues={initialValues}
                 validationSchema={handleValidation}

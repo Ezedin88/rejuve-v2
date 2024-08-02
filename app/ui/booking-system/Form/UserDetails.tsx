@@ -1,5 +1,8 @@
+import Text from "@/app/components/Buttons/Text";
+import InputLabelWrapper from "@/app/components/Form/InputLabelWrapper";
 import { IInitialValues } from "@/app/lib/definitions";
 import { ErrorMessage, Field, FieldArray, useFormikContext } from "formik";
+import Image from "next/image";
 import React from 'react';
 
 export default function UserDetails() {
@@ -19,71 +22,81 @@ export default function UserDetails() {
                                             <div className="col">
                                                 <button
                                                     type="button"
-                                                    className="secondary"
+                                                    className="secondary secondary bg-transparent border-2 border-red-400 hover:border-red-500 rounded-[5px] flex gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[150px] h-[45px] max-sm:w-[200px]
+                                                    active:border-red-400
+                                                    text-red-400 hover:text-red-500 active-text-red-300
+                                                    "
                                                     onClick={() => remove(index)}
                                                 >
-                                                    X
+                                                    <Text className="text-[14px]">Delete Person {index + 1}</Text>
                                                 </button>
                                             </div>
                                         )
                                     }
-                                    <div className="col">
-                                        <label htmlFor={`userData.${index}.billing.first_name`}>Name</label>
-                                        <Field
-                                            name={`userData.${index}.billing.first_name`}
-                                            placeholder="Jane Doe"
-                                            type="text"
-                                        />
-                                        <ErrorMessage
-                                            name={`userData.${index}.billing.first_name`}
-                                            component="div"
-                                            className="field-error"
-                                        />
-                                    </div>
-                                    <div className="col">
-                                        <label htmlFor={`userData.${index}.billing.email`}>Email</label>
-                                        <Field
-                                            name={`userData.${index}.billing.email`}
-                                            placeholder="jane@acme.com"
-                                            type="email"
-                                        />
-                                        <ErrorMessage
-                                            name={`userData.${index}.billing.email`}
-                                            component="div"
-                                            className="field-error"
-                                        />
-                                    </div>
-                                    <div className="col">
-                                        <label htmlFor={`userData.${index}.billing.phone`}>Phone</label>
-                                        <Field
-                                            name={`userData.${index}.billing.phone`}
-                                            placeholder="Phone"
-                                            type="text"
-                                        />
-                                        <ErrorMessage
-                                            name={`userData.${index}.billing.phone`}
-                                            component="div"
-                                            className="field-error"
-                                        />
-                                    </div>
-                                    <div className="col">
-                                        <label htmlFor={`userData.${index}.billing.phone`}>Date of Birth</label>
-                                        <Field
-                                            name={`userData.${index}.billing.dateOfBirth`}
-                                            placeholder="Phone"
-                                            type="text"
-                                        />
-                                        <ErrorMessage
-                                            name={`userData.${index}.billing.line_items`}
-                                            component="div"
-                                            className="field-error"
-                                        />
-                                    </div>
+                                    {/* first name */}
+                                    <InputLabelWrapper
+                                        htmlFor={`userData.${index}.billing.first_name`}
+                                        labelName="First name"
+                                        labelClassName="primary-input-label"
+                                        required={true}
+                                        name={`userData.${index}.billing.first_name`}
+                                        placeholder="Johnathan"
+                                        type="text"
+                                        inputClassName="primary-input-box"
+                                    />
+                                    {/* last name */}
+                                    <InputLabelWrapper
+                                        htmlFor={`userData.${index}.billing.last_name`}
+                                        labelName="Last name"
+                                        labelClassName="primary-input-label"
+                                        required={true}
+                                        name={`userData.${index}.billing.last_name`}
+                                        placeholder="Smith"
+                                        type="text"
+                                        inputClassName="primary-input-box"
+                                    />
+                                    {/* email */}
+                                    <InputLabelWrapper
+                                        htmlFor={`userData.${index}.billing.email`}
+                                        labelName="Email address"
+                                        labelClassName="primary-input-label"
+                                        required={true}
+                                        name={`userData.${index}.billing.email`}
+                                        placeholder="jonathans@gmail.com"
+                                        type="email"
+                                        inputClassName="primary-input-box"
+                                    />
+                                    {/* phone number */}
+                                    <InputLabelWrapper
+                                        htmlFor={`userData.${index}.billing.phone`}
+                                        labelName="Phone number"
+                                        labelClassName="primary-input-label"
+                                        required={true}
+                                        name={`userData.${index}.billing.phone`}
+                                        placeholder="(123) 456-7890"
+                                        type="text"
+                                        inputClassName="primary-input-box"
+                                    />
+                                    {/* Date of Birth */}
+                                    <InputLabelWrapper
+                                        htmlFor={`userData.${index}.billing.dateOfBirth`}
+                                        labelName="Date of Birth"
+                                        labelClassName="primary-input-label"
+                                        required={true}
+                                        name={`userData.${index}.billing.dateOfBirth`}
+                                        placeholder="MM/DD/YYYY"
+                                        type="date"
+                                        dateOfBirth
+                                        inputClassName="primary-input-box"
+                                    />
                                 </div>
                             ))}
                         <button
                             type="button"
-                            className="secondary"
+                            className="secondary bg-primaryGreen rounded-[5px] flex py-[10px] px-[20px] text-white gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[250px] h-[55px] max-sm:w-[302px]
+                            hover:bg-primaryGreenHover
+                              active:bg-primaryGreen
+                            "
                             onClick={() =>
                                 push({
                                     billing: {
@@ -97,12 +110,13 @@ export default function UserDetails() {
                                 })
                             }
                         >
-                            + Add User
+                            <Image src="/person.png" alt="person" width={15} height={20} />
+                            <Text>Add another person</Text>
                         </button>
                     </div>
                 )}
             </FieldArray>
-            <button type="submit">Invite</button>
+            {/* <button type="submit">Invite</button> */}
         </div>
     );
 }

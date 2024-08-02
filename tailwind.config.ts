@@ -48,6 +48,8 @@ const config: Config = {
         brightYellow: '#F6D66F',
         lightYellow: '#FBF2DD',
         extraLightYellow: '#FFF9EB',
+        placeholderText: 'rgba(40, 45, 65, 0.7)',
+        datePickerPlaceholder: '#COC4CC',
       },
     },
   },
