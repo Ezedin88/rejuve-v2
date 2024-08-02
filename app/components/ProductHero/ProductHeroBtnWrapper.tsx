@@ -17,6 +17,8 @@ export function ProductHeroBtnWrapper({
                 flex
                 flex-col
                 justify-start
+                max-sm:justify-center
+                max-sm:items-center
                 gap-[14px]
             ">
                 <Text textName='primary-price-btn-text'>
