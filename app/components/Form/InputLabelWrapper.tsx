@@ -14,6 +14,7 @@ export default function InputLabelWrapper(
         type,
         inputClassName,
         errorClassName,
+        inputProps,
         dateOfBirth = false
     }: {
         wrapperClassName?: string,
@@ -26,13 +27,16 @@ export default function InputLabelWrapper(
         type: string,
         inputClassName: string,
         errorClassName?: string,
-        dateOfBirth?: boolean
+        dateOfBirth?: boolean,
+        inputProps?: any
     }
 ) {
     return (
         <div className={`flex flex-col gap-1 relative ${wrapperClassName}`}>
             {labelName ? <Label htmlFor={htmlFor} required={required} labelClassName={labelClassName} labelName={labelName} /> : null}
-            <Input inputClassName={inputClassName} name={name} placeholder={placeholder} type={type} dateOfBirth={dateOfBirth} />
+            <Input
+                inputProps={inputProps}
+                inputClassName={inputClassName} name={name} placeholder={placeholder} type={type} dateOfBirth={dateOfBirth} />
             {required ? <ErrorMessage
                 name={name}
                 component="div"

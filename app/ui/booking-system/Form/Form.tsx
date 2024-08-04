@@ -5,10 +5,29 @@ import Text from "@/app/components/Buttons/Text";
 import BookingTimeDatePreference from "./BookingTimeDatePreference";
 import ChooseLocation from "./ChooseLocation";
 import { IInitialValues } from "@/app/lib/definitions";
+import { useMapApi } from "./reducers/loadMapContext";
+import { useEffect } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
 
 export default function Form() {
+    const { state, dispatch } = useMapApi();
+    const handleLoadMapApi = () => {
+        dispatch({ type: 'LOAD_MAP_API' });
+    }
     const { values } = useFormikContext<IInitialValues>();
     const { userData } = values || {};
+
+    useEffect(() => {
+        const loader = new Loader({
+            apiKey: process.env.NEXT_PUBLIC_MAP_API_KEY || '',
+            version: "weekly",
+            libraries: ["places"],
+        });
+        loader.load().then(() => {
+            handleLoadMapApi();
+        });
+    }, []);
+
     return (
         <FormikForm>
             <FieldArray name="userData">
@@ -18,7 +37,7 @@ export default function Form() {
                         {
                             userData.length > 0 &&
                             userData.map((_user, index) => (
-                                <>
+                                <div key={index}>
                                     {
                                         index > 0 && (
                                             // remove user button
@@ -72,7 +91,7 @@ export default function Form() {
                                         <Image src="/person.png" alt="person" width={15} height={20} />
                                         <Text>Add another person</Text>
                                     </button>
-                                </>
+                                </div>
                             ))
                         }
                     </>

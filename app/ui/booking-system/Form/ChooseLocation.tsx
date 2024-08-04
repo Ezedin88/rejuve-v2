@@ -1,15 +1,42 @@
+import { useEffect } from "react";
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { Field, useFormikContext } from "formik";
+
 import Text from "@/app/components/Buttons/Text";
 import InputLabelWrapper from "@/app/components/Form/InputLabelWrapper";
 import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
 import { SmallIcon } from "@/app/components/Icons/Icon";
 import { IInitialValues } from "@/app/lib/definitions";
-import { Field, useFormikContext } from "formik";
-import { useEffect } from "react";
+import { useMapApi } from "./reducers/loadMapContext";
+import useLocationAutoComplete from "@/app/hooks/LocationAutoComplete";
 
 export default function ChooseLocation() {
+    const { state } = useMapApi();
+    const { loadedMapApi } = state;
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
-    const { bookingChoice, bookingAddress } = values;
+    const { bookingChoice } = values;
+    const { address, selectedAddress, handleChangeAddress, handleSelectAddress, } = useLocationAutoComplete();
+    const { address: selectedAddressData, city, country, state: selectedState, zipCode } = selectedAddress;
     const isAtClinic = bookingChoice === "atourclinics";
+    // set field values
+    useEffect(() => {
+        if (selectedAddressData) {
+            setFieldValue("bookingAddress.address_1", selectedAddressData);
+        }
+        if (city) {
+            setFieldValue("bookingAddress.city", city);
+        }
+        if (country) {
+            setFieldValue("bookingAddress.country", country);
+        }
+        if (selectedState) {
+            setFieldValue("bookingAddress.state", selectedState);
+        }
+        if (zipCode) {
+            setFieldValue("bookingAddress.postcode", zipCode);
+        }
+    }, [selectedAddressData, city, country, selectedState, zipCode, setFieldValue]);
+
     useEffect(() => {
         if (isAtClinic) {
             setFieldValue("clinicChoice", "Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403");
@@ -48,18 +75,64 @@ export default function ChooseLocation() {
                     // JSON.stringify(bookingAddress)
                 }
                 {/* Street Address 4579 Norman Street*/}
-                <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Street Address" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_1" required type="input" labelClassName="primary-input-label" />
-                {/* Address Line 2 */}
-                <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Address Line 2" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_2" required type="input" labelClassName="primary-input-label" />
-                {/* state California and city Los Angeles*/}
-                <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="state" placeholder="california" inputClassName="primary-input-box" name="bookingAddress.state" required type="input" labelClassName="primary-input-label" />
-                <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="city" placeholder="Los Angeles" inputClassName="primary-input-box" name="bookingAddress.city" required type="input" labelClassName="primary-input-label" />
-                {/* ZIP Code 90029*/}
-                {/* country */}
-                <InputLabelWrapper labelName="country" inputClassName="primary-input-box" name="bookingAddress.country" placeholder="USA" required type="input" labelClassName="primary-input-label" />
-                {/* ZIP Code required */}
-                <InputLabelWrapper wrapperClassName="col-start-1 max-xsm:col-start-2" labelName="ZIP Code" inputClassName="primary-input-box max-w-[198px]" name="bookingAddress.postcode" placeholder="90029" required type="input" labelClassName="primary-input-label" />
-            </PrimaryFormWrapper>
+                {!isAtClinic && loadedMapApi &&
+                    <>
+                        <PlacesAutocomplete
+                            value={address}
+                            onChange={handleChangeAddress}
+                            onSelect={handleSelectAddress}
+                        >
+                            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                <div className="label_loading_wrapper relative">
+                                    <InputLabelWrapper
+                                        inputProps={{
+                                            ...getInputProps({
+                                                placeholder: "Search Places ...",
+                                                className: "location-search-input primary-input-box"
+                                            })
+                                        }}
+                                        wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Street Address" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_1" required type="input" labelClassName="primary-input-label" />
+
+                                    <div className="autocomplete-dropdown-container" >
+                                        {loading && <div>Loading...</div>
+                                        }
+                                        {
+                                            suggestions.map((suggestion) => {
+                                                const className = suggestion.active
+                                                    ? "suggestion-item--active"
+                                                    : "suggestion-item";
+                                                // inline style for demonstration purpose
+                                                const style = suggestion.active
+                                                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                                                    : { backgroundColor: "#ffffff", cursor: "pointer" };
+                                                return (
+                                                    // eslint-disable-next-line
+                                                    <div
+                                                        {...getSuggestionItemProps(suggestion, {
+                                                            className,
+                                                            style
+                                                        })}
+                                                    >
+                                                        <span>{suggestion.description} </span>
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
+                                </div>
+                            )}
+                        </PlacesAutocomplete>
+                        {/* Address Line 2 */}
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Address Line 2" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_2" required type="input" labelClassName="primary-input-label" />
+                        {/* state California and city Los Angeles*/}
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="state" placeholder="california" inputClassName="primary-input-box" name="bookingAddress.state" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="city" placeholder="Los Angeles" inputClassName="primary-input-box" name="bookingAddress.city" required type="input" labelClassName="primary-input-label" />
+                        {/* ZIP Code 90029*/}
+                        {/* country */}
+                        <InputLabelWrapper labelName="country" inputClassName="primary-input-box" name="bookingAddress.country" placeholder="USA" required type="input" labelClassName="primary-input-label" />
+                        {/* ZIP Code required */}
+                        <InputLabelWrapper wrapperClassName="col-start-1 max-xsm:col-start-2" labelName="ZIP Code" inputClassName="primary-input-box max-w-[198px]" name="bookingAddress.postcode" placeholder="90029" required type="input" labelClassName="primary-input-label" />
+                    </>
+                }</PrimaryFormWrapper>
         </div>
     )
 }

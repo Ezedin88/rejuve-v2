@@ -1,11 +1,10 @@
 "use client";
-import MainForm from "@/app/ui/booking-system/Form/Form";
-import { ErrorMessage, Field, FieldArray, Formik } from "formik";
+import { Formik } from "formik";
 import { initialValues } from "@/app/config/initialValues";
 import { handleValidation } from "@/app/config/validation";
-import UserDetails from "./UserDetails";
 import Form from "@/app/ui/booking-system/Form/Form";
-import { IInitialValues } from "@/app/lib/definitions";
+import { useEffect } from "react";
+import { MapApiProvider } from "./reducers/loadMapContext";
 
 export default function FormSection() {
     return (
@@ -16,7 +15,9 @@ export default function FormSection() {
                 onSubmit={values => console.log('submitted===>', values)}
             >
                 {({ values }) => (
-                    <Form />
+                    <MapApiProvider>
+                        <Form />
+                    </MapApiProvider>
                 )}
             </Formik>
         </div>

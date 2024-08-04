@@ -2,13 +2,15 @@ import { Field } from "formik";
 import Date from "@/app/components/Form/Date";
 
 export default function Input({
-    name, placeholder, type, inputClassName, dateOfBirth = false
+    name, placeholder, type, inputClassName, dateOfBirth = false,
+    inputProps
 }: {
     name: string,
     placeholder: string,
     type: string,
     inputClassName: string,
-    dateOfBirth?: boolean
+    dateOfBirth?: boolean,
+    inputProps?: any
 }) {
     if (type === "date") return <Date dateOfBirth={dateOfBirth} name={name} className={inputClassName} placeHolder={placeholder} />
     return (
@@ -17,6 +19,7 @@ export default function Input({
             placeholder={placeholder}
             type={type}
             className={inputClassName}
+            {...inputProps ?? null}
         />
     )
 };
