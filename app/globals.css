@@ -65,6 +65,8 @@
   .primary-input-box {
     @apply w-full max-w-[563.5px] border-[#c0c4cc77] border-2 py-[9px] px-[12px] rounded-[4px] max-xls:max-w-[522px]
            max-sm:max-w-[321px]
+           max-xsm:max-w-[100%]
+           max-xls:w-[100%]
            active:outline-primaryGreen
            focus:outline-primaryGreen
            placeholder:text-placeholderText
@@ -73,6 +75,43 @@
 
   .primary-input-label {
     @apply text-[14px] leading-[22px] font-medium
+  }
+
+  .primary-form-wrapper {
+    @apply bg-lightGreen pb-[50px] pt-[43.5px] px-[50px]
+    grid grid-cols-2 gap-x-[30px] gap-y-[32px] max-xsm:gap-y-[24px]
+  }
+
+  .form-wrapper-title {
+    @apply text-[18px] font-bold leading-[22px] max-sm:leading-normal
+  }
+
+  .primary-rounded-input {
+    @apply flex
+           items-center
+           justify-center
+           w-[20px]
+           p-0
+           appearance-none
+           box-border
+           border-2
+           border-datePickerPlaceholder
+           checked:border-primaryGreen
+           rounded-full
+           relative
+           before:content-['']
+           before:absolute
+           before:w-[10px]
+           before:h-[10px]
+           before:border-2
+           before:border-primaryGreen
+           before:bg-primaryGreen
+           before:rounded
+           before:opacity-0
+           checked:before:opacity-100
+           ml-[10px]
+           mr-[8px]
+           cursor-pointer
   }
 }
 
@@ -159,4 +198,13 @@ div.custom-header {
   padding:8px;
   display:flex;
   justify-content:space-between;
+}
+
+/* max-width media query for 461px max*/
+@media (max-width:461px){
+  .customDatePickerWidth > div.react-datepicker-wrapper, 
+.customDatePickerWidth > div > div.react-datepicker__input-container
+.customDatePickerWidth > div > div.react-datepicker__input-container input {
+   width: 100%;
+}
 }

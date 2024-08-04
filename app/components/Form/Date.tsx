@@ -7,9 +7,9 @@ export default function DateComponent({ dateOfBirth, name, className, placeHolde
     const [startDate, setStartDate] = useState<Date | null>();
 
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%' }} className="w-[100%] customDatePickerWidth">
             <DatePicker
-                className={className + " w-[494px] text-datePickerPlaceholder"}
+                className={className + " w-[494px] text-datePickerPlaceholder max-sm:w-[100%]"}
                 name={name}
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}

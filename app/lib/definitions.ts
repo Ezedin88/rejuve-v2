@@ -48,6 +48,7 @@ interface Address {
 interface BookingAddress {
     address_1: string;
     address_2: string;
+    country: string;
     city: string;
     state: string;
     postcode: string;

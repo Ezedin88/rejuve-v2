@@ -16,6 +16,7 @@ export const initialValues: IInitialValues = {
     bookingAddress: {
         address_1: '',
         address_2: '',
+        country: '',
         city: '',
         state: '',
         postcode: '',
