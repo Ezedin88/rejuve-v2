@@ -122,7 +122,7 @@ const Header = () => {
               <div className="block w-full mx-auto">
                 <div className="w-full flex gap-10 mx-auto xl:pl-16 2xl:pl-32">
                   <div className="grid grid-cols-3 gap-4 py-10 pl-16">
-                    <Link href="/hangover-fix" p-2>
+                    <Link href="/hangover-fix">
                       <h3 className="text-[16px] font-semibold">
                         Hangover Fix
                       </h3>
@@ -388,7 +388,7 @@ const Header = () => {
 
                 <div className="w-full flex flex-col gap-10 mx-auto">
                   <div className="flex flex-col gap-6 pt-10">
-                    <Link href="/hangover-fix" p-2>
+                    <Link href="/hangover-fix" >
                       <h3 className="text-[16px] font-semibold">
                         Hangover Fix
                       </h3>
