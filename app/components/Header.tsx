@@ -9,35 +9,41 @@ const Header = () => {
   const [isIvExpanded, setIsIvExpanded] = useState(false);
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
 
+  const headerMenus = Array(15).fill({
+    title: 'Hangover-Fix',
+    description:
+      'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
+  });
+
   const toggleIvExpand = (e: React.MouseEvent<SVGElement>) => {
-    e.preventDefault(); // Prevent the default link behavior
-    e.stopPropagation(); // Stop the event from propagating to the Link
+    e.preventDefault();
+    e.stopPropagation();
     setIsIvExpanded(!isIvExpanded);
   };
 
   const toggleAboutExpand = (e: React.MouseEvent<SVGElement>) => {
-    e.preventDefault(); // Prevent the default link behavior
-    e.stopPropagation(); // Stop the event from propagating to the Link
+    e.preventDefault();
+    e.stopPropagation();
     setIsAboutExpanded(!isAboutExpanded);
   };
 
   return (
-    <header className="w-full h-20 px-8 xls:px-16 border border-[#C0C4CC] bg-white sticky top-0 z-50">
-      <div className="flex items-center justify-between gap-10 max-w-[1480px] h-full mx-auto w-full">
-        <Link href="/" className="w-34 h-9">
+    <header className="w-full h-20 border border-horizontalLine bg-primaryWhite fixed top-0 z-50">
+      <div className="flex items-center justify-between gap-10 max-w-hxl h-full mx-auto w-[90%] xls:w-[85%]">
+        <Link href="/" className="w-36 h-10">
           <Image
             src={'/Logo.svg'}
-            width={130}
+            width={138}
             height={35}
             quality={100}
             alt="rejuve logo"
-            className="w-full h-full object-cover bg-white"
+            className="w-full h-full object-cover bg-primaryWhite"
           />
         </Link>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex xls:hidden text-[#32c0cc]"
+          className="flex xls:hidden text-primaryGreen"
         >
           {!isOpen ? (
             <svg
@@ -99,10 +105,10 @@ const Header = () => {
           <li className="group py-7 items-stretch relative">
             <Link
               href="/iv-therapy"
-              className="whitespace-nowrap flex gap-2 items-center hover:text-[#32C0CC] transition-colors duration-200"
+              className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200"
             >
               <p>IV Therapy</p>
-              {/* <svg
+              <svg
                 width="12"
                 height="7"
                 viewBox="0 0 12 7"
@@ -116,149 +122,28 @@ const Header = () => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
-              </svg> */}
+              </svg>
             </Link>
-            <div className="group-hover:hidden xls:group-hover:block w-screen left-0 right-0 fixed bg-white text-[#282D41] top-[78px] shadow-lg hidden">
-              <div className="block w-full mx-auto">
-                <div className="w-full flex gap-10 mx-auto xl:pl-16 2xl:pl-32">
-                  <div className="grid grid-cols-3 gap-4 py-10 pl-16">
-                    <Link href="/hangover-fix">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                      <p className="max-w-72 text-[14px] text-[#5A5F73]">
-                        Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B
-                        complex and more.
-                      </p>
-                    </Link>
+            <div className="group-hover:hidden xls:group-hover:block w-screen left-0 right-0 fixed bg-primaryWhite text-primaryDark top-[78px] shadow-lg hidden">
+              <div className="block w-full mx-auto leading-normal">
+                <div className="w-full flex gap-10 mx-auto pl-[200px]">
+                  <div className="grid grid-cols-3 gap-y-4 py-10">
+                    {headerMenus.map((menu, index) => (
+                      <Link
+                        href="/hangover-fix"
+                        key={index}
+                        className="flex flex-col p-2 hover:bg-headerHover transition-colors duration-200 pr-4 max-w-[288px]"
+                      >
+                        <h3 className="text-base font-semibold">
+                          {menu.title}
+                        </h3>
+                        <p className="text-secondaryDark text-[14px]">
+                          {menu.description}
+                        </p>
+                      </Link>
+                    ))}
                   </div>
-                  <div className="flex flex-col ml-auto gap-4 w-[416px] bg-[#E3FAFF] justify-center items-start px-16">
+                  <div className="flex flex-col ml-auto gap-4 w-[416px] bg-lightGreen justify-center items-start px-16">
                     <h2 className="text-xl text-left font-semibold">
                       Learn more about IV Therapy
                     </h2>
@@ -280,7 +165,7 @@ const Header = () => {
                     </p>
                     <Link
                       href="/learn-more"
-                      className="text-xl text-[#32c0cc] font-semibold"
+                      className="text-xl text-primaryGreen font-semibold"
                     >
                       Learn more &gt;
                     </Link>
@@ -293,28 +178,43 @@ const Header = () => {
           <li className="relative group py-7 items-stretch">
             <Link
               href="/about-us"
-              className="whitespace-nowrap flex gap-2 items-center hover:text-[#32C0CC] transition-colors duration-200"
+              className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200"
             >
               <p>About Us</p>
-              <div className="group-hover:hidden xls:group-hover:block absolute bg-white text-[#282D41] w-80 left-0 top-[78px] shadow-lg hidden">
+              <svg
+                width="12"
+                height="7"
+                viewBox="0 0 12 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L6 6L11 1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div className="group-hover:hidden xls:group-hover:block absolute bg-primaryWhite text-primaryDark w-80 left-0 top-[78px] shadow-lg hidden">
                 <div className="flex flex-col">
                   <Link
                     href="/who-we-are"
-                    className="w-full px-4 py-4  hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                    className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
                   >
                     About Us
                   </Link>
-                  <hr className="border border-[#c0c4cc73]" />
+                  <hr className="border border-horizontalLine" />
                   <Link
                     href="/the-doctor"
-                    className="w-full px-4 py-4 hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                    className="w-full px-4 py-4 hover:text-primaryGreen font-semibold transition-colors duration-200"
                   >
                     The Doctor
                   </Link>
-                  <hr className="border border-[#c0c4cc73]" />
+                  <hr className="border border-horizontalLine" />
                   <Link
                     href="/contact-us"
-                    className="w-full px-4 py-4  hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                    className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
                   >
                     Contact Us
                   </Link>
@@ -325,7 +225,7 @@ const Header = () => {
           <li className="py-7 items-stretch">
             <Link
               href="tel:(818) 290-7311"
-              className="whitespace-nowrap flex gap-2 items-center hover:text-[#32C0CC] transition-colors duration-200"
+              className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200"
             >
               Call Us: (818) 290-7311
             </Link>
@@ -333,8 +233,8 @@ const Header = () => {
         </ul>
 
         {isOpen && (
-          <div className="flex flex-col gap-6 xls:hidden absolute top-20 left-0 right-0 bg-white shadow-lg p-8 h-screen overflow-y-scroll pb-64">
-            <div className="flex justify-between gap-2 items-center hover:text-[#32c0cc]">
+          <div className="flex flex-col gap-6 xls:hidden absolute top-[78px] left-0 right-0 bg-primaryWhite shadow-lg p-8 h-screen overflow-y-scroll pb-64">
+            <div className="flex justify-between gap-2 items-center hover:text-primaryGreen">
               <Link
                 href="/iv-therapy"
                 className="whitespace-nowrap flex flex-1 gap-2 items-center justify-between transition-colors duration-200"
@@ -375,102 +275,38 @@ const Header = () => {
                 <p className="font-semibold text-base">
                   Learn more about IV Therapy
                 </p>
-                <p className="text-[14px] text-[#5A5F73] py-3">
+                <p className="text-[14px] text-secondaryDark py-3">
                   If you&apos;ve ever had food poisoning, woken up with a nasty
                   hangover, or had jet lag after
                 </p>
                 <Link
                   href="/learn-more"
-                  className="py-2 text-xl text-[#32c0cc] font-semibold"
+                  className="py-2 text-xl text-primaryGreen font-semibold"
                 >
                   Learn more &gt;
                 </Link>
 
                 <div className="w-full flex flex-col gap-10 mx-auto">
                   <div className="flex flex-col gap-6 pt-10">
-                    <Link href="/hangover-fix" >
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
-                    <Link href="#">
-                      <h3 className="text-[16px] font-semibold">
-                        Hangover Fix
-                      </h3>
-                    </Link>
+                    {headerMenus.map((menu, index) => (
+                      <Link
+                        href="/hangover-fix"
+                        key={index}
+                        className="flex flex-col gap-2 hover:text-primaryGreen transition-colors duration-200"
+                      >
+                        <h3 className="text-base font-semibold">
+                          {menu.title}
+                        </h3>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
             )}
 
-            <hr className="border-b border-[#C0C4CC]" />
+            <hr className="border-b border-horizontalLine" />
 
-            <div className="flex justify-between gap-2 items-center hover:text-[#32c0cc]">
+            <div className="flex justify-between gap-2 items-center hover:text-primaryGreen">
               <Link
                 href="/who-we-are"
                 className="whitespace-nowrap flex flex-1 gap-2 items-center justify-between transition-colors duration-200"
@@ -510,43 +346,43 @@ const Header = () => {
               <div className="flex flex-col xls:hidden">
                 <Link
                   href="/who-we-are"
-                  className="w-full py-2 hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                  className="w-full py-2 hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   About Us
                 </Link>
                 <Link
                   href="/the-doctor"
-                  className="w-full py-2 hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                  className="w-full py-2 hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   The Doctor
                 </Link>
                 <Link
                   href="/contact-us"
-                  className="w-full py-2  hover:text-[#32c0cc] font-semibold transition-colors duration-200"
+                  className="w-full py-2  hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   Contact Us
                 </Link>
               </div>
             )}
 
-            <hr className="border-b border-[#C0C4CC]" />
+            <hr className="border-b border-horizontalLine" />
 
             <Link
               href="tel:(818) 290-7311"
-              className="whitespace-nowrap flex gap-2 items-center hover:text-[#32C0CC] transition-colors duration-200 font-semibold"
+              className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200 font-semibold"
             >
               Call Us: (818) 290-7311
             </Link>
             <div className="fixed bottom-0 left-0 flex flex-col gap-4 justify-center items-center py-6 w-full mx-auto bg-white">
               <Link
                 href="/check-menu"
-                className="px-5 py-2 w-fit font-semibold text-4 bg-[#32C0CC] text-white rounded-lg transition-colors hover:bg-[#2aa1ac]"
+                className="px-5 py-2 w-fit font-semibold text-4 bg-primaryGreen text-primaryWhite rounded-lg transition-colors hover:bg-primaryGreenHover"
               >
                 Check menu
               </Link>
               <Link
                 href="/account"
-                className="text-base text-[#32c0cc] font-semibold"
+                className="text-base text-primaryGreen font-semibold"
               >
                 My Account
               </Link>
@@ -554,16 +390,16 @@ const Header = () => {
           </div>
         )}
 
-        <div className="hidden xls:flex gap-4 justify-center items-center h-full">
+        <div className="hidden xls:flex gap-8 justify-center items-center h-full">
           <Link
             href="/check-menu"
-            className="px-5 py-2 font-semibold text-4 bg-[#32C0CC] text-white rounded-lg transition-colors hover:bg-[#2aa1ac]"
+            className="px-5 py-2 font-semibold text-4 bg-primaryGreen text-primaryWhite rounded transition-colors hover:bg-primaryGreenHover"
           >
-            Check menu
+            Check Menu
           </Link>
           <Link
             href="/account"
-            className="text-base text-[#32c0cc] font-semibold"
+            className="text-base text-primaryGreen font-semibold"
           >
             My Account
           </Link>

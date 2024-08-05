@@ -82,10 +82,60 @@
 }
 
 @media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 220.9 39.3% 11%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 71.4% 4.1%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 220.9 39.3% 11%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 216 12.2% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -96,6 +146,139 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+@media (min-width: 643px) {
+  .bg-hero-image {
+    background-image: url('/Hero-Image.png');
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+  .bg-iv-therapy-image {
+    background-image: url('/Iv-therapy-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden.mySwiper {
+  position: unset;
+}
+
+.swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: -70px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+  display: none;
+}
+.swiper-button-next {
+  width: 48px !important;
+  background: #000;
+  border: 1px solid #c0c4cc;
+  height: 48px !important;
+  border-radius: 50px;
+  z-index: 999;
+  right: 260px !important;
+}
+
+.swiper-button-prev {
+  width: 48px !important;
+  background: #000;
+  border: 1px solid #c0c4cc;
+  height: 48px !important;
+  border-radius: 50px;
+  z-index: 999;
+  left: 260px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #32c0cc !important;
+}
+
+@media (max-width: 1220px) {
+  .swiper-button-next,
+  .swiper-button-prev,
+  .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    display: flex;
+  }
+
+  .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: 100vw !important;
+    justify-content: center !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background: none;
+    position: absolute;
+    bottom: -90px;
+    width: 27px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-button-next::after {
+    content: '\2192' !important;
+    display: block;
+    font-size: 24px !important;
+    font-weight: bolder;
+    width: 12 !important;
+    height: 48 !important;
+    border-style: solid;
+  }
+
+  .swiper-button-prev::after {
+    content: '\2190' !important;
+    display: block;
+    font-size: 24px !important;
+    font-weight: bolder;
+    width: 12 !important;
+    height: 48 !important;
+    border-style: solid;
+  }
+
+  .swiper-button-next {
+    right: 10px; /* Adjust position */
+  }
+
+  .swiper-button-prev {
+    left: 10px; /* Adjust position */
+  }
+}
+
+@media (max-width: 890px) {
+  .swiper-button-next {
+    right: 150px !important;
+  }
+  .swiper-button-prev {
+    left: 150px !important;
+  }
+}
+
+@media (max-width: 643px) {
+  .swiper-button-next {
+    right: 70px !important;
+  }
+  .swiper-button-prev {
+    left: 70px !important;
+  }
+}
+
+.scroll-container {
+  scrollbar-width: none;
+}
+
+@media (max-width: 410px) {
+  .iv-hero {
+    top: 110px;
   }
 }
 

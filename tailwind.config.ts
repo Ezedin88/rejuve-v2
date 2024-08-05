@@ -11,9 +11,16 @@ const config: Config = {
       sm: '644px',
       xsm: '462px',
       xxsm: '350px',
+      md: '768px',
+      lg: '1024px',
       xls: '1220px',
+      xl: '1280px',
+      '2xl': '1536px',
       xxl: '2000px',
       xxxl: '2500px',
+    },
+    maxWidth: {
+      hxl: '1482px',
     },
     extend: {
       fontFamily: {
@@ -52,6 +59,10 @@ const config: Config = {
         extraLightYellow: '#FFF9EB',
         placeholderText: 'rgba(40, 45, 65, 0.7)',
         datePickerPlaceholder: '#COC4CC',
+        headerHover: '#B7F4F923',
+        horizontalLine: '#C0C4CC50',
+        footerGrayText: '#AFB1B2',
+        lightGreenFade: '#8AE2EA',
       },
     },
   },

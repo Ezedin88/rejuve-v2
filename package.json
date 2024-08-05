@@ -16,7 +16,11 @@
     "react-datepicker": "^7.3.0",
     "react-dom": "^18",
     "react-places-autocomplete": "^7.3.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "@types/swiper": "^6.0.0",
+    "swiper": "^11.1.9",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
