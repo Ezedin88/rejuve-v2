@@ -8,36 +8,31 @@
   }
 
   .primary-hero-title-text {
-    @apply font-inter font-[700] text-[48px] leading-[130%]
-            max-sm:text-[24px] max-sm:leading-[120%]
+    @apply font-inter font-[700] text-[48px] leading-[130%] max-sm:text-[24px] max-sm:leading-[120%]
   }
 
   .primary-hero-subtitle-text {
-    @apply text-lightSecondaryDark font-bold text-[15px] leading-[150%]
-            max-sm:text-[12px]
+    @apply text-lightSecondaryDark font-bold text-[15px] leading-[150%] max-sm:text-[12px]
   }
 
   .primary-hero-description-text {
-    @apply text-lightSecondaryDark text-[16px] leading-[170%]
-            max-xls:text-[15px] max-xls:leading-[150%]
-            max-sm:text-[12px]
+    @apply text-lightSecondaryDark text-[16px] leading-[170%] max-xls:text-[15px] max-xls:leading-[150%] max-sm:text-[12px]
   }
 
   .primary-why-rejuve-title {
-    @apply font-bold text-[48px] leading-[130%] text-center text-primaryDark
-           max-xls:text-[32px]
+    @apply font-bold text-[48px] leading-[130%] text-center text-primaryDark max-xls:text-[32px]
   }
 
   .secondary-why-rejuve-title {
     @apply font-semibold text-[35.3px] leading-[36px]
   }
+
   .secondary-why-rejuve-sub-title {
     @apply text-[24px] leading-[31.2px] capitalize text-center
   }
 
   .primary-why-rejuve-card-title {
-    @apply font-bold text-[32px] leading-[39px] text-center
-           max-xls:text-[24px] max-xls:leading-[29px] text-primaryDark
+    @apply font-bold text-[32px] leading-[39px] text-center max-xls:text-[24px] max-xls:leading-[29px] text-primaryDark
   }
 
   .secondary-why-rejuve-card-title {
@@ -53,9 +48,7 @@
   }
 
   .primary-why-rejuve-card-container {
-    @apply max-w-[541px] max-xls:max-w-[351px] max-sm:max-w-[360px]
-           flex flex-col justify-center items-center gap-[24px] min-h-[262px] max-xls:min-h-[254px] max-sm:min-h-[233px]
-    
+    @apply max-w-[541px] max-xls:max-w-[351px] max-sm:max-w-[360px] flex flex-col justify-center items-center gap-[24px] min-h-[262px] max-xls:min-h-[254px] max-sm:min-h-[233px]
   }
 
   .secondary-why-rejuve-card-container {
@@ -63,14 +56,7 @@
   }
 
   .primary-input-box {
-    @apply w-full max-w-[563.5px] border-[#c0c4cc77] border-2 py-[9px] px-[12px] rounded-[4px] max-xls:max-w-[522px]
-           max-sm:max-w-[321px]
-           max-xsm:max-w-[100%]
-           max-xls:w-[100%]
-           active:outline-primaryGreen
-           focus:outline-primaryGreen
-           placeholder:text-placeholderText
-             placeholder:text-[14px]
+    @apply w-full max-w-[563.5px] border-[#c0c4cc77] border-2 py-[9px] px-[12px] rounded-[4px] max-xls:max-w-[522px] max-sm:max-w-[321px] max-xsm:max-w-[100%] max-xls:w-[100%] active:outline-primaryGreen focus:outline-primaryGreen placeholder:text-placeholderText placeholder:text-[14px]
   }
 
   .primary-input-label {
@@ -78,8 +64,7 @@
   }
 
   .primary-form-wrapper {
-    @apply bg-lightGreen pb-[50px] pt-[43.5px] px-[50px]
-    grid grid-cols-2 gap-x-[30px] gap-y-[32px] max-xsm:gap-y-[24px]
+    @apply bg-lightGreen pb-[50px] pt-[43.5px] px-[50px] grid grid-cols-2 gap-x-[30px] gap-y-[32px] max-xsm:gap-y-[24px]
   }
 
   .form-wrapper-title {
@@ -87,31 +72,7 @@
   }
 
   .primary-rounded-input {
-    @apply flex
-           items-center
-           justify-center
-           w-[20px]
-           p-0
-           appearance-none
-           box-border
-           border-2
-           border-datePickerPlaceholder
-           checked:border-primaryGreen
-           rounded-full
-           relative
-           before:content-['']
-           before:absolute
-           before:w-[10px]
-           before:h-[10px]
-           before:border-2
-           before:border-primaryGreen
-           before:bg-primaryGreen
-           before:rounded
-           before:opacity-0
-           checked:before:opacity-100
-           ml-[10px]
-           mr-[8px]
-           cursor-pointer
+    @apply flex items-center justify-center w-[20px] p-0 appearance-none box-border border-2 border-datePickerPlaceholder checked:border-primaryGreen rounded-full relative before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:border-2 before:border-primaryGreen before:bg-primaryGreen before:rounded before:opacity-0 checked:before:opacity-100 ml-[10px] mr-[8px] cursor-pointer
   }
 }
 
@@ -129,7 +90,7 @@
 }
 
 body {
- color: #282D41;
+  color: #282D41;
 }
 
 @layer utilities {
@@ -146,18 +107,18 @@ body {
 }
 
 .react-datepicker__day--selected :hover {
-    background-color: #c7f7fb !important;
-    color: #333 !important;
-    border-radius: 50% !important;
-  }
-
-.react-datepicker__week div:hover{
   background-color: #c7f7fb !important;
   color: #333 !important;
   border-radius: 50% !important;
 }
 
-.react-datepicker__week div:active{
+.react-datepicker__week div:hover {
+  background-color: #c7f7fb !important;
+  color: #333 !important;
+  border-radius: 50% !important;
+}
+
+.react-datepicker__week div:active {
   background-color: #32c0cc !important;
   color: #fff !important;
   border-radius: 50% !important;
@@ -167,44 +128,74 @@ body {
   background-color: #32c0cc !important;
 }
 
-.react-datepicker__header.react-datepicker__header--custom{
-  background:#fff !important;
+.react-datepicker__header.react-datepicker__header--custom {
+  background: #fff !important;
 }
 
 div.custom-header {
-  display:flex;
-  gap:25px;
-  padding:12px;
-  justify-content:space-between;
-  font-size:18px !important;
-}
-
-.react-datepicker{
-  padding:12px;
-}
-
-.react-datepicker__day{
+  display: flex;
+  gap: 25px;
+  padding: 12px;
+  justify-content: space-between;
   font-size: 18px !important;
-    line-height: 22px !important;
-    font-weight: 500 !important;
-    font-family: "Inter", sans-serif !important;
-    padding: 8px !important;
-    width: 40px !important;
-    border-radius: 500px !important;
+}
+
+.react-datepicker {
+  padding: 12px;
+}
+
+.react-datepicker__day {
+  font-size: 18px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+  font-family: "Inter", sans-serif !important;
+  padding: 8px !important;
+  width: 40px !important;
+  border-radius: 500px !important;
 }
 
 .react-datepicker__day-names {
-  font-size:16px !important;
-  padding:8px;
-  display:flex;
-  justify-content:space-between;
+  font-size: 16px !important;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.react-datepicker__time-list-item:hover {
+  color: #32c0cc !important;
+}
+
+.react-datepicker__time-list-item {
+  color: #282D41 !important;
+  font-size: 16px !important;
+}
+
+.react-datepicker--time-only {
+  width: 100% !important;
+}
+
+.react-datepicker__header--time.react-datepicker__header--time--only {
+  background: transparent;
+}
+
+.react-datepicker-time__header {
+  color: #32c0cc !important;
+}
+
+.react-datepicker__time-container {
+  width: 100% !important;
+}
+
+.react-datepicker__time-list {
+  /* hide scroll bar */
+  scrollbar-width: none;
 }
 
 /* max-width media query for 461px max*/
-@media (max-width:461px){
-  .customDatePickerWidth > div.react-datepicker-wrapper, 
-.customDatePickerWidth > div > div.react-datepicker__input-container
-.customDatePickerWidth > div > div.react-datepicker__input-container input {
-   width: 100%;
-}
+@media (max-width:461px) {
+
+  .customDatePickerWidth>div.react-datepicker-wrapper,
+  .customDatePickerWidth>div>div.react-datepicker__input-container .customDatePickerWidth>div>div.react-datepicker__input-container input {
+    width: 100%;
+  }
 }

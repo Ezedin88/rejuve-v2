@@ -30,7 +30,7 @@ export const handleValidation = yup.object().shape({
         })
     ),
     // provider: yup.string().required('Provider is required'),
-    // bookingDate: yup.string().required('Booking date is required'),
+    bookingDate: yup.string().required('Booking date is required'),
     // bookingTime: yup.string().required('Booking time is required'),
     bookingChoice: yup.string().required('Booking location is required'),
     // card_number: yup.string().when('paymentMethod', {

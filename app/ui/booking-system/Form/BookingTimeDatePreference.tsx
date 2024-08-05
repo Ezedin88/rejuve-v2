@@ -1,6 +1,15 @@
+import Text from "@/app/components/Buttons/Text";
+import InputLabelWrapper from "@/app/components/Form/InputLabelWrapper";
+import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
 
 export default function BookingTimeDatePreference() {
     return (
-        <h1>booking date time</h1>
+        <>
+            <Text className="form-wrapper-title">Booking Date and Time Preference</Text>
+            <PrimaryFormWrapper className="gap-[64px] gap-y-[38px]">
+                <InputLabelWrapper inputClassName="primary-input-box" wrapperClassName="max-xsm:col-start-3 max-xsm:col-end-1" name="bookingDate" placeholder="Mar 22,2023" required type="date" labelName="Date" labelClassName="primary-input-label" />
+                <InputLabelWrapper inputClassName="primary-input-box" wrapperClassName="max-xsm:col-start-3 max-xsm:col-end-1" name="bookingTime" placeholder="10:30 AM" required type="time" labelName="Time" labelClassName="primary-input-label" />
+            </PrimaryFormWrapper>
+        </>
     )
 }
