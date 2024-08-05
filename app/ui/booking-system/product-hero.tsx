@@ -27,7 +27,7 @@ export default function ProductHero() {
                     <ProductHeroBtnWrapper
                         productPrice={'$120'}
                         buttonText={'Book In Clinic'}
-                        smallText={'*At our locations'}
+                        smallText={'*At our clinic'}
                     />
                     <ProductHeroBtnWrapper
                         productPrice={'$120'}
