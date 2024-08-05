@@ -10,9 +10,10 @@ import { useEffect } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import ChooseTreatment from "./ChooseTreatment";
 import ChooseProvider from "./ChooseProvider";
+import AlmostDone from "./AlmostDone";
 
 export default function Form() {
-    const { state, dispatch } = useMapApi();
+    const { dispatch } = useMapApi();
     const handleLoadMapApi = () => {
         dispatch({ type: 'LOAD_MAP_API' });
     }
@@ -65,8 +66,7 @@ export default function Form() {
                                     <UserDetails remove={remove} index={index} />
                                     {index === 0 ? <ChooseLocation /> : null}
                                     <ChooseTreatment title="IV" />
-                                    {index === 0 ? <ChooseProvider /> : null}
-                                    <BookingTimeDatePreference />
+
                                     <button
                                         type="button"
                                         className="secondary bg-primaryGreen rounded-[5px] flex py-[10px] px-[20px] text-white gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[250px] h-[55px] max-sm:w-[302px]
@@ -100,8 +100,10 @@ export default function Form() {
                         }
                     </>
                 )}
-
             </FieldArray>
+            <ChooseProvider />
+            <BookingTimeDatePreference />
+            <AlmostDone />
         </FormikForm>
     )
 }

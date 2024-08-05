@@ -64,7 +64,7 @@
   }
 
   .primary-form-wrapper {
-    @apply bg-lightGreen pb-[50px] pt-[43.5px] px-[50px] grid grid-cols-2 gap-x-[30px] gap-y-[32px] max-xsm:gap-y-[24px]
+    @apply bg-lightGreen pb-[50px] pt-[43.5px] px-[50px] grid grid-cols-2 gap-x-[30px] gap-y-[32px] max-xsm:gap-y-[24px] rounded-lg
   }
 
   .form-wrapper-title {

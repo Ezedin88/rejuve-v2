@@ -75,4 +75,5 @@ export interface IInitialValues {
     paymentMethod: string;
     specialInstructions: string;
     meta_data: MetaData[];
+    tip: number;
 }

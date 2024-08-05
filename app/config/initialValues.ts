@@ -43,4 +43,5 @@ export const initialValues: IInitialValues = {
     createAccount: true,
     paymentMethod: 'visa',
     specialInstructions: '',
+    tip: 5,
 };
