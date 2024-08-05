@@ -33,7 +33,7 @@ export default function AlmostDone() {
             <PrimaryFormWrapper className="grid-cols-2 gap-y-3">
                 <div className="tip_radio_container flex flex-col gap-10 col-start-1 col-end-2 ">
                     <Text className="form-wrapper-title text-[16px] leading-[22px]">Tip</Text>
-                    <div className="flex gap-22 justify-between">
+                    <div className="flex gap-22 justify-between max-[400px]:grid max-[400px]:grid-cols-2 max-[400px]:gap-x-16 max-[400px]:gap-y-4">
                         {tipData.map((tip, index) => (
                             <div key={index} className="tip_radio_wrapper flex gap-2">
                                 <div className="w-10 h-10">
