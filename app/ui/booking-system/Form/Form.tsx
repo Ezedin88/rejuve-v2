@@ -8,6 +8,7 @@ import { IInitialValues } from "@/app/lib/definitions";
 import { useMapApi } from "./reducers/loadMapContext";
 import { useEffect } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
+import ChooseTreatment from "./ChooseTreatment";
 
 export default function Form() {
     const { state, dispatch } = useMapApi();
@@ -62,6 +63,7 @@ export default function Form() {
                                     }
                                     <UserDetails remove={remove} index={index} />
                                     {index === 0 ? <ChooseLocation /> : null}
+                                    <ChooseTreatment title="IV" />
                                     <BookingTimeDatePreference />
                                     <button
                                         type="button"
