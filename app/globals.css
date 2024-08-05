@@ -82,303 +82,314 @@
 }
 
 @media (prefers-color-scheme: dark) {
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+  @layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 224 71.4% 4.1%;
+      --card: 0 0% 100%;
+      --card-foreground: 224 71.4% 4.1%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 224 71.4% 4.1%;
+      --primary: 220.9 39.3% 11%;
+      --primary-foreground: 210 20% 98%;
+      --secondary: 220 14.3% 95.9%;
+      --secondary-foreground: 220.9 39.3% 11%;
+      --muted: 220 14.3% 95.9%;
+      --muted-foreground: 220 8.9% 46.1%;
+      --accent: 220 14.3% 95.9%;
+      --accent-foreground: 220.9 39.3% 11%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 20% 98%;
+      --border: 220 13% 91%;
+      --input: 220 13% 91%;
+      --ring: 224 71.4% 4.1%;
+      --radius: 0.5rem;
+      --chart-1: 12 76% 61%;
+      --chart-2: 173 58% 39%;
+      --chart-3: 197 37% 24%;
+      --chart-4: 43 74% 66%;
+      --chart-5: 27 87% 67%;
+    }
+
+    .dark {
+      --background: 224 71.4% 4.1%;
+      --foreground: 210 20% 98%;
+      --card: 224 71.4% 4.1%;
+      --card-foreground: 210 20% 98%;
+      --popover: 224 71.4% 4.1%;
+      --popover-foreground: 210 20% 98%;
+      --primary: 210 20% 98%;
+      --primary-foreground: 220.9 39.3% 11%;
+      --secondary: 215 27.9% 16.9%;
+      --secondary-foreground: 210 20% 98%;
+      --muted: 215 27.9% 16.9%;
+      --muted-foreground: 217.9 10.6% 64.9%;
+      --accent: 215 27.9% 16.9%;
+      --accent-foreground: 210 20% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 20% 98%;
+      --border: 215 27.9% 16.9%;
+      --input: 215 27.9% 16.9%;
+      --ring: 216 12.2% 83.9%;
+      --chart-1: 220 70% 50%;
+      --chart-2: 160 60% 45%;
+      --chart-3: 30 80% 55%;
+      --chart-4: 280 65% 60%;
+      --chart-5: 340 75% 55%;
+    }
   }
 
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-}
-
-body {
-  color: #282D41;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-@media (min-width: 643px) {
-  .bg-hero-image {
-    background-image: url('/Hero-Image.png');
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
-  }
-  .bg-iv-therapy-image {
-    background-image: url('/Iv-therapy-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
-.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden.mySwiper {
-  position: unset;
-}
-
-.swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: -70px !important;
-}
-
-.swiper-button-next,
-.swiper-button-prev,
-.swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
-  display: none;
-}
-.swiper-button-next {
-  width: 48px !important;
-  background: #000;
-  border: 1px solid #c0c4cc;
-  height: 48px !important;
-  border-radius: 50px;
-  z-index: 999;
-  right: 260px !important;
-}
-
-.swiper-button-prev {
-  width: 48px !important;
-  background: #000;
-  border: 1px solid #c0c4cc;
-  height: 48px !important;
-  border-radius: 50px;
-  z-index: 999;
-  left: 260px !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: #32c0cc !important;
-}
-
-@media (max-width: 1220px) {
-  .swiper-button-next,
-  .swiper-button-prev,
-  .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
-    display: flex;
+  body {
+    color: #282D41;
   }
 
-  .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
-    width: 100vw !important;
-    justify-content: center !important;
-  }
+  @layer utilities {
+    .text-balance {
+      text-wrap: balance;
+    }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    background: none;
-    position: absolute;
-    bottom: -90px;
-    width: 27px;
-    height: 44px;
-    margin-top: -22px;
-    z-index: 10;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    @media (min-width: 643px) {
+      .bg-hero-image {
+        background-image: url('/Hero-Image.png');
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+      }
 
-  .swiper-button-next::after {
-    content: '\2192' !important;
-    display: block;
-    font-size: 24px !important;
-    font-weight: bolder;
-    width: 12 !important;
-    height: 48 !important;
-    border-style: solid;
-  }
+      .bg-iv-therapy-image {
+        background-image: url('/Iv-therapy-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
 
-  .swiper-button-prev::after {
-    content: '\2190' !important;
-    display: block;
-    font-size: 24px !important;
-    font-weight: bolder;
-    width: 12 !important;
-    height: 48 !important;
-    border-style: solid;
-  }
+    .swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden.mySwiper {
+      position: unset;
+    }
 
-  .swiper-button-next {
-    right: 10px; /* Adjust position */
-  }
+    .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+      bottom: -70px !important;
+    }
 
-  .swiper-button-prev {
-    left: 10px; /* Adjust position */
-  }
-}
+    .swiper-button-next,
+    .swiper-button-prev,
+    .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+      display: none;
+    }
 
-@media (max-width: 890px) {
-  .swiper-button-next {
-    right: 150px !important;
-  }
-  .swiper-button-prev {
-    left: 150px !important;
-  }
-}
+    .swiper-button-next {
+      width: 48px !important;
+      background: #000;
+      border: 1px solid #c0c4cc;
+      height: 48px !important;
+      border-radius: 50px;
+      z-index: 999;
+      right: 260px !important;
+    }
 
-@media (max-width: 643px) {
-  .swiper-button-next {
-    right: 70px !important;
-  }
-  .swiper-button-prev {
-    left: 70px !important;
-  }
-}
+    .swiper-button-prev {
+      width: 48px !important;
+      background: #000;
+      border: 1px solid #c0c4cc;
+      height: 48px !important;
+      border-radius: 50px;
+      z-index: 999;
+      left: 260px !important;
+    }
 
-.scroll-container {
-  scrollbar-width: none;
-}
+    .swiper-pagination-bullet-active {
+      background: #32c0cc !important;
+    }
 
-@media (max-width: 410px) {
-  .iv-hero {
-    top: 110px;
-  }
-}
+    @media (max-width: 1220px) {
 
-.react-datepicker__day--selected {
-  background-color: #32c0cc !important;
-  border-radius: 100% !important;
-  padding: 0;
-  color: #fff !important;
-}
+      .swiper-button-next,
+      .swiper-button-prev,
+      .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+        display: flex;
+      }
 
-.react-datepicker__day--selected :hover {
-  background-color: #c7f7fb !important;
-  color: #333 !important;
-  border-radius: 50% !important;
-}
+      .swiper-pagination.swiper-pagination-bullets-dynamic.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+        width: 100vw !important;
+        justify-content: center !important;
+      }
 
-.react-datepicker__week div:hover {
-  background-color: #c7f7fb !important;
-  color: #333 !important;
-  border-radius: 50% !important;
-}
+      .swiper-button-next,
+      .swiper-button-prev {
+        background: none;
+        position: absolute;
+        bottom: -90px;
+        width: 27px;
+        height: 44px;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-.react-datepicker__week div:active {
-  background-color: #32c0cc !important;
-  color: #fff !important;
-  border-radius: 50% !important;
-}
+      .swiper-button-next::after {
+        content: '\2192' !important;
+        display: block;
+        font-size: 24px !important;
+        font-weight: bolder;
+        width: 12 !important;
+        height: 48 !important;
+        border-style: solid;
+      }
 
-.react-datepicker__close-icon::after {
-  background-color: #32c0cc !important;
-}
+      .swiper-button-prev::after {
+        content: '\2190' !important;
+        display: block;
+        font-size: 24px !important;
+        font-weight: bolder;
+        width: 12 !important;
+        height: 48 !important;
+        border-style: solid;
+      }
 
-.react-datepicker__header.react-datepicker__header--custom {
-  background: #fff !important;
-}
+      .swiper-button-next {
+        right: 10px;
+        /* Adjust position */
+      }
 
-div.custom-header {
-  display: flex;
-  gap: 25px;
-  padding: 12px;
-  justify-content: space-between;
-  font-size: 18px !important;
-}
+      .swiper-button-prev {
+        left: 10px;
+        /* Adjust position */
+      }
+    }
 
-.react-datepicker {
-  padding: 12px;
-}
+    @media (max-width: 890px) {
+      .swiper-button-next {
+        right: 150px !important;
+      }
 
-.react-datepicker__day {
-  font-size: 18px !important;
-  line-height: 22px !important;
-  font-weight: 500 !important;
-  font-family: "Inter", sans-serif !important;
-  padding: 8px !important;
-  width: 40px !important;
-  border-radius: 500px !important;
-}
+      .swiper-button-prev {
+        left: 150px !important;
+      }
+    }
 
-.react-datepicker__day-names {
-  font-size: 16px !important;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-}
+    @media (max-width: 643px) {
+      .swiper-button-next {
+        right: 70px !important;
+      }
 
-.react-datepicker__time-list-item:hover {
-  color: #32c0cc !important;
-}
+      .swiper-button-prev {
+        left: 70px !important;
+      }
+    }
 
-.react-datepicker__time-list-item {
-  color: #282D41 !important;
-  font-size: 16px !important;
-}
+    .scroll-container {
+      scrollbar-width: none;
+    }
 
-.react-datepicker--time-only {
-  width: 100% !important;
-}
+    @media (max-width: 410px) {
+      .iv-hero {
+        top: 110px;
+      }
+    }
 
-.react-datepicker__header--time.react-datepicker__header--time--only {
-  background: transparent;
-}
+    .react-datepicker__day--selected {
+      background-color: #32c0cc !important;
+      border-radius: 100% !important;
+      padding: 0;
+      color: #fff !important;
+    }
 
-.react-datepicker-time__header {
-  color: #32c0cc !important;
-}
+    .react-datepicker__day--selected :hover {
+      background-color: #c7f7fb !important;
+      color: #333 !important;
+      border-radius: 50% !important;
+    }
 
-.react-datepicker__time-container {
-  width: 100% !important;
-}
+    .react-datepicker__week div:hover {
+      background-color: #c7f7fb !important;
+      color: #333 !important;
+      border-radius: 50% !important;
+    }
 
-.react-datepicker__time-list {
-  /* hide scroll bar */
-  scrollbar-width: none;
-}
+    .react-datepicker__week div:active {
+      background-color: #32c0cc !important;
+      color: #fff !important;
+      border-radius: 50% !important;
+    }
 
-/* max-width media query for 461px max*/
-@media (max-width:461px) {
+    .react-datepicker__close-icon::after {
+      background-color: #32c0cc !important;
+    }
 
-  .customDatePickerWidth>div.react-datepicker-wrapper,
-  .customDatePickerWidth>div>div.react-datepicker__input-container .customDatePickerWidth>div>div.react-datepicker__input-container input {
-    width: 100%;
+    .react-datepicker__header.react-datepicker__header--custom {
+      background: #fff !important;
+    }
+
+    div.custom-header {
+      display: flex;
+      gap: 25px;
+      padding: 12px;
+      justify-content: space-between;
+      font-size: 18px !important;
+    }
+
+    .react-datepicker {
+      padding: 12px;
+    }
+
+    .react-datepicker__day {
+      font-size: 18px !important;
+      line-height: 22px !important;
+      font-weight: 500 !important;
+      font-family: "Inter", sans-serif !important;
+      padding: 8px !important;
+      width: 40px !important;
+      border-radius: 500px !important;
+    }
+
+    .react-datepicker__day-names {
+      font-size: 16px !important;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .react-datepicker__time-list-item:hover {
+      color: #32c0cc !important;
+    }
+
+    .react-datepicker__time-list-item {
+      color: #282D41 !important;
+      font-size: 16px !important;
+    }
+
+    .react-datepicker--time-only {
+      width: 100% !important;
+    }
+
+    .react-datepicker__header--time.react-datepicker__header--time--only {
+      background: transparent;
+    }
+
+    .react-datepicker-time__header {
+      color: #32c0cc !important;
+    }
+
+    .react-datepicker__time-container {
+      width: 100% !important;
+    }
+
+    .react-datepicker__time-list {
+      /* hide scroll bar */
+      scrollbar-width: none;
+    }
+
+    /* max-width media query for 461px max*/
+    @media (max-width:461px) {
+
+      .customDatePickerWidth>div.react-datepicker-wrapper,
+      .customDatePickerWidth>div>div.react-datepicker__input-container .customDatePickerWidth>div>div.react-datepicker__input-container input {
+        width: 100%;
+      }
+    }
   }
 }
