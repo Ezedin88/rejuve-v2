@@ -1,3 +1,4 @@
+"use client";
 import { currently_selected_product, productInfo } from "@/app/lib/definitions";
 import React, { createContext, Dispatch } from "react";
 
