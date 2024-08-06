@@ -20,6 +20,7 @@ export default function ProductPage({ product }: {
         dispatch({
             type: "SET_PRODUCT_DATA",
             payload: {
+                categories: product?.categories,
                 productName: product?.name,
                 productId: product?.id,
                 slug: product?.slug,

@@ -248,6 +248,7 @@ export interface productInfo {
         convenience_section_title: string;
         convenience_list: productInfoConvenienceItem[];
     };
+    categories: string[];
     product_home_price: number;
     home_price_id: number;
     product_clinic_price: number;

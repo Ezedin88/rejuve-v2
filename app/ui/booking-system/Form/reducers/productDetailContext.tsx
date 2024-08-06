@@ -18,6 +18,7 @@ const defaultState: productDataContextState = {
         price: '',
         permalink: '',
         image: '',
+        categories: [],
         short_description: '',
         acf: {
             convenience_section_title: '',

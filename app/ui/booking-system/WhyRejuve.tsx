@@ -1,15 +1,20 @@
-const convenience_section_title = 'Why Rejuve for IV Therapy?';
-const first_convenience_title = 'Convenience';
-const first_convenience_description = 'Book your IV therapy appointment online in minutes. We offer same-day appointments at our locations in Dallas, Southlake, and Frisco.';
-const categoryName = 'IV Therapy';
-const theProductName = 'IV Therapy';
 import styles from '@/app/ui/styles/WhyRejuve.module.css';
 import Text from '@/app/components/Buttons/Text';
 import BenefitsTitle from '@/app/components/WhyRejuve/BenefitsTitle';
 import { SmallIcon } from '@/app/components/Icons/Icon';
 import WhyRejuveCardContainer from '@/app/components/WhyRejuve/WhyRejuveCardContainer';
+import { useProductData } from './Form/reducers/productDetailContext';
 
 export default function WhyRejuve() {
+    const { dispatch, productData } = useProductData();
+    const { acf, categories } = productData || {};
+    const { convenience_section_title, convenience_list } = acf || {};
+    const convenience_data = convenience_list?.map(item => ({
+        icon: item?.icon,
+        title: item?.title,
+        description: item?.description,
+    }));
+    const categoryName = categories?.[0];
     return (
         <>
             <section className="max-w-[1718px]
@@ -33,21 +38,17 @@ export default function WhyRejuve() {
                     <div className='flex w-full justify-center gap-[48px]
                     max-sm:flex-col
                     '>
-                        <WhyRejuveCardContainer className='primary-why-rejuve-card-container'>
-                            <SmallIcon icon='http://rejuve.com/wp-content/uploads/2024/01/Frame_9.svg' />
-                            <Text textName='primary-why-rejuve-card-title'>{first_convenience_title}</Text>
-                            <Text textName='primary-why-rejuve-description'>{first_convenience_description}</Text>
-                        </WhyRejuveCardContainer>
-                        <WhyRejuveCardContainer className='primary-why-rejuve-card-container'>
-                            <SmallIcon icon='http://rejuve.com/wp-content/uploads/2024/01/Frame_9.svg' />
-                            <Text textName='primary-why-rejuve-card-title'>{first_convenience_title}</Text>
-                            <Text textName='primary-why-rejuve-description'>{first_convenience_description}</Text>
-                        </WhyRejuveCardContainer>
-                        <WhyRejuveCardContainer className='primary-why-rejuve-card-container'>
-                            <SmallIcon icon='http://rejuve.com/wp-content/uploads/2024/01/Frame_9.svg' />
-                            <Text textName='primary-why-rejuve-card-title'>{first_convenience_title}</Text>
-                            <Text textName='primary-why-rejuve-description'>{first_convenience_description}</Text>
-                        </WhyRejuveCardContainer>
+                        {
+                            convenience_data?.map((item, index) => (
+                                <WhyRejuveCardContainer key={index} className='primary-why-rejuve-card-container'>
+                                    <SmallIcon icon={item?.icon} />
+                                    <Text textName='primary-why-rejuve-card-title'>
+                                        <Text dangerouslySetInnerHTML={{ __html: item?.title ?? '' }} />
+                                    </Text>
+                                    <Text textName='primary-why-rejuve-description'>{item?.description}</Text>
+                                </WhyRejuveCardContainer>
+                            ))
+                        }
                     </div>
                 </div >
             </section >
@@ -57,7 +58,7 @@ export default function WhyRejuve() {
                 </div>
                 <div className={styles["middle-main"]}>
                     <p className={styles["book-weight-loss-metabolic"]} id='book-weight-loss-metabolic-id'>
-                        Book {theProductName}
+                        Book {categoryName}
                     </p>
                 </div>
                 <div className={styles["returning-customer-context"]}>
