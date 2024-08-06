@@ -42,7 +42,6 @@ export default function useLocationAutoComplete() {
                     }
                 });
 
-                console.log("Address Details:", addressObj);
                 setSelectedAddress(addressObj);
             })
             .catch((error) => console.error("Error", error));

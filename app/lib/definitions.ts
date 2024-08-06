@@ -240,7 +240,7 @@ export interface productInfo {
     productName: string;
     productId: number;
     slug: string;
-    price?: string;
+    price: string;
     permalink: string;
     image: string;
     short_description: string;
@@ -253,6 +253,17 @@ export interface productInfo {
     product_clinic_price: number;
     clinic_price_id: number;
     variant_products_info?: ITransformedProduct;
+    currently_selected_product?: currently_selected_product
+}
+
+export interface currently_selected_product {
+    productName: string;
+    home_price_id?: number;
+    clinic_price_id?: number;
+    product_id?: number;
+    productPrice: number;
+    productImage?: string;
+    type: string;
 }
 
 export interface BaseProduct {

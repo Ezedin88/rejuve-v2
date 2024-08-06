@@ -1,11 +1,14 @@
 export default function BookBtn({
-    children
+    children,
+    onclick
 }: {
-    children: React.ReactNode
+    children: React.ReactNode,
+    onclick?: () => void
 }) {
 
     return (
-        <div
+        <button
+            onClick={onclick}
             className="
                        text-center
                        lg:font-inter
@@ -29,6 +32,6 @@ export default function BookBtn({
                     "
         >
             {children}
-        </div>
+        </button>
     );
 }

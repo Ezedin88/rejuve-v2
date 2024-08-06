@@ -383,6 +383,22 @@
       scrollbar-width: none;
     }
 
+
+    /* dangerously set inner html product hero title and descriptions */
+    .hero-subtitle h4 {
+      /* text-lightSecondaryDark font-bold text-[15px] leading-[150%] max-sm:text-[12px] */
+      color: #282D41;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 150%;
+    }
+
+    @media (max-width: 643px) {
+      .hero-subtitle h4 {
+        font-size: 12px;
+      }
+    }
+
     /* max-width media query for 461px max*/
     @media (max-width:461px) {
 

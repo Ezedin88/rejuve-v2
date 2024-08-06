@@ -13,7 +13,6 @@ export default function ProductPage({ product }: {
     let transformedData: ITransformedProduct | null | undefined = null;
     if (hasVariations) {
         transformedData = transformProductInfo(product?.variations);
-        console.log('transformedData', transformedData);
     }
 
     const { dispatch } = useProductData();

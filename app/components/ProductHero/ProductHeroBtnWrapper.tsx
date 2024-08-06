@@ -5,11 +5,13 @@ import Text from '@/app/components/Buttons/Text';
 export function ProductHeroBtnWrapper({
     productPrice,
     buttonText,
-    smallText
+    smallText,
+    onClick
 }: {
     productPrice: string,
     buttonText: string,
-    smallText: string
+    smallText: string,
+    onClick?: () => void
 }) {
     return (
         <>
@@ -24,7 +26,7 @@ export function ProductHeroBtnWrapper({
                 <Text textName='primary-price-btn-text'>
                     {productPrice}
                 </Text>
-                <BookBtn>
+                <BookBtn onclick={onClick}>
                     {buttonText}
                 </BookBtn>
                 <SmallText>

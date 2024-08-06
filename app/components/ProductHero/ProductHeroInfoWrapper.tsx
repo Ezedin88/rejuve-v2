@@ -4,10 +4,12 @@ export function ProductHeroInfoWrapper({
     productName,
     productSubTitle,
     productDescription,
+    short_description
 }: {
     productName: string,
-    productSubTitle: string,
-    productDescription: string,
+    productSubTitle?: string,
+    productDescription?: string,
+    short_description?: string,
 }) {
     return (
         <>
@@ -15,12 +17,14 @@ export function ProductHeroInfoWrapper({
                 <Text textName='primary-hero-title-text'>
                     {productName}
                 </Text>
-                <Text textName='primary-hero-subtitle-text'>
+                {/* dangerously set inner html for short_description */}
+                <Text textName='primary-hero-description-text hero-subtitle' dangerouslySetInnerHTML={{ __html: short_description ?? '' }} />
+                {/* <Text textName='primary-hero-subtitle-text'>
                     {productSubTitle}
                 </Text>
                 <Text textName='primary-hero-description-text'>
                     {productDescription}
-                </Text>
+                </Text> */}
             </div>
         </>
     );

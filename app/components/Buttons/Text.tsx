@@ -1,16 +1,18 @@
 export default function Text({
     children,
     textName = '',
-    className = ''
+    className = '',
+    dangerouslySetInnerHTML,
 }: {
-    children: React.ReactNode,
+    children?: React.ReactNode,
     textName?: string,
-    className?: string
+    className?: string,
+    dangerouslySetInnerHTML?: { __html: string | TrustedHTML }
 }) {
     return (
         <p className={`${textName ? textName : ''}
                 ${className ? className : ''}
-            `}>
+            `} dangerouslySetInnerHTML={dangerouslySetInnerHTML}>
             {children}
         </p>
     );

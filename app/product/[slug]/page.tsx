@@ -16,7 +16,6 @@ export default async function Page({ params }: Params) {
     const decodedSlug = decodeURIComponent(slug);
     const productData: Promise<ProductData> = getProductData(decodedSlug);
     const product = await Promise.resolve(productData);
-    console.log('product info', product)
     return (
         <>
             <FormComponents product={product} />
