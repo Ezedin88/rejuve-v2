@@ -5,20 +5,43 @@ import InputLabelWrapper from "@/app/components/Form/InputLabelWrapper";
 import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
 import { SmallIcon } from "@/app/components/Icons/Icon";
 import { IInitialValues } from "@/app/lib/definitions";
-import { useMapApi } from "./reducers/loadMapContext";
 import Spinner from "@/app/components/spinner/spinner";
 import PlacesAutoCompleteComponent from '@/app/components/Form/PlacesAutoComplete';
+import { useMapApi } from "./reducers/loadMapContext";
+import { useProductData } from "./reducers/productDetailContext";
+import { useEffect } from "react";
 
 export default function ChooseLocation() {
     const { state } = useMapApi();
+    const { dispatch, productData } = useProductData();
     const { loadedMapApi } = state;
-    const { values } = useFormikContext<IInitialValues>();
+    const { values, setFieldValue } = useFormikContext<IInitialValues>();
     const { bookingChoice } = values;
     const isAtClinic = bookingChoice === "atourclinics";
     // set field values
+    const { currently_selected_product } = productData || {};
+    const { type } = currently_selected_product || {};
+
+    useEffect(() => {
+        setFieldValue('bookingChoice', type ?? 'atourclinics');
+        setFieldValue('clinicChoice', type === 'atourclinics' ? 'Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403' : '');
+    }, [setFieldValue, type]);
+
+    useEffect(() => {
+        if (bookingChoice === 'atourclinics') {
+            dispatch({
+                type: 'SET_CURRENTLY_SELECTED_PRODUCT',
+                payload: {
+                    ...productData?.currently_selected_product,
+                    type: 'atourclinics'
+                }
+            })
+        }
+    }, [bookingChoice, dispatch, productData?.currently_selected_product])
 
     return (
         <div>
+            {JSON.stringify(type)}
             <Text className="form-wrapper-title">Choose Location</Text>
             <PrimaryFormWrapper>
                 <div className="primary-input-box bg-white flex hover:border-primaryGreen overflow-clip pr-10 max-xsm:col-start-1 max-xsm:-col-end-1 max-xsm:w-full max-xsm:max-w-full">

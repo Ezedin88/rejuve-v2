@@ -42,9 +42,7 @@ export default function WhyRejuve() {
                             convenience_data?.map((item, index) => (
                                 <WhyRejuveCardContainer key={index} className='primary-why-rejuve-card-container'>
                                     <SmallIcon icon={item?.icon} />
-                                    <Text textName='primary-why-rejuve-card-title'>
-                                        <Text dangerouslySetInnerHTML={{ __html: item?.title ?? '' }} />
-                                    </Text>
+                                    <Text textName='primary-why-rejuve-card-title' dangerouslySetInnerHTML={{ __html: item?.title ?? '' }} />
                                     <Text textName='primary-why-rejuve-description'>{item?.description}</Text>
                                 </WhyRejuveCardContainer>
                             ))

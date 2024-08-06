@@ -89,6 +89,7 @@ export interface ProductData {
     image: string;
     short_description: string;
     acf: Acf;
+    bookingChoice: string;
     product_image: ProductImage;
     variations: Variation[];
 }
@@ -254,17 +255,18 @@ export interface productInfo {
     product_clinic_price: number;
     clinic_price_id: number;
     variant_products_info?: ITransformedProduct;
-    currently_selected_product?: currently_selected_product
+    bookingChoice: string;
+    currently_selected_product?: currently_selected_product;
 }
 
 export interface currently_selected_product {
-    productName: string;
+    productName?: string;
     home_price_id?: number;
     clinic_price_id?: number;
     product_id?: number;
-    productPrice: number;
+    productPrice?: number;
     productImage?: string;
-    type: string;
+    type: 'housecall' | 'atourclinics';
 }
 
 export interface BaseProduct {

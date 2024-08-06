@@ -40,6 +40,7 @@ export default function ProductPage({ product }: {
                 home_price_id: product?.variations?.[1]?.id,
                 product_clinic_price: product?.variations?.[0]?.price,
                 clinic_price_id: product?.variations?.[0]?.id,
+                bookingChoice: product?.bookingChoice ?? 'atourclinics',
                 variant_products_info: transformedData ?? undefined
             }
         });

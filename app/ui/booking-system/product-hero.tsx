@@ -41,27 +41,28 @@ export default function ProductHero() {
                 />
                 <div className="booking-btn-wrapper  flex  max-sm:flex-col  max-w-[455px] gap-[px] flex-wrap justify-between max-xls:gap[99px] max-sm:gap-[12px]  max-sm:justify-center items-center max-sm:mx-auto">
                     <ProductHeroBtnWrapper
-                        productPrice={`$${product_home_price}`}
+                        productPrice={`$${product_clinic_price}`}
                         buttonText={'Book In Clinic'}
                         smallText={'*At our clinic'}
                         onClick={() => handleProductSelection({
                             clinic_price_id: clinic_price_id,
                             productName: productName,
-                            productPrice: product_clinic_price,
-                            type: 'clinic',
+                            productPrice: product_clinic_price ?? price,
+                            type: 'atourclinics',
                         })}
                     />
-                    <ProductHeroBtnWrapper
-                        productPrice={`$${price}`}
-                        buttonText={'Book In House'}
-                        smallText={'*At our locations'}
-                        onClick={() => handleProductSelection({
-                            home_price_id: home_price_id,
-                            productName: productName,
-                            productPrice: product_home_price,
-                            type: 'house',
-                        })}
-                    />
+                    {product_home_price ?
+                        <ProductHeroBtnWrapper
+                            productPrice={`$${product_home_price}`}
+                            buttonText={'Book In House'}
+                            smallText={'*At our locations'}
+                            onClick={() => handleProductSelection({
+                                home_price_id: home_price_id,
+                                productName: productName,
+                                productPrice: product_home_price,
+                                type: 'housecall',
+                            })}
+                        /> : null}
                 </div>
             </section>
         </div>

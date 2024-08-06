@@ -1,4 +1,4 @@
-import { currently_selected_product, ProductData, productInfo } from "@/app/lib/definitions";
+import { currently_selected_product, productInfo } from "@/app/lib/definitions";
 import React, { createContext, Dispatch } from "react";
 
 interface productDataContextState {
@@ -52,8 +52,9 @@ const defaultState: productDataContextState = {
             home_price_id: undefined,
             productPrice: 0,
             productImage: '',
-            type: 'clinic'
-        }
+            type: 'atourclinics'
+        },
+        bookingChoice: 'atourclinics'
     },
     dispatch: () => { }
 };
