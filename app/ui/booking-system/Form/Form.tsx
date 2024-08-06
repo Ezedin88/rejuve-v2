@@ -17,7 +17,7 @@ export default function Form() {
     const handleLoadMapApi = () => {
         dispatch({ type: 'LOAD_MAP_API' });
     }
-    const { values } = useFormikContext<IInitialValues>();
+    const { values } = useFormikContext<IInitialValues>() || {};
     const { userData } = values || {};
 
     useEffect(() => {

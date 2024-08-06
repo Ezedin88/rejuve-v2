@@ -77,3 +77,199 @@ export interface IInitialValues {
     meta_data: MetaData[];
     tip: number;
 }
+
+export interface ProductData {
+    id: number;
+    name: string;
+    slug: string;
+    categories: string[];
+    product_slug: string[];
+    price: string;
+    permalink: string;
+    image: string;
+    short_description: string;
+    acf: Acf;
+    product_image: ProductImage;
+    variations: Variation[];
+}
+
+interface Acf {
+    convenience_section_title: string;
+    convenience_list: ConvenienceList[];
+    benefits_of_product_content: BenefitsOfProductContent;
+    ingredients_section_title: IngredientsSectionTitle;
+    ingredients_list: IngredientsList[];
+    content: string;
+    scrolling_slider_image: boolean;
+    slider_or_image: boolean;
+    product_image: ProductImage;
+}
+
+interface ConvenienceList {
+    icon: Icon;
+    title: string;
+    description: string;
+}
+
+interface Icon {
+    ID: number;
+    id: number;
+    title: string;
+    filename: string;
+    filesize: number;
+    url: string;
+    link: string;
+    alt: string;
+    author: string;
+    description: string;
+    caption: string;
+    name: string;
+    status: string;
+    uploaded_to: number;
+    date: string;
+    modified: string;
+    menu_order: number;
+    mime_type: string;
+    type: string;
+    subtype: string;
+    icon: string;
+    width: number;
+    height: number;
+    sizes: Sizes;
+}
+
+interface Sizes {
+    thumbnail: string;
+    thumbnail_width: number;
+    thumbnail_height: number;
+    medium: string;
+    medium_width: number;
+    medium_height: number;
+    medium_large: string;
+    medium_large_width: number;
+    medium_large_height: number;
+    large: string;
+    large_width: number;
+    large_height: number;
+    _1536x1536: string;
+    _1536x1536_width: number;
+    _1536x1536_height: number;
+    _2048x2048: string;
+    _2048x2048_width: number;
+    _2048x2048_height: number;
+    woocommerce_thumbnail: string;
+    woocommerce_thumbnail_width: number;
+    woocommerce_thumbnail_height: number;
+    woocommerce_single: string;
+    woocommerce_single_width: number;
+    woocommerce_single_height: number;
+    woocommerce_gallery_thumbnail: string;
+    woocommerce_gallery_thumbnail_width: number;
+    woocommerce_gallery_thumbnail_height: number;
+}
+
+interface BenefitsOfProductContent {
+    title: string;
+    description: string;
+    add_benefits_product_image: AddBenefitsProductImage;
+    content: string;
+}
+
+interface AddBenefitsProductImage {
+    ID: number;
+    id: number;
+    title: string;
+    filename: string;
+    filesize: number;
+    url: string;
+    link: string;
+    alt: string;
+    author: string;
+    description: string;
+    caption: string;
+    name: string;
+    status: string;
+    uploaded_to: number;
+    date: string;
+    modified: string;
+    menu_order: number;
+    mime_type: string;
+    type: string;
+    subtype: string;
+    icon: string;
+    width: number;
+    height: number;
+    sizes: Sizes;
+}
+
+interface IngredientsSectionTitle {
+    title: string;
+    description: string;
+}
+
+interface IngredientsList {
+    select_ingredients_i: string;
+    select_title_color_of_ingredients_item: string;
+    ingredients_title_tag: string;
+    ingredients_title: string;
+    ingredients_sub_title: string;
+    ingredients_content: string;
+}
+
+interface ProductImage {
+    large_screen_image_width: string;
+    large_screen_image_height: string;
+    small_screen_image_width: string;
+    small_screen_image_height: string;
+}
+
+export interface Variation {
+    id: number;
+    name: string;
+    price: number;
+    permalink: string;
+    image: string;
+}
+
+interface productInfoConvenienceItem {
+    icon: string;
+    title: string;
+    description: string;
+}
+export interface productInfo {
+    productName: string;
+    productId: number;
+    slug: string;
+    price?: string;
+    permalink: string;
+    image: string;
+    short_description: string;
+    acf: {
+        convenience_section_title: string;
+        convenience_list: productInfoConvenienceItem[];
+    };
+    product_home_price: number;
+    home_price_id: number;
+    product_clinic_price: number;
+    clinic_price_id: number;
+    variant_products_info?: ITransformedProduct;
+}
+
+export interface BaseProduct {
+    productName: string;
+    image: string;
+}
+
+export interface HouseProduct extends BaseProduct {
+    housePriceId: number;
+    product_home_price: number;
+}
+
+export interface ClinicProduct extends BaseProduct {
+    product_clinic_price: number;
+}
+
+export interface ITransformedProduct {
+    houseProducts: HouseProduct[];
+    clinicProducts: ClinicProduct[];
+}

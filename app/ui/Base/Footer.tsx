@@ -194,7 +194,7 @@ const Footer = () => {
 
       <div className="flex flex-col-reverse xls:flex-row gap-10 justify-between items-center mt-8 text-[14px]">
         <p className="text-footerGrayText">
-          © 2023 Rejuve. All rights reserved.
+          &copy; 2023 Rejuve. All rights reserved.
         </p>
         <ul className="text-footerGrayTextText flex gap-6 items-center whitespace-nowrap flex-wrap">
           <li className="text-footerGrayText underline hover:text-primaryGreen">
