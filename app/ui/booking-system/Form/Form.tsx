@@ -65,7 +65,7 @@ export default function Form() {
                                     }
                                     <UserDetails remove={remove} index={index} />
                                     {index === 0 ? <ChooseLocation /> : null}
-                                    <ChooseTreatment title="IV" />
+                                    <ChooseTreatment index={index} />
 
                                     <button
                                         type="button"

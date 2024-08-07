@@ -41,7 +41,6 @@ export default function ChooseLocation() {
 
     return (
         <div>
-            {JSON.stringify(type)}
             <Text className="form-wrapper-title">Choose Location</Text>
             <PrimaryFormWrapper>
                 <div className="primary-input-box bg-white flex hover:border-primaryGreen overflow-clip pr-10 max-xsm:col-start-1 max-xsm:-col-end-1 max-xsm:w-full max-xsm:max-w-full">

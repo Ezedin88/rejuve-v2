@@ -55,7 +55,8 @@ const defaultState: productDataContextState = {
             productImage: '',
             type: 'atourclinics'
         },
-        bookingChoice: 'atourclinics'
+        bookingChoice: 'atourclinics',
+        categorized_products: {}
     },
     dispatch: () => { }
 };

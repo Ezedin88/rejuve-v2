@@ -257,6 +257,7 @@ export interface productInfo {
     variant_products_info?: ITransformedProduct;
     bookingChoice: string;
     currently_selected_product?: currently_selected_product;
+    categorized_products?: ICategorizedTreatments;
 }
 
 export interface currently_selected_product {
@@ -286,4 +287,16 @@ export interface ClinicProduct extends BaseProduct {
 export interface ITransformedProduct {
     houseProducts: HouseProduct[];
     clinicProducts: ClinicProduct[];
+}
+
+export interface IProductTreatment {
+    name: string;
+    price: string;
+    slug: string;
+    permalink: string;
+    variations?: Variation[];
+}
+
+export interface ICategorizedTreatments {
+    [key: string]: IProductTreatment[];
 }

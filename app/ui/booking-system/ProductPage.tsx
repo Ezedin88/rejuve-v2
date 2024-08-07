@@ -1,4 +1,4 @@
-import { ITransformedProduct, ProductData } from "@/app/lib/definitions";
+import { ICategorizedTreatments, ITransformedProduct, ProductData } from "@/app/lib/definitions";
 import { transformProductInfo } from "@/app/utils/utils";
 import ProductHero from "./product-hero";
 import WhyRejuve from "./WhyRejuve";
@@ -6,8 +6,9 @@ import Form from "@/app/ui/booking-system/Form";
 import { useProductData } from "./Form/reducers/productDetailContext";
 import { useEffect } from "react";
 
-export default function ProductPage({ product }: {
-    product: ProductData
+export default function ProductPage({ product, categorizedTreatments }: {
+    product: ProductData,
+    categorizedTreatments: ICategorizedTreatments
 }) {
     const hasVariations = product?.variations?.length > 2;
     let transformedData: ITransformedProduct | null | undefined = null;
@@ -41,10 +42,11 @@ export default function ProductPage({ product }: {
                 product_clinic_price: product?.variations?.[0]?.price,
                 clinic_price_id: product?.variations?.[0]?.id,
                 bookingChoice: product?.bookingChoice ?? 'atourclinics',
-                variant_products_info: transformedData ?? undefined
+                variant_products_info: transformedData ?? undefined,
+                categorized_products: categorizedTreatments
             }
         });
-    }, [dispatch, product, transformedData]);
+    }, [categorizedTreatments, dispatch, product, transformedData]);
     return (
         <>
             <ProductHero />

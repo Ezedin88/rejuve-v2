@@ -2,22 +2,46 @@ import AccordionBody from "@/app/components/Buttons/AccordionBody";
 import AccordionHeader from "@/app/components/Buttons/AccordionHeader";
 import Text from "@/app/components/Buttons/Text";
 import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
-import { SmallIcon } from "@/app/components/Icons/Icon";
-import { Field } from "formik";
 import { useState } from "react";
+import { useProductData } from "./reducers/productDetailContext";
+import { ICategorizedTreatments } from "@/app/lib/definitions";
 
-export default function ChooseTreatment({ title }: { title: string }) {
+export default function ChooseTreatment({ index }: { index: number }) {
     const [isOpen, setIsOpen] = useState(false);
+    const { productData } = useProductData();
+    const { categorized_products = {} } = productData || {};
+
+    const category_to_display: string[] = ['IV Treatment', 'NAD++', 'Ad-Ons', 'Booster', 'Peptides'];
+    const filtered_products = categorized_products && Object.keys(categorized_products)
+        .sort((a, b) => {
+            // Prioritize 'IV Treatment' at the start
+            if (a === 'IV Treatment') return -1;
+            if (b === 'IV Treatment') return 1;
+
+            // Sort alphabetically for other categories
+            return a.localeCompare(b);
+        })
+        .filter(category => category_to_display.includes(category))
+        .reduce((obj: ICategorizedTreatments, category) => {
+            obj[category] = categorized_products[category];
+            return obj;
+        }, {});
 
     return (
         <>
-            <Text className="form-wrapper-title">Choose Treatments</Text>
-            <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
-                <AccordionHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-                {isOpen &&
-                    <AccordionBody />
-                }
-            </PrimaryFormWrapper>
+            {
+                Object.entries(filtered_products)?.map(([category, products]) => (
+                    <div key={category}>
+                        <Text className="form-wrapper-title">Choose Treatments</Text>
+                        <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
+                            <AccordionHeader title={category} isOpen={isOpen} setIsOpen={setIsOpen} />
+                            {isOpen &&
+                                <AccordionBody index={index} products={products} />
+                            }
+                        </PrimaryFormWrapper>
+                    </div>
+                ))
+            }
         </>
     )
 }
