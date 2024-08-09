@@ -29,7 +29,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
         product: any, category: string) => {
         const { checked } = event.target;
         const { variations } = product ?? {};
-
         // Parse the current line items from Formik values
         const currentLineItems = values.userData?.[index]?.line_items?.map(item => JSON.parse(item.toString()));
 
@@ -50,10 +49,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                     categoryName: category, // Add category information
                     variation_id: [{
                         type: 'atourclinics',
-                        variant_id: variations?.[0]?.id ?? product?.product_id
+                        variant_id: variations?.[0]?.id ?? product?.product_id,
+                        product_clinic_price: variations?.[0]?.price ?? product?.price,
                     }, {
                         type: 'housecall',
-                        variant_id: variations?.[1]?.id ?? product?.product_id
+                        variant_id: variations?.[1]?.id ?? product?.product_id,
+                        product_home_price: variations?.[1]?.price ?? product?.price,
                     }],
                 });
             }
@@ -69,10 +70,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                         categoryName: category, // Add category information
                         variation_id: [{
                             type: 'atourclinics',
-                            variant_id: product?.clinicPriceId ?? products?.[0]?.product_id
+                            variant_id: product?.clinicPriceId ?? products?.[0]?.product_id,
+                            product_clinic_price: product?.product_clinic_price
                         }, {
                             type: 'atourclinics',
-                            variant_id: product?.clinicPriceId ?? products?.[0]?.product_id
+                            variant_id: product?.clinicPriceId ?? products?.[0]?.product_id,
+                            product_clinic_price: product?.product_clinic_price
                         }],
                     });
                 }
@@ -89,10 +92,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                         categoryName: category, // Add category information
                         variation_id: [{
                             type: 'housecall',
-                            variant_id: product?.housePriceId ?? products?.[0]?.product_id
+                            variant_id: product?.housePriceId ?? products?.[0]?.product_id,
+                            product_home_price: product?.product_home_price
                         }, {
                             type: 'housecall',
-                            variant_id: product?.housePriceId ?? products?.[0]?.product_id
+                            variant_id: product?.housePriceId ?? products?.[0]?.product_id,
+                            product_home_price: product?.product_home_price
                         }],
                     });
                 }
@@ -108,10 +113,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                     category: category, // Add category information
                     variation_id: [{
                         type: 'atourclinics',
-                        variant_id: !hasManyVariations ? variations?.[0]?.id : product?.product_id
+                        variant_id: !hasManyVariations ? variations?.[0]?.id : product?.product_id,
+                        product_clinic_price: variations?.[0]?.price ?? product?.price
                     }, {
                         type: 'housecall',
-                        variant_id: !hasManyVariations ? variations?.[1]?.id : product?.product_id
+                        variant_id: !hasManyVariations ? variations?.[1]?.id : product?.product_id,
+                        product_home_price: variations?.[1]?.price ?? product?.price
                     }],
                 });
             }
@@ -151,10 +158,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                         quantity: 1,
                                                         variation_id: [{
                                                             type: 'atourclinics',
-                                                            variant_id: clinic_id
+                                                            variant_id: clinic_id,
+                                                            product_clinic_price: clinic_price
                                                         }, {
                                                             type: 'housecall',
-                                                            variant_id: house_id
+                                                            variant_id: house_id,
+                                                            product_home_price: house_price
                                                         }],
                                                         categoryName: category
                                                     })}
@@ -177,10 +186,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                         quantity: 1,
                                                         variation_id: [{
                                                             type: 'atourclinics',
-                                                            variant_id: clinic_id
+                                                            variant_id: clinic_id,
+                                                            product_clinic_price: clinic_price
                                                         }, {
                                                             type: 'housecall',
-                                                            variant_id: house_id
+                                                            variant_id: house_id,
+                                                            product_home_price: house_price
                                                         }],
                                                         categoryName: category
                                                     })}
@@ -216,10 +227,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             quantity: 1,
                                                             variation_id: [{
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.clinicPriceId
+                                                                variant_id: product?.clinicPriceId,
+                                                                product_clinic_price: product?.product_clinic_price
                                                             }, {
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.clinicPriceId
+                                                                variant_id: product?.clinicPriceId,
+                                                                product_clinic_price: product?.product_clinic_price
                                                             }],
                                                             categoryName: category
                                                         })}
@@ -242,10 +255,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             quantity: 1,
                                                             variation_id: [{
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.clinicPriceId
+                                                                variant_id: product?.clinicPriceId,
+                                                                product_clinic_price: product?.product_clinic_price
                                                             }, {
                                                                 type: 'housecall',
-                                                                variant_id: product?.clinicPriceId
+                                                                variant_id: product?.clinicPriceId,
+                                                                product_clinic_price: product?.product_clinic_price
                                                             }],
                                                             categoryName: category,
                                                         })}
@@ -279,10 +294,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             quantity: 1,
                                                             variation_id: [{
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.housePriceId
+                                                                variant_id: product?.housePriceId,
+                                                                product_home_price: product?.product_home_price
                                                             }, {
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.housePriceId
+                                                                variant_id: product?.housePriceId,
+                                                                product_home_price: product?.product_home_price
                                                             }],
                                                             categoryName: category
                                                         })}
@@ -305,10 +322,12 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             quantity: 1,
                                                             variation_id: [{
                                                                 type: 'atourclinics',
-                                                                variant_id: product?.housePriceId
+                                                                variant_id: product?.housePriceId,
+                                                                product_home_price: product?.product_home_price
                                                             }, {
                                                                 type: 'housecall',
-                                                                variant_id: product?.housePriceId
+                                                                variant_id: product?.housePriceId,
+                                                                product_home_price: product?.product_home_price
                                                             }],
                                                             categoryName: category
                                                         })}

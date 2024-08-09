@@ -42,10 +42,12 @@ export default function ChooseLocation() {
                 categoryName: currently_selected_product?.categoryName || '',
                 variation_id: [{
                     type: 'atourclinics',
-                    variant_id: currently_selected_product?.clinic_price_id
+                    variant_id: currently_selected_product?.clinic_price_id,
+                    product_clinic_price: currently_selected_product?.product_clinic_price
                 }, {
                     type: 'housecall',
-                    variant_id: currently_selected_product?.home_price_id
+                    variant_id: currently_selected_product?.home_price_id,
+                    product_home_price: currently_selected_product?.product_home_price
                 }],
             })]);
             setIsInitiallyRendered(true);

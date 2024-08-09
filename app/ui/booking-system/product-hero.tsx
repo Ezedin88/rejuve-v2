@@ -2,7 +2,7 @@ import { ProductHeroBtnWrapper } from '@/app/components/ProductHero/ProductHeroB
 import { ProductHeroInfoWrapper } from '@/app/components/ProductHero/ProductHeroInfoWrapper';
 import Image from 'next/image';
 import { useProductData } from './Form/reducers/productDetailContext';
-import { bookingChoice, currently_selected_product } from '@/app/lib/definitions';
+import { bookingChoice } from '@/app/lib/definitions';
 import { useEffect, useState } from 'react';
 
 export default function ProductHero() {
@@ -32,6 +32,8 @@ export default function ProductHero() {
                     clinic_price_id: clinic_price_id,
                     home_price_id: home_price_id,
                     productPrice: Number(price),
+                    product_clinic_price: product_clinic_price,
+                    product_home_price: product_home_price,
                     productImage: image,
                     productName: productName,
                     categoryName: categories?.[0] ?? '',

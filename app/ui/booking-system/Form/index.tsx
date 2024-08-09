@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import { initialValues } from "@/app/config/initialValues";
 import { handleValidation } from "@/app/config/validation";
 import Form from "@/app/ui/booking-system/Form/Form";
-import { useEffect } from "react";
 import { MapApiProvider } from "./reducers/loadMapContext";
 
 export default function FormSection() {

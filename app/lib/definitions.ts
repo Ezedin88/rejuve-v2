@@ -80,7 +80,7 @@ export interface IInitialValues {
     paymentMethod: string;
     specialInstructions: string;
     meta_data: MetaData[];
-    tip: number;
+    tip: string;
 }
 
 export interface ProductData {
@@ -94,7 +94,7 @@ export interface ProductData {
     image: string;
     short_description: string;
     acf: Acf;
-    bookingChoice: string;
+    bookingChoice: bookingChoice;
     product_image: ProductImage;
     variations: Variation[];
 }
@@ -275,6 +275,8 @@ export interface currently_selected_product {
     productImage?: string;
     categoryName?: string;
     type: 'housecall' | 'atourclinics';
+    product_clinic_price?: number;
+    product_home_price?: number;
 }
 
 export interface BaseProduct {

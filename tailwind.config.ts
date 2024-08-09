@@ -66,6 +66,7 @@ const config: Config = {
         secondaryGreenHover: '#2AA1AC',
         footerGrayText: '#AFB1B2',
         lightGreenFade: '#8AE2EA',
+        borderGray: '#282d4122',
       },
     },
   },

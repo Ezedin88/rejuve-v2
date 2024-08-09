@@ -11,6 +11,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import ChooseTreatment from './ChooseTreatment';
 import ChooseProvider from './ChooseProvider';
 import AlmostDone from './AlmostDone';
+import OrderSummary from './OrderSummary';
 
 export default function Form() {
   const { dispatch } = useMapApi();
@@ -98,6 +99,7 @@ export default function Form() {
       <ChooseProvider />
       <BookingTimeDatePreference />
       <AlmostDone />
+      <OrderSummary />
     </FormikForm>
   );
 }
