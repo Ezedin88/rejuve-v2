@@ -27,7 +27,10 @@ interface LineItem {
     productName: string;
     product_id: number;
     quantity: number;
-    variation_id?: number;
+    variation_id?: {
+        type: bookingChoice;
+        variant_id: number;
+    };
     userIndex: number;
 }
 
@@ -60,10 +63,12 @@ interface BillerDetails {
     address: Address;
 }
 
+export type bookingChoice = 'atourclinics' | 'housecall';
+
 export interface IInitialValues {
     userData: UserData[];
     bookingAddress: BookingAddress;
-    bookingChoice: 'atourclinics' | 'housecall';
+    bookingChoice: bookingChoice;
     clinicChoice: string;
     biller_details: BillerDetails;
     bookingDate: string;
@@ -255,7 +260,7 @@ export interface productInfo {
     product_clinic_price: number;
     clinic_price_id: number;
     variant_products_info?: ITransformedProduct;
-    bookingChoice: string;
+    bookingChoice: bookingChoice;
     currently_selected_product?: currently_selected_product;
     categorized_products?: ICategorizedTreatments;
 }

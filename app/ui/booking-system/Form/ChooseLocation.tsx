@@ -12,11 +12,11 @@ import { useProductData } from "./reducers/productDetailContext";
 import { useEffect, useState } from "react";
 
 export default function ChooseLocation() {
-    const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
-    const { state } = useMapApi();
     const { dispatch, productData } = useProductData();
-    const { loadedMapApi } = state;
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
+    const { state } = useMapApi();
+    const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
+    const { loadedMapApi } = state;
     const { bookingChoice, userData } = values;
     const isAtClinic = bookingChoice === "atourclinics";
     // set field values
@@ -32,27 +32,39 @@ export default function ChooseLocation() {
                 : ''
             );
         }
-        if (currently_selected_product) {
-            dispatch({
-                type: 'SET_PRODUCT_DATA',
-                payload: {
-                    ...productData,
-                    bookingChoice: type ?? 'atourclinics',
-                }
-            })
-        }
+
         if (currently_selected_product?.productName && !isInitiallyRendered) {
             setFieldValue('userData[0].line_items', [JSON.stringify({
+                meta_data: [],
                 product_id: currently_selected_product?.product_id,
                 productName: currently_selected_product?.productName,
                 price: currently_selected_product?.productPrice,
                 quantity: 1,
-                variation_id: currently_selected_product?.clinic_price_id ?? currently_selected_product?.home_price_id,
+                variation_id: [{
+                    type: 'atourclinics',
+                    variant_id: currently_selected_product?.clinic_price_id
+                }, {
+                    type: 'housecall',
+                    variant_id: currently_selected_product?.home_price_id
+                }],
             })]);
             setIsInitiallyRendered(true);
         }
 
-    }, [type, setFieldValue, dispatch]);
+    }, [type]);
+
+    useEffect(() => {
+        if (bookingChoice) {
+            dispatch({
+                type: 'SET_CURRENTLY_SELECTED_PRODUCT',
+                payload: {
+                    ...currently_selected_product,
+                    type: bookingChoice ?? 'atourclinics'
+                }
+            })
+        }
+    }, [bookingChoice])
+
 
     return (
         <div>
