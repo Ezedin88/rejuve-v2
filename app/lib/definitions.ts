@@ -263,6 +263,7 @@ export interface productInfo {
     bookingChoice: bookingChoice;
     currently_selected_product?: currently_selected_product;
     categorized_products?: ICategorizedTreatments;
+    categoryName: string;
 }
 
 export interface currently_selected_product {
@@ -272,6 +273,7 @@ export interface currently_selected_product {
     product_id?: number;
     productPrice?: number;
     productImage?: string;
+    categoryName?: string;
     type: 'housecall' | 'atourclinics';
 }
 

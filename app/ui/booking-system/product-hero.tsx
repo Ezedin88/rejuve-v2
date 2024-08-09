@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 export default function ProductHero() {
     const [isInitiallyDispatched, setIsInitiallyDispatched] = useState(false);
     const { dispatch, productData } = useProductData();
-    const { currently_selected_product, image, productName, product_home_price, short_description, price, clinic_price_id, home_price_id, product_clinic_price, productId } = productData || {};
+    const { categories, currently_selected_product, image, productName, product_home_price, short_description, price, clinic_price_id, home_price_id, product_clinic_price, productId } = productData || {};
 
     const handleProductSelection = (e: any, product: { type: bookingChoice }) => {
         e.preventDefault();
@@ -34,6 +34,7 @@ export default function ProductHero() {
                     productPrice: Number(price),
                     productImage: image,
                     productName: productName,
+                    categoryName: categories?.[0] ?? '',
                     type: 'atourclinics',
                 }
             });
@@ -43,7 +44,6 @@ export default function ProductHero() {
 
     return (
         <div className='hero-container h-[862px] grid grid-cols-2 items-center max-sm:grid-cols-1 max-sm:h-[969px] bg-lightBlue min-w-[215px]'>
-            {JSON.stringify(currently_selected_product)}
             <section className="product-image-wrapper overflow-hidden relative h-full max-h-[728px] max-sm:max-w-full w-[749px] max-xls:w-[675px] max-[900px]:w-[110%] mx-auto max-sm:flex max-sm:justify-center max-sm:items-center min-[900px]:bg-ellipsisBG max-[900px]:bg-ellipsisMediumBG max-sm:bg-none max-sm:w-[100% ]">
                 {image &&
                     <Image

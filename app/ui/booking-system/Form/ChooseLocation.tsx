@@ -39,6 +39,7 @@ export default function ChooseLocation() {
                 productName: currently_selected_product?.productName,
                 price: String(currently_selected_product?.productPrice),
                 quantity: 1,
+                categoryName: currently_selected_product?.categoryName || '',
                 variation_id: [{
                     type: 'atourclinics',
                     variant_id: currently_selected_product?.clinic_price_id

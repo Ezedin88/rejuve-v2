@@ -57,9 +57,11 @@ const defaultState: productDataContextState = {
             home_price_id: undefined,
             productPrice: 0,
             productImage: '',
-            type: 'atourclinics'
+            type: 'atourclinics',
+            categoryName: ''
         },
         bookingChoice: 'atourclinics',
+        categoryName: '',
         categorized_products: {}
     },
     dispatch: () => { }
