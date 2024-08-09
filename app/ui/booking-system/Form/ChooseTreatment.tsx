@@ -37,25 +37,26 @@ export default function ChooseTreatment({ index }: { index: number }) {
 
     return (
         <>
-            <label htmlFor="">label</label>
-            {
-                Object.entries(filtered_products)?.map(([category, products]) => (
-                    <div key={category}>
-                        <Text className="form-wrapper-title">Choose Treatments</Text>
-                        <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
-                            <AccordionHeader
-                                index={index}
-                                title={category}
-                                isOpen={!!openCategories[category]}
-                                setIsOpen={() => toggleCategory(category)}
-                            />
-                            {openCategories[category] && // Show AccordionBody only if the category is open
-                                <AccordionBody index={index} products={products} category={category} />
-                            }
-                        </PrimaryFormWrapper>
-                    </div>
-                ))
-            }
+            <Text className="form-wrapper-title">Choose Treatments</Text>
+            <div className="flex flex-col gap-[12px]">
+                {
+                    Object.entries(filtered_products)?.map(([category, products]) => (
+                        <div key={category}>
+                            <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
+                                <AccordionHeader
+                                    index={index}
+                                    title={category}
+                                    isOpen={!!openCategories[category]}
+                                    setIsOpen={() => toggleCategory(category)}
+                                />
+                                {openCategories[category] && // Show AccordionBody only if the category is open
+                                    <AccordionBody index={index} products={products} category={category} />
+                                }
+                            </PrimaryFormWrapper>
+                        </div>
+                    ))
+                }
+            </div>
         </>
     );
 }

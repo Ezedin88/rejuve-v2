@@ -126,10 +126,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
 
     return (
         <div className="accordion_data w-full px-10 max-xsm:px-0">
-            <h1>line items</h1>
-            {
-                JSON.stringify(values.userData[index].line_items)
-            }
             <div className="treatment_data grid grid-cols-2 gap-[62px] max-xls:gap-[61.5px] max-xsm:grid-cols-1 max-xsm:gap-[12px]">
                 {
                     !hasManyVariations ?
@@ -143,7 +139,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
                             return (
                                 <div className="name_price_wrapper flex justify-between" key={i}>
                                     <div className="name flex gap-2 items-center">
-                                        <h1>{product?.product_id}</h1>
                                         {
                                             is_radio_boxed ? (
                                                 <Field
@@ -195,7 +190,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                             )
                                         }
 
-                                        <label htmlFor={`product-${i}`} className="product_name">{product?.name}</label>
+                                        <label htmlFor={`product-${i}`} className="product_name cursor-pointer">{product?.name}</label>
                                     </div>
                                     <div className="price flex items-center">
                                         <p>${isClinic ? clinic_price ?? price : house_price ?? price}</p>
