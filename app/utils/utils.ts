@@ -3,7 +3,6 @@ import { BaseProduct, ClinicProduct, HouseProduct, ITransformedProduct, Variatio
 export const transformProductInfo = (variantProducts: Variation[]): ITransformedProduct => {
     const houseProducts: HouseProduct[] = [];
     const clinicProducts: ClinicProduct[] = [];
-    console.log('the variants==>', variantProducts)
     variantProducts.forEach(product => {
         const url = new URL(product.permalink);
         const queryParams = new URLSearchParams(url.search);

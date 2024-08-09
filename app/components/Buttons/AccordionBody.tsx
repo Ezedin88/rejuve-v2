@@ -15,11 +15,9 @@ export default function AccordionBody({ index, products, category }: { index: nu
     const { variations } = multiVariantProduct || {};
 
     let transformedData: ITransformedProduct | null = null;
-    console.log('multi transform==>', category, products)
     const hasManyVariations = variations && variations?.length > 2;
     if (hasManyVariations) {
         transformedData = transformProductInfo(variations);
-        console.log('yay==>', transformedData)
     }
 
     const isClinic = bookingChoice === 'atourclinics';
@@ -33,18 +31,18 @@ export default function AccordionBody({ index, products, category }: { index: nu
         const { variations } = product ?? {};
 
         // Parse the current line items from Formik values
-        const currentLineItems = values.userData[index ?? 0].line_items.map(item => JSON.parse(item.toString()));
+        const currentLineItems = values.userData?.[index]?.line_items?.map(item => JSON.parse(item.toString()));
 
         // Filter out items from the specified category
-        const updatedLineItems = currentLineItems.filter(item => {
+        const updatedLineItems = currentLineItems?.filter(item => {
             const isSameCategory = item.categoryName === category;
             return !isSameCategory;
-        });
+        }) ?? [];
 
         if (is_radio_boxed && checked) {
             if (!hasManyVariations) {
                 // Add the newly selected item
-                updatedLineItems.push({
+                updatedLineItems?.push({
                     product_id: product?.product_id,
                     productName: product?.name,
                     price: product?.price,
@@ -62,7 +60,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
 
             if (hasManyVariations && bookingChoice === 'atourclinics') {
                 if (checked) {
-                    console.log('checked==>', updatedLineItems)
                     // Add the newly selected item
                     updatedLineItems.push({
                         product_id: products?.[0]?.product_id,
@@ -83,7 +80,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
 
             if (hasManyVariations && bookingChoice === 'housecall') {
                 if (checked) {
-                    console.log('checked==>', updatedLineItems)
                     // Add the newly selected item
                     updatedLineItems.push({
                         product_id: products?.[0]?.product_id,
@@ -102,7 +98,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                 }
             }
 
-            if (!hasManyVariations && !is_radio_boxed) {
+            if (!hasManyVariations && !is_radio_boxed && checked) {
                 // Add the newly selected item
                 updatedLineItems.push({
                     product_id: product?.product_id,
@@ -122,7 +118,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
         }
 
         // Update Formik field value
-        setFieldValue(`userData[${index}].line_items`, updatedLineItems.map(item => JSON.stringify(item)));
+        setFieldValue(`userData[${index}].line_items`, updatedLineItems?.map(item => JSON.stringify(item)));
     };
 
 
@@ -130,6 +126,10 @@ export default function AccordionBody({ index, products, category }: { index: nu
 
     return (
         <div className="accordion_data w-full px-10 max-xsm:px-0">
+            <h1>line items</h1>
+            {
+                JSON.stringify(values.userData[index].line_items)
+            }
             <div className="treatment_data grid grid-cols-2 gap-[62px] max-xls:gap-[61.5px] max-xsm:grid-cols-1 max-xsm:gap-[12px]">
                 {
                     !hasManyVariations ?
@@ -164,7 +164,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                     })}
                                                     id={`product-${i}`}
                                                     className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
-                                                    checked={values.userData[index].line_items.some((item: any) => {
+                                                    checked={values.userData[index].line_items?.some((item: any) => {
                                                         const parsedItem = JSON.parse(item);
                                                         return parsedItem.product_id === product?.product_id;
                                                     })}
@@ -227,7 +227,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
-                                                        checked={values.userData[index].line_items.some((item: any) => {
+                                                        checked={values.userData[index].line_items?.some((item: any) => {
                                                             const parsedItem = JSON.parse(item);
                                                             return parsedItem?.variation_id?.[0]?.variant_id === product?.clinicPriceId;
                                                         })}
@@ -288,7 +288,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
-                                                        checked={values.userData[index].line_items.some((item: any) => {
+                                                        checked={values.userData[index].line_items?.some((item: any) => {
                                                             const parsedItem = JSON.parse(item);
                                                             return parsedItem?.variation_id?.[0]?.variant_id === product?.housePriceId;
                                                         })}

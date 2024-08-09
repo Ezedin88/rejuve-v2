@@ -31,7 +31,7 @@ export default function ChooseTreatment({ index }: { index: number }) {
     const toggleCategory = () => {
         setOpenCategories(!openCategories)
     };
-    console.log({ filtered_products })
+
     return (
         <>
             <label htmlFor="">label</label>
@@ -40,12 +40,11 @@ export default function ChooseTreatment({ index }: { index: number }) {
                     <div key={category}>
                         <Text className="form-wrapper-title">Choose Treatments</Text>
                         <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
-                            {/* <AccordionHeader
+                            <AccordionHeader
                                 title={category}
                                 isOpen={openCategories}
                                 setIsOpen={() => toggleCategory()}
-                            /> */}
-                            <button onClick={() => setOpenCategories(!openCategories)}>Toggle</button>
+                            />
                             {!openCategories &&
                                 <AccordionBody index={index} products={products} category={category} />
                             }
