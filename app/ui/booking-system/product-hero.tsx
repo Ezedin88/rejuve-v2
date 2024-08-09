@@ -2,24 +2,20 @@ import { ProductHeroBtnWrapper } from '@/app/components/ProductHero/ProductHeroB
 import { ProductHeroInfoWrapper } from '@/app/components/ProductHero/ProductHeroInfoWrapper';
 import Image from 'next/image';
 import { useProductData } from './Form/reducers/productDetailContext';
-import { currently_selected_product } from '@/app/lib/definitions';
+import { bookingChoice, currently_selected_product } from '@/app/lib/definitions';
 import { useEffect, useState } from 'react';
 
 export default function ProductHero() {
     const [isInitiallyDispatched, setIsInitiallyDispatched] = useState(false);
     const { dispatch, productData } = useProductData();
-    const { image, productName, product_home_price, short_description, price, clinic_price_id, home_price_id, product_clinic_price, productId } = productData || {};
-    const handleProductSelection = (e: any, product: currently_selected_product) => {
+    const { currently_selected_product, image, productName, product_home_price, short_description, price, clinic_price_id, home_price_id, product_clinic_price, productId } = productData || {};
+
+    const handleProductSelection = (e: any, product: { type: bookingChoice }) => {
         e.preventDefault();
         dispatch({
             type: 'SET_CURRENTLY_SELECTED_PRODUCT',
             payload: {
-                product_id: product.product_id,
-                clinic_price_id: product.clinic_price_id,
-                home_price_id: product.home_price_id,
-                productName: product.productName,
-                productImage: product.productImage,
-                productPrice: product.productPrice,
+                ...currently_selected_product,
                 type: product.type,
             }
         });
@@ -30,12 +26,7 @@ export default function ProductHero() {
             dispatch({
                 type: 'SET_CURRENTLY_SELECTED_PRODUCT',
                 payload: {
-                    product_id: productId,
-                    clinic_price_id,
-                    home_price_id,
-                    productName,
-                    productImage: image,
-                    productPrice: product_clinic_price ?? price,
+                    ...currently_selected_product,
                     type: 'atourclinics',
                 }
             });
@@ -68,12 +59,7 @@ export default function ProductHero() {
                         buttonText={'Book In Clinic'}
                         smallText={'*At our clinic'}
                         onClick={(e) => handleProductSelection(e, {
-                            clinic_price_id: clinic_price_id,
-                            productPrice: product_clinic_price ?? price,
-                            type: 'atourclinics',
-                            productName: productName,
-                            product_id: productId,
-                            productImage: image,
+                            type: 'atourclinics'
                         })}
                     />
                     {product_home_price ?
@@ -82,12 +68,7 @@ export default function ProductHero() {
                             buttonText={'Book In House'}
                             smallText={'*At our locations'}
                             onClick={(e: any) => handleProductSelection(e, {
-                                home_price_id: home_price_id,
-                                productName: productName,
-                                productPrice: product_home_price,
-                                type: 'housecall',
-                                product_id: productId,
-                                productImage: image,
+                                type: 'housecall'
                             })}
                         /> : null}
                 </div>
