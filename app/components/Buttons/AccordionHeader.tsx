@@ -24,18 +24,22 @@ export default function AccordionHeader({
                 <div className="accordion_title_wrapper flex gap-4 max-xsm:flex-wrap mx-auto w-full">
                     <p className="treatment_title w-[250px] max-xsm:w-auto my-auto text-nowrap">Choose {title} {!title.includes('Treatment') && 'Treatment'}</p>
                     <div className="items_wrapper flex gap-4 flex-wrap">
-                        {/* <div className="checked-items flex items-center gap-2"><p className="product_name">item1</p><SmallIcon icon="/closeIcon.svg" width={15} /></div> */}
                         {
                             line_items?.length > 0 &&
-                            line_items?.map((item, index) => {
+                            line_items?.map((item, idx: number) => {
                                 // @ts-ignore
                                 const parsedItem = JSON.parse(item);
                                 return (
-                                    <div key={index} className="checked-items flex items-center gap-2">
+                                    parsedItem?.categoryName && parsedItem?.categoryName === title &&
+                                    <div key={idx} className="checked-items flex items-center gap-2">
                                         <p className="product_name">{parsedItem?.productName}</p>
                                         <SmallIcon icon="/closeIcon.svg" width={15} onClick={(e) => {
                                             e.stopPropagation();
-                                            const newLineItems = line_items.filter((_, i) => i !== index);
+                                            const newLineItems = line_items.filter((li, i) => {
+                                                // @ts-ignore
+                                                const parsedLi = JSON.parse(li);
+                                                return parsedLi.productName !== parsedItem.productName || i !== idx;
+                                            });
                                             setFieldValue(`userData.${index}.line_items`, newLineItems);
                                         }} />
                                     </div>

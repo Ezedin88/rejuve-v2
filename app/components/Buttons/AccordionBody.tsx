@@ -161,6 +161,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             type: 'housecall',
                                                             variant_id: house_id
                                                         }],
+                                                        categoryName: category
                                                     })}
                                                     id={`product-${i}`}
                                                     className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
@@ -186,6 +187,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                             type: 'housecall',
                                                             variant_id: house_id
                                                         }],
+                                                        categoryName: category
                                                     })}
                                                     id={`product-${i}`}
                                                     className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
@@ -224,6 +226,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                                 type: 'atourclinics',
                                                                 variant_id: product?.clinicPriceId
                                                             }],
+                                                            categoryName: category
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
@@ -249,6 +252,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                                 type: 'housecall',
                                                                 variant_id: product?.clinicPriceId
                                                             }],
+                                                            categoryName: category,
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
@@ -285,6 +289,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                                 type: 'atourclinics',
                                                                 variant_id: product?.housePriceId
                                                             }],
+                                                            categoryName: category
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
@@ -310,6 +315,7 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                                                 type: 'housecall',
                                                                 variant_id: product?.housePriceId
                                                             }],
+                                                            categoryName: category
                                                         })}
                                                         id={`product-${i}`}
                                                         className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}
