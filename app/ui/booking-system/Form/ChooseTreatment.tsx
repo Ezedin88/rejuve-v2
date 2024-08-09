@@ -12,7 +12,7 @@ export default function ChooseTreatment({ index }: { index: number }) {
     const { productData } = useProductData();
     const { categorized_products = {}, currently_selected_product } = productData || {};
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
-    const category_to_display: string[] = ['IV Treatment', 'NAD++', 'Ad-Ons', 'Booster', 'Peptides'];
+    const category_to_display: string[] = ['IV Treatment', 'NAD+', 'Ad-Ons', 'Booster', 'Peptides'];
     const filtered_products = categorized_products && Object.keys(categorized_products)
         .sort((a, b) => {
             // Prioritize 'IV Treatment' at the start
@@ -31,17 +31,9 @@ export default function ChooseTreatment({ index }: { index: number }) {
     const toggleCategory = () => {
         setOpenCategories(!openCategories)
     };
-
+    console.log({ filtered_products })
     return (
         <>
-            <h1>currently selected</h1>
-            {
-                JSON.stringify(currently_selected_product)
-            }
-            <h1>Line Items</h1>
-            {
-                JSON.stringify(values.userData[0].line_items)
-            }
             <label htmlFor="">label</label>
             {
                 Object.entries(filtered_products)?.map(([category, products]) => (

@@ -3,7 +3,7 @@ import { BaseProduct, ClinicProduct, HouseProduct, ITransformedProduct, Variatio
 export const transformProductInfo = (variantProducts: Variation[]): ITransformedProduct => {
     const houseProducts: HouseProduct[] = [];
     const clinicProducts: ClinicProduct[] = [];
-
+    console.log('the variants==>', variantProducts)
     variantProducts.forEach(product => {
         const url = new URL(product.permalink);
         const queryParams = new URLSearchParams(url.search);
@@ -26,7 +26,8 @@ export const transformProductInfo = (variantProducts: Variation[]): ITransformed
         } else if (attributeType === 'Clinic') {
             clinicProducts.push({
                 ...productData,
-                product_clinic_price: Number(product.price)
+                clinicPriceId: product.id,
+                product_clinic_price: Number(product.price),
             });
         }
     });

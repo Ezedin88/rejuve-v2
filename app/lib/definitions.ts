@@ -288,6 +288,7 @@ export interface HouseProduct extends BaseProduct {
 }
 
 export interface ClinicProduct extends BaseProduct {
+    clinicPriceId: number;
     product_clinic_price: number;
 }
 
