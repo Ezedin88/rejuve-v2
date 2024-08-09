@@ -26,30 +26,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
     const { currently_selected_product } = productData || {};
     const { clinic_price_id, home_price_id, product_id, productPrice } = currently_selected_product || {};
 
-    useEffect(() => {
-        if (isClinic !== undefined) {
-            sortedProducts?.forEach((product: IProductTreatment, i: number) => {
-                const { variations, price } = product ?? {};
-                const hasVariations = variations && variations?.length > 0;
-                const clinic_price = hasVariations ? variations?.[0]?.price : price;
-                const house_price = hasVariations ? variations?.[1]?.price : price;
-                const clinic_id = hasVariations ? variations?.[0]?.id : product_id;
-                const house_id = hasVariations ? variations?.[1]?.id : product_id;
-
-                setFieldValue(
-                    `userData[0].line_items[${i}]`,
-                    JSON.stringify({
-                        product_id: product?.product_id,
-                        productName: product?.name,
-                        price: product?.price,
-                        quantity: 1,
-                        variation_id: isClinic ? clinic_id : house_id,
-                    })
-                );
-            });
-        }
-    }, []);
-
     return (
         <div className="accordion_data w-full px-10 max-xsm:px-0">
             <div className="treatment_data grid grid-cols-2 gap-[62px] max-xls:gap-[61.5px] max-xsm:grid-cols-1 max-xsm:gap-[12px]">
@@ -74,7 +50,13 @@ export default function AccordionBody({ index, products, category }: { index: nu
                                             productName: product?.name,
                                             price: product?.price,
                                             quantity: 1,
-                                            variation_id: isClinic ? clinic_id : house_id,
+                                            variation_id: [{
+                                                type: 'atourclinics',
+                                                variant_id: clinic_id
+                                            }, {
+                                                type: 'housecall',
+                                                variant_id: house_id
+                                            }],
                                         })}
                                         id={`product-${i}`}
                                     // className={`primary-rounded-input p-2 ${!is_radio_boxed && 'rounded-none before:rounded-none'} checked:border-placeholderText border-placeholderText`}

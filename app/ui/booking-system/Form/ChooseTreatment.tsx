@@ -10,7 +10,7 @@ import { Field, useFormikContext } from "formik";
 export default function ChooseTreatment({ index }: { index: number }) {
     const [openCategories, setOpenCategories] = useState(false);
     const { productData } = useProductData();
-    const { categorized_products = {} } = productData || {};
+    const { categorized_products = {}, currently_selected_product } = productData || {};
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
     const category_to_display: string[] = ['IV Treatment', 'NAD++', 'Ad-Ons', 'Booster', 'Peptides'];
     const filtered_products = categorized_products && Object.keys(categorized_products)
@@ -34,6 +34,14 @@ export default function ChooseTreatment({ index }: { index: number }) {
 
     return (
         <>
+            <h1>currently selected</h1>
+            {
+                JSON.stringify(currently_selected_product)
+            }
+            <h1>Line Items</h1>
+            {
+                JSON.stringify(values.userData[0].line_items)
+            }
             <label htmlFor="">label</label>
             {
                 Object.entries(filtered_products)?.map(([category, products]) => (

@@ -17,7 +17,7 @@ export default function ChooseLocation() {
     const { state } = useMapApi();
     const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
     const { loadedMapApi } = state;
-    const { bookingChoice, userData } = values;
+    const { bookingChoice } = values;
     const isAtClinic = bookingChoice === "atourclinics";
     // set field values
     const { currently_selected_product } = productData || {};
@@ -35,10 +35,9 @@ export default function ChooseLocation() {
 
         if (currently_selected_product?.productName && !isInitiallyRendered) {
             setFieldValue('userData[0].line_items', [JSON.stringify({
-                meta_data: [],
                 product_id: currently_selected_product?.product_id,
                 productName: currently_selected_product?.productName,
-                price: currently_selected_product?.productPrice,
+                price: String(currently_selected_product?.productPrice),
                 quantity: 1,
                 variation_id: [{
                     type: 'atourclinics',
