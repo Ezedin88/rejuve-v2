@@ -8,7 +8,7 @@ import { ICategorizedTreatments, IInitialValues } from "@/app/lib/definitions";
 import { Field, useFormikContext } from "formik";
 
 export default function ChooseTreatment({ index }: { index: number }) {
-    const [openCategories, setOpenCategories] = useState(false);
+    const [openCategories, setOpenCategories] = useState<{ [key: string]: boolean }>({});
     const { productData } = useProductData();
     const { categorized_products = {}, currently_selected_product } = productData || {};
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
@@ -28,8 +28,11 @@ export default function ChooseTreatment({ index }: { index: number }) {
             return obj;
         }, {});
 
-    const toggleCategory = () => {
-        setOpenCategories(!openCategories)
+    const toggleCategory = (category: string) => {
+        setOpenCategories(prevState => ({
+            ...prevState,
+            [category]: !prevState[category]
+        }));
     };
 
     return (
@@ -41,11 +44,12 @@ export default function ChooseTreatment({ index }: { index: number }) {
                         <Text className="form-wrapper-title">Choose Treatments</Text>
                         <PrimaryFormWrapper className="grid-cols-1 items-center pt-[34.5px] pb-[31.5px] max-xsm:pt-[33.5px] max-xsm:pb-[32.5]">
                             <AccordionHeader
+                                index={index}
                                 title={category}
-                                isOpen={openCategories}
-                                setIsOpen={() => toggleCategory()}
+                                isOpen={!!openCategories[category]}
+                                setIsOpen={() => toggleCategory(category)}
                             />
-                            {!openCategories &&
+                            {openCategories[category] && // Show AccordionBody only if the category is open
                                 <AccordionBody index={index} products={products} category={category} />
                             }
                         </PrimaryFormWrapper>
@@ -53,5 +57,5 @@ export default function ChooseTreatment({ index }: { index: number }) {
                 ))
             }
         </>
-    )
+    );
 }
