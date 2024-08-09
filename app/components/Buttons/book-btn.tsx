@@ -1,18 +1,17 @@
 export default function BookBtn({
-    children,
-    onclick
+  children,
+  onclick
 }: {
-    children: React.ReactNode,
-    onclick?: (e: any) => void
+  children: React.ReactNode,
+  onclick?: (e: any) => void
 }) {
 
-    return (
-        <button
-            onClick={onclick}
-            className="
+  return (
+    <button
+      onClick={onclick}
+      className="
                        text-center
                        lg:font-inter
-                       lg:font-normal
                        lg:font-bold
                        lg:text-[16px]
                        lg:leading-[19px]
@@ -29,8 +28,8 @@ export default function BookBtn({
                        duration-200
                        max-[167px]:w-[100%]
                     "
-        >
-            {children}
-        </button>
-    );
+    >
+      {children}
+    </button>
+  );
 }

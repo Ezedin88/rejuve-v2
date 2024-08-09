@@ -30,8 +30,10 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        ellipsisBG: 'radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(255,255,255,0.5) 66%, rgba(255,255,255,0) 73%)',
-        ellipsisMediumBG: 'radial-gradient(circle, rgba(255,255,255,1) 41%, rgba(255,255,255,0.5) 49%, rgba(255,255,255,0) 62%)'
+        ellipsisBG:
+          'radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(255,255,255,0.5) 66%, rgba(255,255,255,0) 73%)',
+        ellipsisMediumBG:
+          'radial-gradient(circle, rgba(255,255,255,1) 41%, rgba(255,255,255,0.5) 49%, rgba(255,255,255,0) 62%)',
       },
       colors: {
         primaryGreen: '#32C0CC',
@@ -60,7 +62,8 @@ const config: Config = {
         placeholderText: 'rgba(40, 45, 65, 0.7)',
         datePickerPlaceholder: '#COC4CC',
         headerHover: '#B7F4F923',
-        horizontalLine: '#C0C4CC50',
+        horizontalLine: '#C0C4CC',
+        secondaryGreenHover: '#2AA1AC',
         footerGrayText: '#AFB1B2',
         lightGreenFade: '#8AE2EA',
       },

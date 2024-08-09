@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 const Header = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isIvExpanded, setIsIvExpanded] = useState(false);
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -27,8 +29,14 @@ const Header = () => {
     setIsAboutExpanded(!isAboutExpanded);
   };
 
+  useEffect(() => {
+    setIsOpen(false);
+    setIsIvExpanded(false);
+    setIsAboutExpanded(false);
+  }, []);
+
   return (
-    <header className="w-full h-20 border border-horizontalLine bg-primaryWhite fixed top-0 z-50">
+    <header className="w-full h-20 border border-horizontalLine/50 bg-primaryWhite fixed top-0 z-50">
       <div className="flex items-center justify-between gap-10 max-w-hxl h-full mx-auto w-[90%] xls:w-[85%]">
         <Link href="/" className="w-36 h-10">
           <Image
@@ -177,7 +185,7 @@ const Header = () => {
 
           <li className="relative group py-7 items-stretch">
             <Link
-              href="/about-us"
+              href="/who-we-are"
               className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200"
             >
               <p>About Us</p>
@@ -196,32 +204,33 @@ const Header = () => {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div className="group-hover:hidden xls:group-hover:block absolute bg-primaryWhite text-primaryDark w-80 left-0 top-[78px] shadow-lg hidden">
-                <div className="flex flex-col">
-                  <Link
-                    href="/who-we-are"
-                    className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
-                  >
-                    About Us
-                  </Link>
-                  <hr className="border border-horizontalLine" />
-                  <Link
-                    href="/the-doctor"
-                    className="w-full px-4 py-4 hover:text-primaryGreen font-semibold transition-colors duration-200"
-                  >
-                    The Doctor
-                  </Link>
-                  <hr className="border border-horizontalLine" />
-                  <Link
-                    href="/contact-us"
-                    className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
-                  >
-                    Contact Us
-                  </Link>
-                </div>
-              </div>
             </Link>
+            <div className="group-hover:hidden xls:group-hover:block absolute bg-primaryWhite text-primaryDark w-80 left-0 top-[78px] shadow-lg hidden">
+              <div className="flex flex-col">
+                <Link
+                  href="/who-we-are"
+                  className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
+                >
+                  About Us
+                </Link>
+                <hr className="border border-horizontalLine/50" />
+                <Link
+                  href="/the-doctor"
+                  className="w-full px-4 py-4 hover:text-primaryGreen font-semibold transition-colors duration-200"
+                >
+                  The Doctor
+                </Link>
+                <hr className="border border-horizontalLine/50" />
+                <Link
+                  href="/contact-us"
+                  className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
           </li>
+
           <li className="py-7 items-stretch">
             <Link
               href="tel:(818) 290-7311"
@@ -237,9 +246,10 @@ const Header = () => {
             <div className="flex justify-between gap-2 items-center hover:text-primaryGreen">
               <Link
                 href="/iv-therapy"
+                onClick={() => setIsOpen(!isOpen)}
                 className="whitespace-nowrap flex flex-1 gap-2 items-center justify-between transition-colors duration-200"
               >
-                <p className="font-semibold text-[18px]">IV Therapy</p>
+                <span className="font-semibold text-[18px]">IV Therapy</span>
               </Link>
               <svg
                 width="24"
@@ -304,14 +314,15 @@ const Header = () => {
               </div>
             )}
 
-            <hr className="border-b border-horizontalLine" />
+            <hr className="border-b border-horizontalLine/50" />
 
             <div className="flex justify-between gap-2 items-center hover:text-primaryGreen">
               <Link
                 href="/who-we-are"
+                onClick={() => setIsOpen(!isOpen)}
                 className="whitespace-nowrap flex flex-1 gap-2 items-center justify-between transition-colors duration-200"
               >
-                <p className="font-bold text-[18px]">About Us</p>
+                <span className="font-bold text-[18px]">About Us</span>
               </Link>
               <svg
                 width="24"
@@ -346,18 +357,21 @@ const Header = () => {
               <div className="flex flex-col xls:hidden">
                 <Link
                   href="/who-we-are"
+                  onClick={() => setIsOpen(!isOpen)}
                   className="w-full py-2 hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   About Us
                 </Link>
                 <Link
                   href="/the-doctor"
+                  onClick={() => setIsOpen(!isOpen)}
                   className="w-full py-2 hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   The Doctor
                 </Link>
                 <Link
                   href="/contact-us"
+                  onClick={() => setIsOpen(!isOpen)}
                   className="w-full py-2  hover:text-primaryGreen font-semibold transition-colors duration-200"
                 >
                   Contact Us
@@ -365,7 +379,7 @@ const Header = () => {
               </div>
             )}
 
-            <hr className="border-b border-horizontalLine" />
+            <hr className="border-b border-horizontalLine/50" />
 
             <Link
               href="tel:(818) 290-7311"
@@ -374,14 +388,17 @@ const Header = () => {
               Call Us: (818) 290-7311
             </Link>
             <div className="fixed bottom-0 left-0 flex flex-col gap-4 justify-center items-center py-6 w-full mx-auto bg-white">
-              <Link
-                href="/check-menu"
-                className="px-5 py-2 w-fit font-semibold text-4 bg-primaryGreen text-primaryWhite rounded-lg transition-colors hover:bg-primaryGreenHover"
+              <button
+                className="px-5 py-2 font-semibold text-4 bg-primaryGreen text-primaryWhite rounded transition-colors hover:bg-primaryGreenHover"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                  return router.push('/menu');
+                }}
               >
-                Check menu
-              </Link>
+                Check Menu
+              </button>
               <Link
-                href="/account"
+                href="/my-account"
                 className="text-base text-primaryGreen font-semibold"
               >
                 My Account
@@ -391,14 +408,17 @@ const Header = () => {
         )}
 
         <div className="hidden xls:flex gap-8 justify-center items-center h-full">
-          <Link
-            href="/check-menu"
+          <button
             className="px-5 py-2 font-semibold text-4 bg-primaryGreen text-primaryWhite rounded transition-colors hover:bg-primaryGreenHover"
+            onClick={() => {
+              setIsOpen(!isOpen);
+              return router.push('/menu');
+            }}
           >
             Check Menu
-          </Link>
+          </button>
           <Link
-            href="/account"
+            href="/my-account"
             className="text-base text-primaryGreen font-semibold"
           >
             My Account
