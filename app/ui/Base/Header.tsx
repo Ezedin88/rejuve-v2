@@ -118,7 +118,7 @@ const Header = () => {
                 <path
                   d="M1 1L6 6L11 1"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
@@ -191,7 +191,7 @@ const Header = () => {
                 <path
                   d="M1 1L6 6L11 1"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />

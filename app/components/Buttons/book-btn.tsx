@@ -3,7 +3,7 @@ export default function BookBtn({
     onclick
 }: {
     children: React.ReactNode,
-    onclick?: () => void
+    onclick?: (e: any) => void
 }) {
 
     return (
@@ -23,9 +23,8 @@ export default function BookBtn({
                        w-[166px]
                        h-[59px]
                        cursor-pointer
-                       hover:scale-105
+                       active:scale-105
                        hover:bg-primaryGreenHover
-                       active:scale-100
                        transition
                        duration-200
                        max-[167px]:w-[100%]

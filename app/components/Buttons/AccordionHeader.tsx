@@ -16,7 +16,7 @@ export default function AccordionHeader({
                 style={{ cursor: 'pointer' }}
             >
                 <div className="accordion_title_wrapper flex gap-4 max-xsm:flex-wrap mx-auto w-full">
-                    <p className="treatment_title w-[250px] max-xsm:w-auto my-auto text-nowrap">Choose {title} Treatment</p>
+                    <p className="treatment_title w-[250px] max-xsm:w-auto my-auto text-nowrap">Choose {title} {!title.includes('Treatment') && 'Treatment'}</p>
                     <div className="items_wrapper flex gap-4 flex-wrap">
                         <div className="checked-items flex items-center gap-2"><p className="product_name">item1</p><SmallIcon icon="/closeIcon.svg" width={15} /></div>
                     </div>

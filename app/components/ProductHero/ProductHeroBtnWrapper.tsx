@@ -11,7 +11,7 @@ export function ProductHeroBtnWrapper({
     productPrice: string,
     buttonText: string,
     smallText: string,
-    onClick?: () => void
+    onClick?: (e: any) => void
 }) {
     return (
         <>

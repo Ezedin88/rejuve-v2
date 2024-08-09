@@ -44,7 +44,11 @@ const defaultState: productDataContextState = {
                     product_home_price: 0
                 }
             ],
-            clinicProducts: []
+            clinicProducts: [{
+                productName: '',
+                product_clinic_price: 0,
+                image: ''
+            }]
         },
         currently_selected_product: {
             productName: '',

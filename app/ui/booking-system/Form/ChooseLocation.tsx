@@ -9,35 +9,50 @@ import Spinner from "@/app/components/spinner/spinner";
 import PlacesAutoCompleteComponent from '@/app/components/Form/PlacesAutoComplete';
 import { useMapApi } from "./reducers/loadMapContext";
 import { useProductData } from "./reducers/productDetailContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ChooseLocation() {
+    const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
     const { state } = useMapApi();
     const { dispatch, productData } = useProductData();
     const { loadedMapApi } = state;
     const { values, setFieldValue } = useFormikContext<IInitialValues>();
-    const { bookingChoice } = values;
+    const { bookingChoice, userData } = values;
     const isAtClinic = bookingChoice === "atourclinics";
     // set field values
     const { currently_selected_product } = productData || {};
     const { type } = currently_selected_product || {};
 
+    // First effect: Update Formik values based on `type`
     useEffect(() => {
-        setFieldValue('bookingChoice', type ?? 'atourclinics');
-        setFieldValue('clinicChoice', type === 'atourclinics' ? 'Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403' : '');
-    }, [setFieldValue, type]);
-
-    useEffect(() => {
-        if (bookingChoice === 'atourclinics') {
+        if (type !== undefined) {
+            setFieldValue('bookingChoice', type ?? 'atourclinics');
+            setFieldValue('clinicChoice', type === 'atourclinics'
+                ? 'Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403'
+                : ''
+            );
+        }
+        if (currently_selected_product) {
             dispatch({
-                type: 'SET_CURRENTLY_SELECTED_PRODUCT',
+                type: 'SET_PRODUCT_DATA',
                 payload: {
-                    ...productData?.currently_selected_product,
-                    type: 'atourclinics'
+                    ...productData,
+                    bookingChoice: type ?? 'atourclinics',
                 }
             })
         }
-    }, [bookingChoice, dispatch, productData?.currently_selected_product])
+        if (currently_selected_product?.productName && !isInitiallyRendered) {
+            setFieldValue('userData[0].line_items', [JSON.stringify({
+                product_id: currently_selected_product?.product_id,
+                productName: currently_selected_product?.productName,
+                price: currently_selected_product?.productPrice,
+                quantity: 1,
+                variation_id: currently_selected_product?.clinic_price_id ?? currently_selected_product?.home_price_id,
+            })]);
+            setIsInitiallyRendered(true);
+        }
+
+    }, [type, setFieldValue, dispatch]);
 
     return (
         <div>

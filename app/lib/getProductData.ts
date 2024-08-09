@@ -1,4 +1,4 @@
-export default async function getProductData(productSlug: string) {
+async function getProductData(productSlug: string) {
     try {
         const res = await fetch(`https://rejuve.com/wp-json/wp/v2/custom/product-by-slug/${productSlug}`);
         return res.json();
@@ -9,11 +9,11 @@ export default async function getProductData(productSlug: string) {
 
 async function getCategorizedProductData() {
     try {
-        const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/products-with-variations');
+        const res = await fetch('https://rejuve.com/wp-json/wp/v2/custom/products-with-variations');
         return res.json();
     } catch (error) {
         console.log('error', error);
     }
 }
 
-export { getCategorizedProductData };
+export { getProductData, getCategorizedProductData };

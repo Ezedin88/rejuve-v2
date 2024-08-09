@@ -63,7 +63,7 @@ interface BillerDetails {
 export interface IInitialValues {
     userData: UserData[];
     bookingAddress: BookingAddress;
-    bookingChoice: string;
+    bookingChoice: 'atourclinics' | 'housecall';
     clinicChoice: string;
     biller_details: BillerDetails;
     bookingDate: string;
@@ -294,6 +294,7 @@ export interface IProductTreatment {
     price: string;
     slug: string;
     permalink: string;
+    product_id: string;
     variations?: Variation[];
 }
 
