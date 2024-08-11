@@ -5,8 +5,15 @@ import { useEffect } from "react";
 import { IInitialValues } from "@/app/lib/definitions";
 import { useFormikContext } from "formik";
 
-export default function PlacesAutoCompleteComponent({ placeholder }: {
+export default function PlacesAutoCompleteComponent({ placeholder, addressData }: {
     placeholder: string;
+    addressData: {
+        address: string;
+        city: string;
+        country: string;
+        state: string;
+        zipCode: string;
+    }
 }) {
     const { setFieldValue } = useFormikContext<IInitialValues>();
     const { address, selectedAddress, handleChangeAddress, handleSelectAddress, } = useLocationAutoComplete();
@@ -14,21 +21,21 @@ export default function PlacesAutoCompleteComponent({ placeholder }: {
 
     useEffect(() => {
         if (selectedAddressData) {
-            setFieldValue("bookingAddress.address_1", selectedAddressData);
+            setFieldValue(addressData?.address, selectedAddressData);
         }
         if (city) {
-            setFieldValue("bookingAddress.city", city);
+            setFieldValue(addressData?.city, city);
         }
         if (country) {
-            setFieldValue("bookingAddress.country", country);
+            setFieldValue(addressData?.country, country);
         }
         if (selectedState) {
-            setFieldValue("bookingAddress.state", selectedState);
+            setFieldValue(addressData?.state, selectedState);
         }
         if (zipCode) {
-            setFieldValue("bookingAddress.postcode", zipCode);
+            setFieldValue(addressData?.zipCode, zipCode);
         }
-    }, [selectedAddressData, city, country, selectedState, zipCode, setFieldValue]);
+    }, [selectedAddressData, city, country, selectedState, zipCode, setFieldValue, addressData?.address, addressData?.city, addressData?.country, addressData?.state, addressData?.zipCode]);
 
     return (
         <PlacesAutocomplete

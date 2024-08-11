@@ -24,15 +24,15 @@ export const initialValues: IInitialValues = {
     bookingChoice: 'atourclinics',
     clinicChoice: '',
     biller_details: {
-        name: '',
+        card_holder_name: '',
         email: '',
         address: {
             line1: '',
             line2: '',
             city: '',
             state: '',
-            postal_code: '',
             country: '',
+            postal_code: '',
         },
     },
     bookingDate: '',

@@ -58,7 +58,7 @@ interface BookingAddress {
 }
 
 interface BillerDetails {
-    name: string;
+    card_holder_name: string;
     email: string;
     address: Address;
 }

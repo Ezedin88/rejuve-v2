@@ -40,6 +40,15 @@ export const handleValidation = yup.object().shape({
     //     then: (s) => s.required('Card number is required'),
     //     otherwise: (s) => s,
     // }),
+    biller_details: yup.object().shape({
+        card_holder_name: yup.string().when('$paymentMethod', {
+            is: (val) => {
+                return val === 'Visa'
+            },
+            then: (s) => s.required('Card holder name is required'),
+            otherwise: (s) => s,
+        }),
+    })
     // bookingAddress: yup.object().shape({
     //     address_1: yup.string().when('$bookingChoice', {
     //         is: (val) => {

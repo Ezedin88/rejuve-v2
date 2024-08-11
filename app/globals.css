@@ -400,12 +400,12 @@
     }
 
     /* max-width media query for 461px max*/
-    @media (max-width:461px) {
+    /* @media (max-width:461px) { */
 
       .customDatePickerWidth>div.react-datepicker-wrapper,
       .customDatePickerWidth>div>div.react-datepicker__input-container .customDatePickerWidth>div>div.react-datepicker__input-container input {
-        width: 100%;
+        width: 100% !important;
       }
-    }
+    /* } */
   }
 }

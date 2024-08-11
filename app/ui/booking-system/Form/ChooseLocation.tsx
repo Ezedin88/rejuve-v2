@@ -104,6 +104,15 @@ export default function ChooseLocation() {
                             <>
                                 <PlacesAutoCompleteComponent
                                     placeholder='Address Line'
+                                    addressData={
+                                        {
+                                            address: "bookingAddress.address_1",
+                                            city: "bookingAddress.city",
+                                            country: "bookingAddress.country",
+                                            state: "bookingAddress.state",
+                                            zipCode: "bookingAddress.postcode"
+                                        }
+                                    }
                                 />
                                 {/* Address Line 2 */}
                                 <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Address Line 2" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_2" required type="input" labelClassName="primary-input-label" />

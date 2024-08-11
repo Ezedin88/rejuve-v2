@@ -2,10 +2,10 @@ import Text from "@/app/components/Buttons/Text";
 import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
 import { IInitialValues } from "@/app/lib/definitions";
 import { Field, useFormikContext } from "formik";
-
+import VisaPayment from "./VisaPayment";
 export default function PaymentMethod() {
     const { values } = useFormikContext<IInitialValues>() || {};
-    const { paymentMethod } = values || {};
+
     return (
         <>
             <Text className="form-wrapper-title">Choose your desired payment method:</Text>
@@ -27,6 +27,9 @@ export default function PaymentMethod() {
                         <Text className="primary-input-label cursor-pointer text-lightSecondaryDark">Pay at Location</Text>
                     </label>
                 </div>
+                {
+                    values?.paymentMethod === 'Visa' && <VisaPayment />
+                }
             </PrimaryFormWrapper>
         </>
     );
