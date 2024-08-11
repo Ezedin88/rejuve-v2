@@ -41,7 +41,7 @@ export const initialValues: IInitialValues = {
     termsAgreed: false,
     recieveExclusiveOffers: true,
     createAccount: true,
-    paymentMethod: 'visa',
+    paymentMethod: 'Visa',
     specialInstructions: '',
     tip: "5",
 };

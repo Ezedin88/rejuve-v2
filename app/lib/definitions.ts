@@ -64,7 +64,7 @@ interface BillerDetails {
 }
 
 export type bookingChoice = 'atourclinics' | 'housecall';
-
+type paymentMethod = 'Visa' | 'pay at location';
 export interface IInitialValues {
     userData: UserData[];
     bookingAddress: BookingAddress;
@@ -77,7 +77,7 @@ export interface IInitialValues {
     termsAgreed: boolean;
     recieveExclusiveOffers: boolean;
     createAccount: boolean;
-    paymentMethod: string;
+    paymentMethod: paymentMethod;
     specialInstructions: string;
     meta_data: MetaData[];
     tip: string;

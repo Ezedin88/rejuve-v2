@@ -12,6 +12,7 @@ import ChooseTreatment from './ChooseTreatment';
 import ChooseProvider from './ChooseProvider';
 import AlmostDone from './AlmostDone';
 import OrderSummary from './OrderSummary';
+import PaymentMethod from './PaymentMethod';
 
 export default function Form() {
   const { dispatch } = useMapApi();
@@ -100,6 +101,7 @@ export default function Form() {
       <BookingTimeDatePreference />
       <AlmostDone />
       <OrderSummary />
+      <PaymentMethod />
     </FormikForm>
   );
 }

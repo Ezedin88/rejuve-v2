@@ -17,7 +17,6 @@ export default function ProductPage({ product, categorizedTreatments }: {
         transformedData = transformProductInfo(product?.variations);
     }
     const { dispatch } = useProductData();
-    console.log('transformedData', transformedData);
     const multiVariantClinicProdut = transformedData?.clinicProducts?.find(item => {
         const cleanedProductName = product?.name.replace(/[\W_]/g, ''); // Remove special symbols and underscores
         const cleanedItemName = item?.productName.replace(/[\W_]/g, ''); // Remove special symbols and underscores

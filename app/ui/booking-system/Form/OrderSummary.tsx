@@ -7,32 +7,51 @@ import { parse } from "path";
 export default function OrderSummary() {
     const { values } = useFormikContext<IInitialValues>() ?? {};
     const { userData, bookingChoice, tip } = values ?? {};
+
     const sumOfAllClinicPrices = userData?.reduce((acc, user) => {
         const { line_items } = user ?? {};
-        return line_items?.reduce((acc, item) => {
-            // @ts-ignore
-            const parsedItem = JSON.parse(item);
-            const { variation_id } = parsedItem ?? {};
-            const clinicPrice = variation_id?.[0]?.product_clinic_price ?? 0;
-            return acc + Number(clinicPrice);
+        if (!line_items) {
+            console.warn('No line_items found for user:', user);
+            return acc;
+        }
+        return line_items.reduce((acc, item) => {
+            try {
+                // @ts-ignore
+                const parsedItem = JSON.parse(item);
+                const { variation_id } = parsedItem ?? {};
+                if (!Array.isArray(variation_id) || variation_id.length === 0) {
+                    console.warn('Invalid variation_id:', variation_id);
+                    return acc;
+                }
+                const clinicPrice = variation_id[0]?.product_clinic_price ?? 0;
+                console.log('Current clinicPrice:', clinicPrice);
+                return acc + Number(clinicPrice);
+            } catch (e) {
+                console.error('Failed to parse item:', item, e);
+                return acc;
+            }
         }, acc);
     }, 0);
 
     const sumOfAllHousePrices = userData?.reduce((acc, user) => {
         const { line_items } = user ?? {};
         return line_items?.reduce((acc, item) => {
-            // @ts-ignore
-            const parsedItem = JSON.parse(item);
-            const { variation_id } = parsedItem ?? {};
-            const housePrice = variation_id?.[1]?.product_home_price ?? 0;
-            return acc + Number(housePrice);
-        }, acc);
-    }, 0);
+            try {
+                // @ts-ignore
+                const parsedItem = JSON.parse(item);
+                const housePrice = parsedItem?.variation_id?.[1]?.product_home_price ?? 0;
+                return acc + Number(housePrice);
+            } catch (e) {
+                return acc;
+            }
+        }, acc) ?? acc;
+    }, 0) ?? 0;
 
 
-    const clinicTipAmount = sumOfAllClinicPrices * (Number(tip) / 100);
-    const houseTipAmount = sumOfAllHousePrices * (Number(tip) / 100);
-
+    const clinicTipAmount = Number(sumOfAllClinicPrices ?? 0) * (Number(tip) / 100);
+    const houseTipAmount = Number(sumOfAllHousePrices ?? 0) * (Number(tip) / 100);
+    const TotalClinicPrice = Number(sumOfAllClinicPrices ?? 0 + clinicTipAmount ?? 0)?.toFixed(2);
+    const TotalHousePrice = Number(sumOfAllHousePrices ?? 0 + houseTipAmount ?? 0)?.toFixed(2);
     const isClinic = bookingChoice === 'atourclinics';
     return (
         <>
@@ -56,7 +75,6 @@ export default function OrderSummary() {
                                                 {line_items && line_items?.length ? line_items?.map((item, itemIndex) => {
                                                     // @ts-ignore
                                                     const parsedItem = JSON.parse(item);
-                                                    console.log('the parsed==>', parsedItem)
                                                     const { variation_id } = parsedItem ?? {};
                                                     const clinicPrice = variation_id?.[0]?.product_clinic_price ?? 0;
                                                     const housePrice = variation_id?.[1]?.product_home_price ?? 0;
@@ -91,15 +109,19 @@ export default function OrderSummary() {
                     <div className="sub_total_calculation_container max-w-[295px] p-0 m-0 max-xsm:mx-auto ml-auto grid gap-y-[32px] w-full">
                         <div className="name_price_container flex items-center justify-between">
                             <Text className="text-[14px] leading-[22px] text-left">Subtotal</Text>
-                            <Text className="font-semibold text-right">${isClinic ? sumOfAllClinicPrices?.toFixed(2) ?? '-' : sumOfAllHousePrices?.toFixed(2) ?? '-'}</Text>
+                            <Text className="font-semibold text-right">
+                                ${isClinic ? sumOfAllClinicPrices?.toFixed(2) ?? '-' : sumOfAllHousePrices?.toFixed(2) ?? '0'}
+                            </Text>
                         </div>
                         <div className="name_price_container flex items-center justify-between">
-                            <Text className="text-[14px] leading-[22px] text-left">Tip({tip ?? '-'}%)</Text>
-                            <Text className="font-semibold text-right">${isClinic ? clinicTipAmount ?? '0' : houseTipAmount ?? '-'}</Text>
+                            <Text className="text-[14px] leading-[22px] text-left">Tip({tip ?? 0}%)</Text>
+                            <Text className="font-semibold text-right">${isClinic ? Number(clinicTipAmount ?? 0) ?? '0' : Number(houseTipAmount) ?? '-'}</Text>
                         </div>
                         <div className="name_price_container flex items-center justify-between border-t-2 border-borderGray pt-2">
                             <Text className="leading-[22px] text-[18px] font-semibold text-left">Total</Text>
-                            <Text className="leading-[22px] text-[18px] font-bold text-right">${isClinic ? (sumOfAllClinicPrices + clinicTipAmount)?.toFixed(2) ?? '-' : (sumOfAllHousePrices + houseTipAmount)?.toFixed(2) ?? '-'}</Text>
+                            <Text className="leading-[22px] text-[18px] font-bold text-right">
+                                ${isClinic ? TotalClinicPrice ?? '-' : TotalHousePrice ?? '-'}
+                            </Text>
                         </div>
                     </div>
                 </div>
