@@ -20,13 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <Header /> */}
+        <Header />
         {children}
-        {/* <Footer /> */}
-        <h1>Welcome</h1>
-        <Link href={{
-          pathname: "/product/hangover-fix",
-        }}>Home</Link>
+        <Footer />
       </body>
     </html>
   );

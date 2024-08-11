@@ -43,7 +43,6 @@ export default function ProductHero() {
             setIsInitiallyDispatched(true); // Mark as dispatched
         }
     }, [productData])
-
     return (
         <div className='hero-container h-[862px] grid grid-cols-2 items-center max-sm:grid-cols-1 max-sm:h-[969px] bg-lightBlue min-w-[215px]'>
             <section className="product-image-wrapper overflow-hidden relative h-full max-h-[728px] max-sm:max-w-full w-[749px] max-xls:w-[675px] max-[900px]:w-[110%] mx-auto max-sm:flex max-sm:justify-center max-sm:items-center min-[900px]:bg-ellipsisBG max-[900px]:bg-ellipsisMediumBG max-sm:bg-none max-sm:w-[100% ]">

@@ -8,7 +8,7 @@ export default function Agreement() {
     return (
         <PrimaryFormWrapper className="bg-white grid-cols-1 gap-y-2 pl-0 ml-0">
             <AgreementFields FieldContent={
-                <Field type="checkbox" className="primary-rounded-input rounded-none before:rounded-none h-[20px]" id="policies" name="bookingChoice" value="housecall" required />
+                <Field type="checkbox" className="primary-rounded-input rounded-none before:rounded-none h-[20px]" id="policies" name="policy" value="housecall" required />
             }
                 LableContent={
                     <Text className="primary-input-label cursor-pointer text-lightSecondaryDark">

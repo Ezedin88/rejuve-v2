@@ -22,7 +22,7 @@ export default function ChooseLocation() {
     // set field values
     const { currently_selected_product } = productData || {};
     const { type } = currently_selected_product || {};
-
+    const selectedProductExist = currently_selected_product?.product_id;
     // First effect: Update Formik values based on `type`
     useEffect(() => {
         if (type !== undefined) {
@@ -56,16 +56,16 @@ export default function ChooseLocation() {
     }, [type]);
 
     useEffect(() => {
-        if (bookingChoice) {
+        if (bookingChoice && selectedProductExist) {
             dispatch({
                 type: 'SET_CURRENTLY_SELECTED_PRODUCT',
                 payload: {
                     ...currently_selected_product,
-                    type: bookingChoice ?? 'atourclinics'
+                    type: bookingChoice?.toString() as 'atourclinics' | 'housecall' ?? 'atourclinics'
                 }
             })
         }
-    }, [bookingChoice])
+    }, [bookingChoice, selectedProductExist])
 
 
     return (

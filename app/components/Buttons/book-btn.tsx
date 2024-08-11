@@ -1,13 +1,17 @@
+import { ButtonHTMLAttributes } from "react";
+
 export default function BookBtn({
   children,
-  onclick
+  onclick,
+  type
 }: {
   children: React.ReactNode,
-  onclick?: (e: any) => void
+  onclick?: (e: any) => void,
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type']
 }) {
-
   return (
     <button
+      type={`${type ?? 'button'}`}
       onClick={onclick}
       className="
                        text-center

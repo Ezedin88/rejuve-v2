@@ -20,7 +20,7 @@ export const billingSchema = yup.object().shape({
         .test('len', 'Invalid phone number', val => val && /^[\d+\-()\s]+$/.test(val))  // Allow spaces in the regex
         .test('too-short', 'Number too short', val => val && val.replace(/[^0-9]/g, '').length >= 10)
         .test('too-long', 'Number too long', val => val && val.replace(/[^0-9]/g, '').length <= 20),
-    line_items: yup.array().min(1, 'At least one item is required in line items').required('Line items are required'),
+    // line_items: yup.array().min(1, 'At least one item is required in line items').required('Line items are required'),
 });
 
 export const handleValidation = yup.object().shape({

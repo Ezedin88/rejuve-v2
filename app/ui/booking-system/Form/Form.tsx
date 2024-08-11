@@ -15,13 +15,15 @@ import OrderSummary from './OrderSummary';
 import PaymentMethod from './PaymentMethod';
 import SpecialInstructions from './SpecialInstructions';
 import Agreement from './Agreement';
+import BookBtn from '@/app/components/Buttons/book-btn';
+import { SmallIcon } from '@/app/components/Icons/Icon';
 
 export default function Form() {
   const { dispatch } = useMapApi();
   const handleLoadMapApi = () => {
     dispatch({ type: 'LOAD_MAP_API' });
   }
-  const { values } = useFormikContext<IInitialValues>() || {};
+  const { values, errors } = useFormikContext<IInitialValues>() || {};
   const { userData } = values || {};
 
   useEffect(() => {
@@ -107,6 +109,12 @@ export default function Form() {
       <PaymentMethod />
       <SpecialInstructions />
       <Agreement />
+      <BookBtn type='submit'>
+        <Text className='flex items-center gap-2'>
+          <SmallIcon icon='/lock_icon.svg' height={15} width={15} />
+          Book and Pay
+        </Text>
+      </BookBtn>
     </FormikForm>
   );
 }

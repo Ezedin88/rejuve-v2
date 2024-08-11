@@ -24,7 +24,6 @@ export default function OrderSummary() {
                     return acc;
                 }
                 const clinicPrice = variation_id[0]?.product_clinic_price ?? 0;
-                console.log('Current clinicPrice:', clinicPrice);
                 return acc + Number(clinicPrice);
             } catch (e) {
                 console.error('Failed to parse item:', item, e);
