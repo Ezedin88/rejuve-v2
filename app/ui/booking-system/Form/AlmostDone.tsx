@@ -31,7 +31,7 @@ export default function AlmostDone() {
     ]
     return (
         <>
-            <Text className="form-wrapper-title">Almost Done</Text>
+            <Text className="form-wrapper-title mt-[46px] mb-[24px] max-xls:mt-[26px] max-xls:mb-[24px] max-xsm:mt-[64px] max-xsm:mb-[24px]">Almost Done</Text>
             <PrimaryFormWrapper className="grid-cols-2 gap-y-3">
                 <div className="tip_radio_container flex flex-col gap-10 col-start-1 col-end-2 ">
                     <Text className="form-wrapper-title text-[16px] leading-[22px]">Tip</Text>

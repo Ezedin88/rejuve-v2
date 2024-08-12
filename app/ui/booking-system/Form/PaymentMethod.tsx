@@ -8,7 +8,7 @@ export default function PaymentMethod() {
 
     return (
         <>
-            <Text className="form-wrapper-title">Choose your desired payment method:</Text>
+            <Text className="form-wrapper-title mt-[46px] mb-[24px] max-xls:mt-[26px] max-xls:mb-[24px] max-xsm:mt-[64px] max-xsm:mb-[24px]">Choose your desired payment method:</Text>
             <PrimaryFormWrapper>
                 <div className="primary-input-box bg-white flex hover:border-primaryGreen overflow-clip pr-10 max-xsm:col-start-1 max-xsm:-col-end-1 max-xsm:w-full max-xsm:max-w-full">
                     <div className=" flex items-center h-full">

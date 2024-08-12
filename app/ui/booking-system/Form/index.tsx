@@ -29,10 +29,26 @@ export default function FormSection() {
     }
 
     const handleSubmit = (values: IInitialValues) => {
-
+        const { tip } = values ?? {};
         const allLineItems = values?.userData?.map((item) => {
             return item.line_items;
         });
+
+        const priceSumOfAllLineItems = allLineItems?.map((item) => {
+            return item.map((item) => {
+                // @ts-ignore
+                const parsedItem = JSON.parse(item);
+                return parsedItem.price * parsedItem.quantity;
+            });
+        });
+
+        // Flatten the nested array
+        const flattenedArray = priceSumOfAllLineItems.flat();
+
+        // Sum the values in the flattened array
+        const totalSum = flattenedArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        const tipValue = (Number(tip) / 100) * totalSum;
+        console.log(totalSum);
 
         const transformedData = values?.userData?.map((item, index) => {
             const { line_items } = item;
@@ -87,14 +103,14 @@ export default function FormSection() {
                         variation_id: parsedItem?.variation_id?.variant_id ?? parsedItem.product_id
                     };
                 }),
-                fee_lines: [
+                fee_lines: index === 0 ? [
                     {
                         name: 'Tip',
                         tax_class: '',
                         tax_status: 'none',
-                        total: values.tip,
+                        total: tipValue.toString(),
                     }
-                ],
+                ] : [],
                 meta_data: [
                     {
                         key: 'bookingChoice',

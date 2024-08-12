@@ -54,7 +54,7 @@ export default function OrderSummary() {
     const isClinic = bookingChoice === 'atourclinics';
     return (
         <>
-            <Text className="form-wrapper-title">Order Summary</Text>
+            <Text className="form-wrapper-title mt-[46px] mb-[24px] max-xls:mt-[26px] max-xls:mb-[24px] max-xsm:mt-[64px] max-xsm:mb-[24px]">Order Summary</Text>
             <PrimaryFormWrapper className="pt-[23px] bg-extraLightYellow grid-cols-1">
                 <div className="summary_box_with_name max-w-[1137px] mx-auto max-xls:max-w[1053px] max-xsm:max-w[301px] w-full grid gap-y-[33px]">
                     <>
