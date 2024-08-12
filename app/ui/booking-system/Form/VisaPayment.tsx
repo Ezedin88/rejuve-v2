@@ -34,11 +34,11 @@ export default function VisaPayment() {
     };
 
     const addressData = {
-        address: 'biller_address.address.line1',
-        city: 'biller_address.address.city',
-        state: 'biller_address.address.state',
-        country: 'biller_address.address.country',
-        zipCode: 'biller_address.address.postal_code',
+        address: 'biller_details.address.line1',
+        city: 'biller_details.address.city',
+        state: 'biller_details.address.state',
+        country: 'biller_details.address.country',
+        zipCode: 'biller_details.address.postal_code',
     };
 
     return (
@@ -79,17 +79,18 @@ export default function VisaPayment() {
                         <PlacesAutoCompleteComponent
                             placeholder='Address Line'
                             addressData={addressData}
+                            fromVisaPayment
                         />
                         {/* Address Line 2 */}
-                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Address Line 2" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_2" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="Address Line 2" placeholder="4579 Norman Street" inputClassName="primary-input-box" name="bookingAddress.address_2" required={false} type="input" labelClassName="primary-input-label" />
                         {/* state California and city Los Angeles*/}
-                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="state" placeholder="california" inputClassName="primary-input-box" name="bookingAddress.state" required type="input" labelClassName="primary-input-label" />
-                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="city" placeholder="Los Angeles" inputClassName="primary-input-box" name="bookingAddress.city" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="state" placeholder="california" inputClassName="primary-input-box" name="biller_details.address.state" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper wrapperClassName="max-xsm:col-start-1 max-xsm:col-end-3" labelName="city" placeholder="Los Angeles" inputClassName="primary-input-box" name="biller_details.address.city" required type="input" labelClassName="primary-input-label" />
                         {/* ZIP Code 90029*/}
                         {/* country */}
-                        <InputLabelWrapper labelName="country" inputClassName="primary-input-box" name="bookingAddress.country" placeholder="USA" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper labelName="country" inputClassName="primary-input-box" name="biller_details.address.country" placeholder="USA" required type="input" labelClassName="primary-input-label" />
                         {/* ZIP Code required */}
-                        <InputLabelWrapper wrapperClassName="col-start-1 max-xsm:col-start-2" labelName="ZIP Code" inputClassName="primary-input-box max-w-[198px]" name="bookingAddress.postcode" placeholder="90029" required type="input" labelClassName="primary-input-label" />
+                        <InputLabelWrapper wrapperClassName="col-start-1 max-xsm:col-start-2" labelName="ZIP Code" inputClassName="primary-input-box max-w-[198px]" name="biller_details.address.postal_code" placeholder="90029" required type="input" labelClassName="primary-input-label" />
                     </>
                     || <Spinner />
                 }
