@@ -16,7 +16,7 @@ export default function WhyRejuve() {
     }));
     const categoryName = categories?.[0];
     return (
-        <>
+        <div className="max-w-[1480px] flex items-center flex-col gap-[150px] w-[90%] xls:w-[85%] mx-auto">
             <section className="max-w-[1718px]
             max-xls:max-w-[1117px]
             max-sm:max-w-[360px]
@@ -67,6 +67,6 @@ export default function WhyRejuve() {
                     <p className={styles["click-to-login"]}><a href="https://rejuve.com/sign-in">Click here to login</a></p>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
