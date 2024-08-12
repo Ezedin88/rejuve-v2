@@ -37,7 +37,7 @@ export default function ChooseTreatment({ index }: { index: number }) {
 
     return (
         <>
-            <Text className="form-wrapper-title">Choose Treatments</Text>
+            <Text className="form-wrapper-title mt-[64px] mb-[28px] max-xls:mt-[49px] max-xsm:mt-[24px] max-xsm:mb-[28px]">Choose Treatments</Text>
             <div className="flex flex-col gap-[12px]">
                 {
                     Object.entries(filtered_products)?.map(([category, products]) => (

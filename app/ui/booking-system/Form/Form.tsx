@@ -6,7 +6,7 @@ import BookingTimeDatePreference from './BookingTimeDatePreference';
 import ChooseLocation from './ChooseLocation';
 import { IInitialValues } from '@/app/lib/definitions';
 import { useMapApi } from './reducers/loadMapContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import ChooseTreatment from './ChooseTreatment';
 import ChooseProvider from './ChooseProvider';
@@ -19,11 +19,25 @@ import BookBtn from '@/app/components/Buttons/book-btn';
 import { SmallIcon } from '@/app/components/Icons/Icon';
 
 export default function Form() {
+  const [hasErrors, setHasErrors] = useState(false);
   const { dispatch } = useMapApi();
   const handleLoadMapApi = () => {
     dispatch({ type: 'LOAD_MAP_API' });
   }
   const { values, errors } = useFormikContext<IInitialValues>() || {};
+
+  const { userData: user_data_errors } = errors ?? {};
+
+  const noUserDataErrors =
+    !user_data_errors ||
+    Object.keys(user_data_errors).length === 0;
+
+  useEffect(() => {
+    if (!noUserDataErrors) {
+      setHasErrors(false);
+    }
+  }, [noUserDataErrors]);
+
   const { userData } = values || {};
 
   useEffect(() => {
@@ -71,21 +85,34 @@ export default function Form() {
                   <UserDetails remove={remove} index={index} />
                   {index === 0 ? <ChooseLocation /> : null}
                   <ChooseTreatment index={index} />
-
+                  {
+                    hasErrors &&
+                    <div className="warning_info_wrapper flex gap-3 mt-3 text-footerGrayText text-[16px]">
+                      <SmallIcon icon='/info_icon.svg' width={20} />
+                      <Text>Please fill your information before adding another person.</Text>
+                    </div>
+                  }
                   <button
                     type="button"
                     className="secondary bg-primaryGreen rounded-[5px] flex py-[10px] px-[20px] text-white gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[250px] h-[55px] max-sm:w-[302px] hover:bg-secondaryGreenHover active:bg-primaryGreen max-sm:mx-auto mt-[46px] mb-[56px] max-xls:my-[29px] max-sm:mt-[51px] max-sm:mb-[66px] "
-                    onClick={() =>
-                      push({
-                        billing: {
-                          first_name: '',
-                          last_name: '',
-                          email: '',
-                          phone: '',
-                          dateOfBirth: '',
-                          line_items: [{}],
-                        },
-                      })
+                    onClick={() => {
+                      if (!noUserDataErrors) {
+                        setHasErrors(true);
+                        return;
+                      }
+                      if (noUserDataErrors) {
+                        push({
+                          billing: {
+                            first_name: '',
+                            last_name: '',
+                            email: '',
+                            phone: '',
+                            dateOfBirth: '',
+                            line_items: [{}],
+                          },
+                        })
+                      }
+                    }
                     }
                   >
                     <Image

@@ -69,8 +69,8 @@ export default function ChooseLocation() {
 
 
     return (
-        <div>
-            <Text className="form-wrapper-title">Choose Location</Text>
+        <div className="">
+            <Text className="form-wrapper-title max-xls:text-center mt-[61px] mb-[28px] max-xls:mt-[24px] max-xsm:mt-[22px] max-xsm:mb-[28px]">Choose Location</Text>
             <PrimaryFormWrapper>
                 <div className="primary-input-box bg-white flex hover:border-primaryGreen overflow-clip pr-10 max-xsm:col-start-1 max-xsm:-col-end-1 max-xsm:w-full max-xsm:max-w-full">
                     <div className=" flex items-center h-full">
