@@ -3,6 +3,7 @@ import { transformProductInfo } from "@/app/utils/utils";
 import ProductHero from "./product-hero";
 import WhyRejuve from "./WhyRejuve";
 import Form from "@/app/ui/booking-system/Form";
+import TreatmentNameIntro from "@/app/ui/booking-system/Form/TreatmentNameIntro";
 import { useProductData } from "./Form/reducers/productDetailContext";
 import { useEffect, useState } from "react";
 
@@ -67,10 +68,12 @@ export default function ProductPage({ product, categorizedTreatments }: {
             })
         }
     }, [categorizedTreatments, dispatch, product, transformedData]);
+
     return (
         <>
             <ProductHero />
             <WhyRejuve />
+            <TreatmentNameIntro />
             <Form />
         </>
     )

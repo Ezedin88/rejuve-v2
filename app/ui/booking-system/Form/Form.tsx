@@ -52,7 +52,7 @@ export default function Form() {
   }, []);
 
   return (
-    <FormikForm>
+    <FormikForm className='mb-[157px] max-xls:mb-[125px] max-xsm:mb-[137px]'>
       <FieldArray name="userData">
         {({ remove, push }) => (
           <>
