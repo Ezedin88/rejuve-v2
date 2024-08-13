@@ -1,8 +1,24 @@
+import { fetchOptions } from '@/app/lib/client';
+import { FooterProps } from '@/app/lib/mainTypes';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Footer = () => {
+  const [firstMenu, setFirstMenu] = useState<FooterProps | any>([]);
+
+  useEffect(() => {
+    async function getOptions() {
+      const res = await fetchOptions();
+      if (res?.footer_first_menu) {
+        setFirstMenu(res?.footer_first_menu);
+      } else {
+        setFirstMenu([]);
+      }
+    }
+
+    getOptions();
+  }, []);
   return (
     <footer className="flex flex-col bottom-0 w-full h-full xls:h-[475px] px-5 xls:px-[85px] pt-16 pb-10 bg-primaryDark">
       <div className="flex flex-col xls:flex-row gap-[70px] xls:gap-[128px] items-start justify-start mb-10">
@@ -48,34 +64,15 @@ const Footer = () => {
         {/* Links */}
         <div className="grid grid-cols-2 xls:grid-cols-3 justify-between items-start gap-10px gap-y-10 flex-wrap w-full whitespace-nowrap">
           <div className="flex flex-col gap-6 xls:max-w-[500px] w-full max-w-full xls:w-1/3">
-            <h4 className="font-semibold text-primaryWhite">Treatments</h4>
+            <h4 className="font-semibold text-primaryWhite">{firstMenu?.title}</h4>
             <ul className="flex flex-col gap-4 justify-start items-start">
-              <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
-                <Link href="https://rejuve.md/?attachment_id=475">
-                  myers-cocktail
-                </Link>
-              </li>
-              <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
-                <Link href="https://rejuve.md/hangover-fix-7/">
-                  Hangover-Fix
-                </Link>
-              </li>
-              <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
-                <Link href="https://rejuve.md/product/weight-loss-metabolic/">
-                  Weight Loss/Metabolic
-                </Link>
-              </li>
-              <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
-                <Link href="https://rejuve.md/?attachment_id=459">
-                  immune-booster
-                </Link>
-              </li>
-              {/* <li className="text-footerGrayText">
-                <Link href="/peptides">Peptides</Link>
-              </li>
-              <li className="text-footerGrayText">
-                <Link href="/cells">CELLS</Link>
-              </li> */}
+              {firstMenu?.page_link?.map((item: any) => (
+                <li key={item.id} className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
+                  <Link href={`/product/${item.post_title}`}>
+                    {item.post_title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

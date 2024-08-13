@@ -1,128 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Parallax from './parallax';
 import DiscoverBenefits from '../components/DiscoverBenefits';
 import Faq from '../components/Faq';
+import { fetchProducts } from '../lib/client';
 
 const IVTherapy = () => {
-  const products = [
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-  ];
+  const [productData, setProductData] = useState([])
+
+  useEffect(() => {
+    async function getProducts() {
+      const res = await fetchProducts();
+      if (res) {
+        const products = res?.sort((a: any, b: any) => a.name?.localeCompare(b.name));
+        setProductData(products);
+      } else {
+        setProductData([]);
+      }
+    }
+
+    getProducts();
+  }, []);
 
   return (
     <>
@@ -183,8 +85,8 @@ const IVTherapy = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 xls:grid-cols-4 gap-6 gap-y-[61px] place-content-center">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+            {productData?.filter((p: any) => p.image && p.product_slug?.includes("iv-treatment"))?.map((product: any) => (
+              <ProductCard key={product?.id} product={product} />
             ))}
           </div>
         </section>
