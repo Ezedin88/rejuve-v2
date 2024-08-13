@@ -143,6 +143,16 @@
     color: #282D41;
   }
 
+  .product-description > p, .product-description > h4, .text-rejuve-paragraph {
+    font-size: 13px !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    --webkit-line-clamp: 2 !important;
+    --webkit-box-orient: vertical !important;
+  }
+
   @layer utilities {
     .text-balance {
       text-wrap: balance;

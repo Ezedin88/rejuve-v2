@@ -11,7 +11,7 @@ const Contact = () => {
     email: '',
     phone: '',
     message: '',
-    accept: true,
+    accept: false,
   });
 
   return (

@@ -53,17 +53,17 @@ const AddCard: React.FC<AddModalProps> = ({ setAddModalOpen }) => {
               <path
                 d="M1 11L11.2283 1"
                 stroke="#FFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path d="M11.2283 11L1 1L11.2283 11Z" fill="#FFF" />
               <path
                 d="M11.2283 11L1 1"
                 stroke="#FFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </g>
           </svg>

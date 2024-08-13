@@ -1,9 +1,7 @@
-const consumerKey = process.env.NEXT_PUBLIC_CONSUMER_KEY;
-const consumerSecret = process.env.NEXT_PUBLIC_CONSUMER_SECRET;
+const encodedCredentials = btoa(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`)
 
 export const createOrder = async (order: any) => {
     const url = `https://rejuve.com/wp-json/wc/v3/orders`;
-    const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
 
     try {
         const response = await fetch(url, {
@@ -72,4 +70,41 @@ export const sendEmail = async (emailData: string) => {
             message: emailData
         })
     });
+}
+
+
+export const fetchOptions = async () => {
+    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/options', {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+            "Content-Type": "application/json",
+        }
+    });
+
+    const data = await res.json();
+    return data;
+};
+
+export const fetchProducts = async () => {
+    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/products', {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+            "Content-Type": "application/json",
+        }
+    });
+
+    const data = await res.json();
+    return data;
+}
+
+export const fetchIVProducts = async () => {
+    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/iv-therapy-page', {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+            "Content-Type": "application/json",
+        }
+    });
+
+    const data = await res.json();
+    return data;
 }

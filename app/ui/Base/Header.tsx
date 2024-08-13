@@ -1,5 +1,7 @@
 'use client';
 
+import { fetchOptions } from '@/app/lib/client';
+import { HeaderProps } from '@/app/lib/mainTypes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -7,15 +9,10 @@ import React, { useEffect, useState } from 'react';
 
 const Header = () => {
   const router = useRouter();
+  const [megaMenuList, setMegaMenuList] = useState<HeaderProps | any>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isIvExpanded, setIsIvExpanded] = useState(false);
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
-
-  const headerMenus = Array(15).fill({
-    title: 'Hangover-Fix',
-    description:
-      'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-  });
 
   const toggleIvExpand = (e: React.MouseEvent<SVGElement>) => {
     e.preventDefault();
@@ -33,6 +30,19 @@ const Header = () => {
     setIsOpen(false);
     setIsIvExpanded(false);
     setIsAboutExpanded(false);
+  }, []);
+
+  useEffect(() => {
+    async function getOptions() {
+      const res = await fetchOptions();
+      if (res?.mega_menu_list) {
+        setMegaMenuList(res?.mega_menu_list);
+      } else {
+        setMegaMenuList([]);
+      }
+    }
+
+    getOptions();
   }, []);
 
   return (
@@ -127,23 +137,23 @@ const Header = () => {
                   d="M1 1L6 6L11 1"
                   stroke="currentColor"
                   strokeWidth="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </Link>
-            <div className="group-hover:hidden xls:group-hover:block w-screen left-0 right-0 fixed bg-primaryWhite text-primaryDark top-[78px] shadow-lg hidden">
+            <div className="group-hover:hidden xls:group-hover:block w-screen left-0 right-0 fixed bg-primaryWhite text-primaryDark top-[78px] shadow-lg hidden z-50">
               <div className="block w-full mx-auto leading-normal">
-                <div className="w-full flex gap-10 mx-auto pl-[200px]">
+                <div className="w-[90%] flex gap-10 mx-auto max-w-hxl xls:w-[85%]">
                   <div className="grid grid-cols-3 gap-y-4 py-10">
-                    {headerMenus.map((menu, index) => (
+                    {megaMenuList?.map((menu: any) => (
                       <Link
-                        href="/hangover-fix"
-                        key={index}
+                        href="/product/hangover-fix"
+                        key={menu.id}
                         className="flex flex-col p-2 hover:bg-headerHover transition-colors duration-200 pr-4 max-w-[288px]"
                       >
                         <h3 className="text-base font-semibold">
-                          {menu.title}
+                          {menu.menu_text}
                         </h3>
                         <p className="text-secondaryDark text-[14px]">
                           {menu.description}
@@ -151,6 +161,7 @@ const Header = () => {
                       </Link>
                     ))}
                   </div>
+
                   <div className="flex flex-col ml-auto gap-4 w-[416px] bg-lightGreen justify-center items-start px-16">
                     <h2 className="text-xl text-left font-semibold">
                       Learn more about IV Therapy
@@ -200,8 +211,8 @@ const Header = () => {
                   d="M1 1L6 6L11 1"
                   stroke="currentColor"
                   strokeWidth="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </Link>
@@ -298,14 +309,14 @@ const Header = () => {
 
                 <div className="w-full flex flex-col gap-10 mx-auto">
                   <div className="flex flex-col gap-6 pt-10">
-                    {headerMenus.map((menu, index) => (
+                    {megaMenuList?.map((menu: any) => (
                       <Link
                         href="/hangover-fix"
-                        key={index}
+                        key={menu.id}
                         className="flex flex-col gap-2 hover:text-primaryGreen transition-colors duration-200"
                       >
                         <h3 className="text-base font-semibold">
-                          {menu.title}
+                          {menu.menu_text}
                         </h3>
                       </Link>
                     ))}
