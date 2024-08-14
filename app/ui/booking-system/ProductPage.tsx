@@ -6,11 +6,14 @@ import Form from "@/app/ui/booking-system/Form";
 import TreatmentNameIntro from "@/app/ui/booking-system/Form/TreatmentNameIntro";
 import { useProductData } from "./Form/reducers/productDetailContext";
 import { useEffect, useState } from "react";
+import ServiceHero from "@/app/components/ServiceMenu/ServiceHero";
 
-export default function ProductPage({ product, categorizedTreatments }: {
+export default function ProductPage({ product, categorizedTreatments, slug }: {
     product: ProductData,
-    categorizedTreatments: ICategorizedTreatments
+    categorizedTreatments: ICategorizedTreatments,
+    slug: string
 }) {
+    console.log('passed treatments==>', categorizedTreatments)
     const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
     const hasVariations = product?.variations?.length > 2;
     let transformedData: ITransformedProduct | null | undefined = null;
@@ -31,7 +34,7 @@ export default function ProductPage({ product, categorizedTreatments }: {
     });
 
     useEffect(() => {
-        if (product?.name && !isInitiallyRendered) {
+        if ((product?.name && !isInitiallyRendered) || (categorizedTreatments?.length && !isInitiallyRendered)) {
             setIsInitiallyRendered(true);
             dispatch({
                 type: "SET_PRODUCT_DATA",
@@ -69,11 +72,23 @@ export default function ProductPage({ product, categorizedTreatments }: {
         }
     }, [categorizedTreatments, dispatch, product, transformedData]);
 
+    const pageIsCheckMenu = slug === 'checkmenu';
+
     return (
         <>
-            <ProductHero />
-            <WhyRejuve />
-            <TreatmentNameIntro />
+            {
+                !pageIsCheckMenu &&
+                <>
+                    <ProductHero />
+                    <WhyRejuve />
+                    <TreatmentNameIntro />
+                </> ||
+
+                <div className="mt-40">
+                    <ServiceHero />
+                </div>
+
+            }
             <Form />
         </>
     )

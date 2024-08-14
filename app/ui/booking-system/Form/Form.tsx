@@ -17,6 +17,7 @@ import SpecialInstructions from './SpecialInstructions';
 import Agreement from './Agreement';
 import BookBtn from '@/app/components/Buttons/book-btn';
 import { SmallIcon } from '@/app/components/Icons/Icon';
+import { set } from 'react-datepicker/dist/date_utils';
 
 export default function Form() {
   const [hasErrors, setHasErrors] = useState(false);
@@ -24,7 +25,7 @@ export default function Form() {
   const handleLoadMapApi = () => {
     dispatch({ type: 'LOAD_MAP_API' });
   }
-  const { values, errors } = useFormikContext<IInitialValues>() || {};
+  const { values, errors, setFieldValue } = useFormikContext<IInitialValues>() || {};
 
   const { userData: user_data_errors } = errors ?? {};
 
@@ -49,6 +50,28 @@ export default function Form() {
     loader.load().then(() => {
       handleLoadMapApi();
     });
+
+    // get bookingChoice from localStorage
+    const bookingChoice = localStorage.getItem('bookingChoice') as 'atourclinics' | 'housecall' | null;
+    const isChoiceClinic = bookingChoice === 'atourclinics';
+    const localLineItems = localStorage.getItem('lineItems');
+    if (bookingChoice) {
+      setFieldValue('bookingChoice', bookingChoice);
+      if (isChoiceClinic) {
+        setFieldValue('clinicChoice', '15301 Ventura Blvd U2 Sherman Oaks CA 91403');
+      } else {
+        setFieldValue('clinicChoice', '');
+      }
+    }
+
+    if (localLineItems) {
+      const formattedLineItems = Array.isArray(localLineItems) && localLineItems?.map(items => JSON.stringify(items));
+      setFieldValue('userData[0].line_items', formattedLineItems);
+      console.log('the line items==>', localLineItems)
+    }
+
+    // localStorage.removeItem('lineItems');
+    // localStorage.removeItem('bookingChoice');
   }, []);
 
   return (

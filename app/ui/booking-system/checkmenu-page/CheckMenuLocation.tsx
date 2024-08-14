@@ -59,7 +59,7 @@ export default function CheckMenuLocation({
             <PrimaryFormWrapper className="grid-cols-2">
                 <div className="primary-input-box bg-white flex hover:border-primaryGreen overflow-clip pr-10 max-xsm:col-start-1 max-xsm:-col-end-1 max-xsm:w-full max-xsm:max-w-full">
                     <div className=" flex items-center h-full">
-                        <input type="radio" className="primary-rounded-input h-[20px]" id="atourclinics" name="bookingCheckMenuChoice" value="atourclinics" onChange={handleBookingChoice} />
+                        <input type="radio" defaultChecked className="primary-rounded-input h-[20px]" id="atourclinics" name="bookingCheckMenuChoice" value="atourclinics" onChange={handleBookingChoice} />
                     </div>
                     <label htmlFor="atourclinics" className="text-nowrap text-ellipsis overflow-clip max-w-full">
                         <Text className="primary-input-label cursor-pointer text-lightSecondaryDark">Rejuve Clinics

@@ -8,9 +8,9 @@ import Text from "@/app/components/Buttons/Text";
 import { MapApiProvider } from "../Form/reducers/loadMapContext";
 import CheckMenuAccordion from "./CheckMenuAccordion";
 import CheckMenuLocation from "./CheckMenuLocation";
-import { redirect } from "next/navigation";
-
+import { useRouter } from "next/navigation";
 export default function CheckMenuContent({ filteredProducts }: { filteredProducts: any }) {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
     const [lineItems, setLineItems] = useState<ILineItem[]>([]);
     const [bookingAddress, setBookingAddress] = useState<{
@@ -58,8 +58,9 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
         }
         // set booking choice on local storage
         localStorage.setItem('bookingChoice', bookingChoice);
-        // redirect to booking page
-        redirect('/product/checked-menus')
+
+        // Use useRouter for client-side navigation
+        router.push('/product/checkmenu');
     }
 
     return (
