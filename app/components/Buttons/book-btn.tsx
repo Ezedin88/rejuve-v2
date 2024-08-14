@@ -3,17 +3,19 @@ import { ButtonHTMLAttributes } from "react";
 export default function BookBtn({
   children,
   onclick,
-  type
+  type,
+  className
 }: {
   children: React.ReactNode,
   onclick?: (e: any) => void,
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type']
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
+  className?: string
 }) {
   return (
     <button
       type={`${type ?? 'button'}`}
       onClick={onclick}
-      className="
+      className={`
                        text-center
                        lg:font-inter
                        lg:font-bold
@@ -31,7 +33,8 @@ export default function BookBtn({
                        transition
                        duration-200
                        max-[167px]:w-[100%]
-                    "
+                       ${className}
+                    `}
     >
       {children}
     </button>

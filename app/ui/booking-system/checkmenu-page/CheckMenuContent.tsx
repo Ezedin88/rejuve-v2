@@ -28,6 +28,7 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
     const [bookingChoice, setBookingChoice] = useState<'atourclinics' | 'housecall'>('atourclinics');
     // Effect to initialize isOpen state based on filteredProducts
     console.log('booking choice', bookingChoice);
+    const isClinic = bookingChoice === 'atourclinics';
     useEffect(() => {
         // Create a new object where all values are true
         const initialOpenState = Object.keys(filteredProducts).reduce((acc, category) => {
@@ -46,6 +47,23 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
     };
 
     const primaryWrapperBgColors = ['lightyellow', 'lightGreen', 'lightGreen', 'lightGreen'];
+
+    const priceClinicSum = lineItems?.length > 0 ? lineItems?.reduce((acc, item) => {
+        if (item?.categoryName === 'Clinic') {
+            // @ts-ignore
+            return acc + item.variation_id?.[0]?.product_clinic_price;
+        }
+        return acc;
+    }, 0) : [];
+
+    const priceHouseCallSum = lineItems?.length > 0 ? lineItems?.reduce((acc, item) => {
+        if (item?.categoryName === 'House Call') {
+            // @ts-ignore
+            return acc + item.variation_id?.[1]?.product_home_price;
+        }
+        return acc;
+    }) : [];
+
 
     return (
         <div className="div_content_wrapper max-w-[1169px] w-full mx-auto">
@@ -88,13 +106,22 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
             {/* order summary */}
             <div className="order_summary px-[60px] bg-extraLightYellow pt-[23px] pb-[44px]">
                 <Text className="text-[18px] font-bold leading-[21.78px] mb-[16px]">Order Summary</Text>
-                <div className="selected_items px-[41px] flex justify-between bg-lightYellow py-[37px]">
-                    <Text className="text-[14px]">Hangover Fix</Text>
-                    <Text className="text-[14px] font-semibold">$30</Text>
-                </div>
+                {
+                    lineItems.length > 0 ?
+                        lineItems?.map((item, index) => (
+                            <div className="selected_items px-[41px] flex justify-between bg-lightYellow py-[37px]" key={index}>
+                                <Text className="text-[14px]">{item?.productName}</Text>
+                                {/* @ts-ignore */}
+                                <Text className="text-[14px] font-semibold">${isClinic ? item?.variation_id?.[0]?.product_clinic_price ?? item?.price : item?.variation_id?.[1]?.product_home_price ?? item?.price}</Text>
+                            </div>
+                        )) : <div className="selected_items px-[41px] flex justify-between bg-lightYellow py-[37px]">
+                            <Text className="text-[14px]">No Items Selected</Text>
+                            <Text className="text-[14px] font-semibold">$&nbsp;-</Text>
+                        </div>
+                }
             </div>
 
-            <BookBtn type='submit'>
+            <BookBtn type='submit' className="w-fit mt-[72px] mb-[238px]">
                 <Text className='text-center'>
                     Book Appointment
                 </Text>
