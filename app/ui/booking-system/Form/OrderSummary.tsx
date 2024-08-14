@@ -10,7 +10,6 @@ export default function OrderSummary() {
 
     const sumOfAllClinicPrices = userData?.reduce((acc, user) => {
         const { line_items } = user ?? {};
-        console.log('my line items==>', line_items)
         if (!line_items) {
             console.warn('No line_items found for user:', user);
             return acc;

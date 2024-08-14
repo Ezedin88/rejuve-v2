@@ -28,7 +28,7 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
     });
     const [bookingChoice, setBookingChoice] = useState<'atourclinics' | 'housecall'>('atourclinics');
     // Effect to initialize isOpen state based on filteredProducts
-    console.log('booking choice', bookingChoice);
+
     const isClinic = bookingChoice === 'atourclinics';
     useEffect(() => {
         // Create a new object where all values are true

@@ -16,7 +16,6 @@ export default async function Page({ params }: Params) {
 
     const treatmentsData: Promise<ICategorizedTreatments> = getCategorizedProductData();
     const categorizedTreatments = await Promise.resolve(treatmentsData);
-    console.log('categorizedTreatments==>', categorizedTreatments)
     return (
         <>
             <FormComponents product={product} categorizedTreatments={categorizedTreatments} slug={decodedSlug} />

@@ -129,7 +129,6 @@ function FormSectionWithElements() {
             setProcessingPayment(true);
 
             if (elements === null || stripe === null) {
-                console.log('shokingly null!!!');
                 setProcessingPayment(false);
             }
 

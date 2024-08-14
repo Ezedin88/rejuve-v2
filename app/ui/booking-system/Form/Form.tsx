@@ -65,13 +65,13 @@ export default function Form() {
     }
 
     if (localLineItems) {
-      const formattedLineItems = Array.isArray(localLineItems) && localLineItems?.map(items => JSON.stringify(items));
+      const itemsFromLocalStorage = JSON.parse(localLineItems);
+      const formattedLineItems = Array.isArray(itemsFromLocalStorage) && itemsFromLocalStorage?.map(items => JSON.stringify(items));
       setFieldValue('userData[0].line_items', formattedLineItems);
-      console.log('the line items==>', localLineItems)
     }
 
-    // localStorage.removeItem('lineItems');
-    // localStorage.removeItem('bookingChoice');
+    localStorage.removeItem('lineItems');
+    localStorage.removeItem('bookingChoice');
   }, []);
 
   return (

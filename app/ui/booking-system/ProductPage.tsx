@@ -13,7 +13,6 @@ export default function ProductPage({ product, categorizedTreatments, slug }: {
     categorizedTreatments: ICategorizedTreatments,
     slug: string
 }) {
-    console.log('passed treatments==>', categorizedTreatments)
     const [isInitiallyRendered, setIsInitiallyRendered] = useState(false);
     const hasVariations = product?.variations?.length > 2;
     let transformedData: ITransformedProduct | null | undefined = null;
@@ -33,8 +32,9 @@ export default function ProductPage({ product, categorizedTreatments, slug }: {
         return cleanedItemName === cleanedProductName;
     });
 
+    const hasCategorizedTreatmentsObject = categorizedTreatments && Object.keys(categorizedTreatments).length > 0;
     useEffect(() => {
-        if ((product?.name && !isInitiallyRendered) || (categorizedTreatments?.length && !isInitiallyRendered)) {
+        if ((product?.name && !isInitiallyRendered) || (hasCategorizedTreatmentsObject && !isInitiallyRendered)) {
             setIsInitiallyRendered(true);
             dispatch({
                 type: "SET_PRODUCT_DATA",

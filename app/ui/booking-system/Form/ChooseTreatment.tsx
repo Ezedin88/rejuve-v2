@@ -5,11 +5,10 @@ import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
 import { useState } from "react";
 import { useProductData } from "./reducers/productDetailContext";
 import { ICategorizedTreatments, IInitialValues } from "@/app/lib/definitions";
-import { Field, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 
 export default function ChooseTreatment({ index }: { index: number }) {
     const [openCategories, setOpenCategories] = useState<{ [key: string]: boolean }>({});
-    const [bookingChoice, setBookingChoice] = useState<'atourclinics' | 'housecall'>('atourclinics');
     const { productData } = useProductData();
     const { categorized_products = {} } = productData || {};
     const { values, setFieldValue } = useFormikContext<IInitialValues>() || {};
@@ -38,7 +37,6 @@ export default function ChooseTreatment({ index }: { index: number }) {
             [category]: !prevState[category]
         }));
     };
-    console.log('filtered_products==>', productData)
     return (
         <>
             <Text className="form-wrapper-title mt-[64px] mb-[28px] max-xls:mt-[49px] max-xsm:mt-[24px] max-xsm:mb-[28px]">Choose Treatments</Text>
