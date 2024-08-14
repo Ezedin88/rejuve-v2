@@ -21,10 +21,11 @@ interface MetaData {
     value: string;
 }
 
-interface LineItem {
+export interface ILineItem {
     meta_data: MetaData[];
     price: number;
     productName: string;
+    categoryName?: string;
     product_id: number;
     quantity: number;
     variation_id?: {
@@ -36,7 +37,7 @@ interface LineItem {
 
 interface UserData {
     billing: Billing;
-    line_items: LineItem[];
+    line_items: ILineItem[];
 }
 
 interface Address {

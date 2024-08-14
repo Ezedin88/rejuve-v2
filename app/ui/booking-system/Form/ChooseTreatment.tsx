@@ -9,9 +9,13 @@ import { Field, useFormikContext } from "formik";
 
 export default function ChooseTreatment({ index }: { index: number }) {
     const [openCategories, setOpenCategories] = useState<{ [key: string]: boolean }>({});
+    const [bookingChoice, setBookingChoice] = useState<'atourclinics' | 'housecall'>('atourclinics');
     const { productData } = useProductData();
-    const { categorized_products = {}, currently_selected_product } = productData || {};
-    const { values, setFieldValue } = useFormikContext<IInitialValues>();
+    const { categorized_products = {} } = productData || {};
+    const { values, setFieldValue } = useFormikContext<IInitialValues>() || {};
+    const { userData } = values ?? {};
+    const { line_items } = userData?.[index] ?? {};
+
     const category_to_display: string[] = ['IV Treatment', 'NAD+', 'Ad-Ons', 'Booster', 'Peptides'];
     const filtered_products = categorized_products && Object.keys(categorized_products)
         .sort((a, b) => {
@@ -48,6 +52,8 @@ export default function ChooseTreatment({ index }: { index: number }) {
                                     title={category}
                                     isOpen={!!openCategories[category]}
                                     setIsOpen={() => toggleCategory(category)}
+                                    line_items={line_items}
+                                    setFieldValue={setFieldValue}
                                 />
                                 {openCategories[category] && // Show AccordionBody only if the category is open
                                     <AccordionBody index={index} products={products} category={category} />

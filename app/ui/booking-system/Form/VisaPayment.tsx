@@ -1,4 +1,4 @@
-import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import { useMapApi } from "./reducers/loadMapContext";
 import Text from "@/app/components/Buttons/Text";
 import InputLabelWrapper from "@/app/components/Form/InputLabelWrapper";
@@ -6,9 +6,6 @@ import PlacesAutoCompleteComponent from "@/app/components/Form/PlacesAutoComplet
 import Spinner from "@/app/components/spinner/spinner";
 
 export default function VisaPayment() {
-    const stripe = useStripe();
-    const elements = useElements();
-    const cardElement = elements?.getElement(CardNumberElement);
     const { state } = useMapApi();
     const { loadedMapApi } = state;
 

@@ -1,12 +1,10 @@
 import { ClinicProduct, HouseProduct, IInitialValues, IProductTreatment, ITransformedProduct } from "@/app/lib/definitions";
-import { useProductData } from "@/app/ui/booking-system/Form/reducers/productDetailContext";
 import { transformProductInfo } from "@/app/utils/utils";
 import { Field, useFormikContext } from "formik";
-import { useCallback, useEffect } from "react";
 
 export default function AccordionBody({ index, products, category }: { index: number, products: IProductTreatment[], category: string }) {
     const { setFieldValue, values } = useFormikContext<IInitialValues>();
-    const { userData, bookingChoice } = values || {};
+    const { bookingChoice } = values || {};
     const sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
     const radio_boxed_treatments = ['IV Treatment', 'NAD+'];
     const is_radio_boxed = radio_boxed_treatments.includes(category);
@@ -21,9 +19,6 @@ export default function AccordionBody({ index, products, category }: { index: nu
     }
 
     const isClinic = bookingChoice === 'atourclinics';
-    const { productData } = useProductData();
-    const { currently_selected_product } = productData || {};
-    const { clinic_price_id, home_price_id, product_id, productPrice } = currently_selected_product || {};
 
     const handleCheckboxChange = (event: { target: { checked: boolean; }; },
         product: any, category: string) => {
@@ -137,12 +132,13 @@ export default function AccordionBody({ index, products, category }: { index: nu
                 {
                     !hasManyVariations ?
                         sortedProducts?.map((product: IProductTreatment, i: number) => {
-                            const { variations, price } = product ?? {};
+                            const { variations, price, product_id } = product ?? {};
                             const hasVariations = variations && variations?.length > 0 && variations?.length! > 2;
                             const clinic_price = hasVariations ? variations?.[0]?.price : price;
                             const house_price = hasVariations ? variations?.[1]?.price : price;
                             const clinic_id = hasVariations ? variations?.[0]?.id : product_id;
                             const house_id = hasVariations ? variations?.[1]?.id : product_id;
+
                             return (
                                 <div className="name_price_wrapper flex justify-between" key={i}>
                                     <div className="name flex gap-2 items-center">

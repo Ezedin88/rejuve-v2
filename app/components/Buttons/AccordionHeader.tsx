@@ -1,21 +1,25 @@
-import { useFormikContext } from "formik";
 import { SmallIcon } from "../Icons/Icon";
-import { IInitialValues } from "@/app/lib/definitions";
+import { ILineItem } from "@/app/lib/definitions";
 
 export default function AccordionHeader({
     title,
     isOpen,
     setIsOpen,
-    index
+    index,
+    setFieldValue,
+    line_items,
+    set_line_items,
+    arrowBgColor
 }: {
     index: number,
     title: string,
     isOpen: boolean,
-    setIsOpen: () => void
+    line_items: ILineItem[],
+    set_line_items?: (line_items: ILineItem[]) => void,
+    setFieldValue?: (field: string, value: any) => void,
+    setIsOpen: () => void,
+    arrowBgColor?: string
 }) {
-    const { values, setFieldValue } = useFormikContext<IInitialValues>() || {};
-    const { userData } = values ?? {};
-    const { line_items } = userData?.[index] ?? {};
     return (
         <>
             <button onClick={(e) => { e.preventDefault(); setIsOpen() }} className='accordion-btn w-full flex'
@@ -28,19 +32,22 @@ export default function AccordionHeader({
                             line_items?.length > 0 &&
                             line_items?.map((item, idx: number) => {
                                 // @ts-ignore
-                                const parsedItem = JSON.parse(item);
+                                const parsedItem = !set_line_items ? JSON.parse(item) : item;
                                 return (
                                     parsedItem?.categoryName && parsedItem?.categoryName === title &&
                                     <div key={idx} className="checked-items flex items-center gap-2">
                                         <p className="product_name">{parsedItem?.productName}</p>
                                         <SmallIcon icon="/closeIcon.svg" width={15} onClick={(e) => {
+                                            e.preventDefault();
                                             e.stopPropagation();
                                             const newLineItems = line_items.filter((li, i) => {
                                                 // @ts-ignore
-                                                const parsedLi = JSON.parse(li);
+                                                const parsedLi = !set_line_items ? JSON.parse(li) : li;
                                                 return parsedLi.productName !== parsedItem.productName || i !== idx;
                                             });
-                                            setFieldValue(`userData.${index}.line_items`, newLineItems);
+                                            setFieldValue && setFieldValue(`userData.${index}.line_items`, newLineItems) ||
+                                                set_line_items && set_line_items(newLineItems)
+                                                ;
                                         }} />
                                     </div>
                                 )
@@ -52,12 +59,12 @@ export default function AccordionHeader({
                     {isOpen ?
                         <div className="relative w-16 flex items-center">
                             <div className="absolute bg-primaryGreen w-4 h-4 rotate-45"></div>
-                            <div className="absolute bg-lightGreen w-4 h-4 rotate-45 translate-y-1"></div>
+                            <div className={`absolute ${arrowBgColor ? "bg-" + "[" + arrowBgColor + "]" : "bg-lightGreen"} w-4 h-4 rotate-45 translate-y-1`}></div>
                         </div>
                         :
                         <div className="relative w-16 flex items-start">
                             <div className="absolute bg-primaryGreen w-4 h-4 rotate-45 translate-y-1"></div>
-                            <div className="absolute bg-lightGreen w-4 h-4 rotate-45"></div>
+                            <div className={`absolute ${arrowBgColor ? "bg-" + "[" + arrowBgColor + "]" : "bg-lightGreen"} w-4 h-4 rotate-45`}></div>
                         </div>
                     }
                 </div>
