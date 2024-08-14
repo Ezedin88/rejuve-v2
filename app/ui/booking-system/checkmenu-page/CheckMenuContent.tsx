@@ -8,6 +8,7 @@ import Text from "@/app/components/Buttons/Text";
 import { MapApiProvider } from "../Form/reducers/loadMapContext";
 import CheckMenuAccordion from "./CheckMenuAccordion";
 import CheckMenuLocation from "./CheckMenuLocation";
+import { redirect } from "next/navigation";
 
 export default function CheckMenuContent({ filteredProducts }: { filteredProducts: any }) {
     const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
@@ -48,22 +49,18 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
 
     const primaryWrapperBgColors = ['lightyellow', 'lightGreen', 'lightGreen', 'lightGreen'];
 
-    const priceClinicSum = lineItems?.length > 0 ? lineItems?.reduce((acc, item) => {
-        if (item?.categoryName === 'Clinic') {
-            // @ts-ignore
-            return acc + item.variation_id?.[0]?.product_clinic_price;
+    const checkMenuSubmitHandler = (e: any) => {
+        e.preventDefault();
+        // set line items on local storage
+        localStorage.setItem('lineItems', JSON.stringify(lineItems));
+        if (!isClinic) {
+            localStorage.setItem('bookingAddress', JSON.stringify(bookingAddress));
         }
-        return acc;
-    }, 0) : [];
-
-    const priceHouseCallSum = lineItems?.length > 0 ? lineItems?.reduce((acc, item) => {
-        if (item?.categoryName === 'House Call') {
-            // @ts-ignore
-            return acc + item.variation_id?.[1]?.product_home_price;
-        }
-        return acc;
-    }) : [];
-
+        // set booking choice on local storage
+        localStorage.setItem('bookingChoice', bookingChoice);
+        // redirect to booking page
+        redirect('/product/checked-menus')
+    }
 
     return (
         <div className="div_content_wrapper max-w-[1169px] w-full mx-auto">
@@ -121,7 +118,7 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
                 }
             </div>
 
-            <BookBtn type='submit' className="w-fit mt-[72px] mb-[238px]">
+            <BookBtn type='submit' className="w-fit mt-[72px] mb-[238px]" onclick={checkMenuSubmitHandler}>
                 <Text className='text-center'>
                     Book Appointment
                 </Text>
