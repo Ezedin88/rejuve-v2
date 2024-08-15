@@ -143,7 +143,9 @@ export const fetchFrontPageContent = async (): Promise<IFrontPageContent> => {
             Authorization: `Basic ${encodedCredentials}`,
             "Content-Type": "application/json",
         },
-        cache: 'force-cache'
+        next: {
+            revalidate: 86400,
+        },
     });
 
     const data = await res.json();

@@ -313,6 +313,53 @@ export interface ICategorizedTreatments {
     [key: string]: IProductTreatment[];
 }
 
+export interface ISectionTitle {
+    title: string,
+    button: string,
+    description: string
+}
+
+export interface IBook {
+    background_color: string;
+    title: string;
+    button: {
+        title: string;
+        url: string;
+        target: string
+    },
+    description: string;
+    image: {
+        title: string;
+        url: string;
+        link: string;
+    }
+}
+
+export interface IHomePageContent {
+    features_title: {
+        title: string;
+        description: string;
+    };
+    features: {
+        image?: {
+            title: string;
+            url: string;
+            link: string;
+        };
+        background_color: string;
+        title: string;
+        sub_title: string;
+        button: {
+            title: string;
+            url: string;
+        };
+        description: string;
+        acf_fc_layout: string;
+    }[];
+    section_title: ISectionTitle;
+    book: IBook[];
+}
+
 export interface IFrontPageContent {
     hero: {
         title: string;
@@ -323,24 +370,5 @@ export interface IFrontPageContent {
         };
         description: string;
     },
-    homepage_content: [
-        {
-            features_title: {
-                title: string,
-                description: string
-            },
-            features: [
-                {
-                    background_color: string,
-                    title: string,
-                    sub_title: string,
-                    button: {
-                        title: string,
-                        url: string,
-                    },
-                    description: string
-                }
-            ]
-        },
-    ]
+    homepage_content: IHomePageContent[];
 }

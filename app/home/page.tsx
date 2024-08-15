@@ -4,185 +4,30 @@ import ProductCard from '../components/ProductCard';
 import Reviews from '../components/Reviews';
 import { fetchFrontPageContent, fetchProducts } from '../lib/client';
 import FrontPageHero from '../components/HeroSections/FrontPageHero';
+import Offerings from '../components/FrontPage/Offerings';
+import IVDripsHero from '../components/FrontPage/IVDripsHero';
+import VisitClinic from '../components/FrontPage/VisitClinic';
+import { IBook } from '../lib/definitions';
 
 const Home = async () => {
   const productData = await fetchProducts();
   const frontPageContent = await fetchFrontPageContent();
-  const { hero } = frontPageContent ?? {};
+  const { hero, homepage_content } = frontPageContent ?? {};
   const { title: heroTitle, button, description } = hero ?? {};
   const { title } = button ?? {};
+  const { section_title } = homepage_content?.[1] ?? {};
+  const { book } = homepage_content?.[2] ?? {};
+  console.log('the book==>', book);
   return (
     <>
       <FrontPageHero title={heroTitle} subtitle={description} btnContent={title} />
 
       <div className="max-w-[1480px] flex items-center flex-col gap-[150px] w-[90%] xls:w-[85%] mx-auto">
-        <section className="flex flex-col gap-10 sm:gap-[107px] w-full min-h-screen">
-          <div className="flex flex-col justify-center items-center gap-6">
-            <h2 className="text-[32px] sm:text-[48px] w-full font-bold text-left sm:text-center max-w-[1236px] text-primaryDark text-balance">
-              Our Comprehensive Offerings
-            </h2>
-            <p className="text-[18px] text-secondaryDark max-w-[1236px] text-left sm:text-center">
-              Rejuve offers a diverse range of services designed to cater to
-              your holistic well-being. Explore our comprehensive offerings,
-              including advanced therapies, medical aesthetics treatments, and
-              mobile IV therapy.
-            </p>
-          </div>
-          <div className="flex flex-col xls:flex-row gap-6 w-full text-primaryDark">
-            <div className="flex flex-col w-full xls:w-1/2">
-              <div className="flex w-full xls:max-w-[728px] h-full max-h-[165px] md:max-h-[375px] xls:max-h-[453px] rounded-t-2xl">
-                <Image
-                  src={'/images/section-content-01.png'}
-                  width={1220}
-                  height={375}
-                  quality={100}
-                  alt="sitting woman"
-                  className="w-full rounded-t-xl object-cover"
-                />
-              </div>
-              <div className="flex flex-col justify-center gap-2 p-12 w-full xls:h-[453px] bg-lightGreen">
-                <p className="font-semibold text-base">IV Therapy</p>
-                <h2 className="font-semibold whitespace-nowrap text-[20px] sm:text-[40px] leading-tight w-full">
-                  Get The Best of You <br /> Get IV Therapy
-                </h2>
-                <p className="text-secondaryDark mt-4">
-                  Our safe and effective medical procedure delivers essential
-                  vitamins, minerals, and amino acids directly into your
-                  bloodstream. Administered by trained professionals, this
-                  method ensures that your body can use these nutrients quickly
-                  and effectively to help you feel your best.
-                </p>
-                <Link
-                  href="/iv-therapy"
-                  className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
-                >
-                  View Therapies
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
-            </div>
-            <div className="flex flex-col w-full xls:w-1/2 gap-6">
-              <div className="flex flex-col sm:flex-row h-full sm:max-h-[362px] xls:max-h-[440px] xls:h-1/2">
-                <div className="flex items-center justify-center w-full sm:w-1/2 h-full max-h-[165px] sm:max-h-[362px] xls:max-h-[440px] overflow-hidden rounded-t-lg sm:rounded-t-none">
-                  <Image
-                    src={'/images/section-content-02.png'}
-                    width={375}
-                    height={450}
-                    quality={100}
-                    alt="beauty-treatment"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col gap-2 justify-center p-12 sm:px-6 sm:py-[70px] 2xl:px-12 w-full sm:w-1/2 bg-lighterGrayBg">
-                  <p className="font-semibold">Beauty Treatments</p>
-                  <h2 className="text-[24px] font-bold text-left mb-2">
-                    Your Trusted Beauty Clinic in Sherman Oaks
-                  </h2>
-                  <p className="text-secondaryDark">
-                    Our selection of treatments is carefully chosen to help
-                    enhance your natural features and accentuate your individual
-                    beauty.
-                  </p>
-                  <Link
-                    href="/iv-therapy"
-                    className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
-                  >
-                    View Therapies
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row h-full xls:max-h-[440px] xls:h-1/2">
-                <div className="flex items-center justify-center w-full sm:w-1/2 h-full max-h-[165px] sm:max-h-[362px] xls:max-h-[440px] overflow-hidden rounded-t-lg sm:rounded-t-none">
-                  <Image
-                    src={'/images/section-content-03.png'}
-                    width={375}
-                    height={450}
-                    quality={100}
-                    alt="beauty-treatment"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col gap-2 justify-center p-12 sm:p-6 2xl:px-12 w-full sm:w-1/2 bg-lighterGrayBg">
-                  <p className="font-semibold">Membership & Packages</p>
-                  <h2 className="text-[24px] font-bold text-left mb-2">
-                    Your Trusted Beauty Clinic in Sherman Oaks
-                  </h2>
-                  <p className="text-secondaryDark">
-                    We take pride in offering a wide-ranging selection of
-                    cutting-edge therapies to help you look and feel your best.
-                  </p>
-                  <Link
-                    href=""
-                    className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
-                  >
-                    View More
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Offerings homepage_content={homepage_content} />
 
         {/* IV Drips */}
         <section className="flex flex-col gap-[107px] w-full min-h-screen relative">
-          <div className="flex flex-col justify-center items-center gap-6">
-            <h2 className="text-[24px] sm:text-[48px] font-bold text-center max-w-[1236px] text-primaryDark text-balance">
-              Chose From Our <br />
-              Wide Selection of
-              <span className="text-primaryGreen"> IV Drips</span>
-            </h2>
-            <p className="text-base sm:text-[18px] text-secondaryDark max-w-[1236px] text-center">
-              Experience all the benefits of IV therapy in the comfort of your
-              own home.
-            </p>
-          </div>
+          <IVDripsHero section_title={section_title} />
           <div className="grid grid-cols-2 xls:grid-cols-4 gap-6 gap-y-[61px] place-content-center">
             {productData?.filter((p: any) => p.image && p.product_slug?.includes("iv-treatment"))?.slice(0, 12)?.map((product: any) => (
               <ProductCard key={product?.id} product={product} />
@@ -216,88 +61,13 @@ const Home = async () => {
 
         {/* Visit Clinic */}
         <section className="flex flex-col xls:flex-row gap-9 w-full">
-          <div className="flex  flex-col w-full xls:w-1/2">
-            <div className="flex flex-col justify-center gap-6 px-12 py-9 bg-lightGrayBg xls:h-[289px]">
-              <h3 className="text-[40px] font-bold">Visit a Rejuve Clinic</h3>
-              <p className="text-secondaryDark">
-                Select your treatment and book your appointment with a qualified
-                medical professional at Rejuve Med Spa.
-              </p>
-              <Link
-                href=""
-                className="flex gap-2 items-center text-primaryGreen font-semibold mt-4 rounded-lg"
-              >
-                Check Menu
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </Link>
-            </div>
-            <div className="w-full h-[437px]">
-              <Image
-                src={'/images/visit-clinic.png'}
-                width={400}
-                height={437}
-                quality={100}
-                alt="visit-clinic"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex  flex-col w-full xls:w-1/2">
-            <div className="flex flex-col justify-center gap-6 px-12 py-9 bg-lightGrayBg xls:h-[289px]">
-              <h3 className="text-[40px] font-bold">Book a House Call</h3>
-              <p className="text-secondaryDark">
-                Sit back, relax, and enjoy our services at your location of
-                choice; our medical practitioners will come to you.
-              </p>
-              <Link
-                href=""
-                className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
-              >
-                Check Menu
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </Link>
-            </div>
-            <div className="w-full h-[437px]">
-              <Image
-                src={'/images/book-housecall.png'}
-                width={400}
-                height={437}
-                quality={100}
-                alt="visit-clinic"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+          {
+            book?.length > 0 && book.map((item: IBook, key: number) => {
+              return (
+                <VisitClinic bookItem={item} key={key} />
+              )
+            })
+          }
         </section>
 
         {/* About Us */}
