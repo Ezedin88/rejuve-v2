@@ -411,3 +411,13 @@ export interface IBenefits {
         benefits_description: string
     }
 }
+
+export interface IFaqDetail {
+    faq_detail: {
+        choose_product_category: string[];
+        faq_list: {
+            question: string;
+            answer: string;
+        }[]
+    }
+}[]

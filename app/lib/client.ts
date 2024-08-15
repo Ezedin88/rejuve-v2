@@ -1,4 +1,4 @@
-import { IFrontPageContent, IIvTherapyPageContent } from "./definitions";
+import { IFaqDetail, IFrontPageContent, IIvTherapyPageContent } from "./definitions";
 
 const encodedCredentials = btoa(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`);
 
@@ -168,4 +168,26 @@ export const fetchIvTherapyPageContent = async (): Promise<IIvTherapyPageContent
 
     const data = await res.json();
     return data;
+}
+
+export const getFaqData = async (): Promise<IFaqDetail[]> => {
+    const url = 'https://rejuve.md/wp-json/wp/v2/custom/faq';
+
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+            next: {
+                revalidate: 86400,
+            },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching FAQ data:', error.message || error);
+        throw new Error('Failed to fetch FAQ data');
+    }
 }
