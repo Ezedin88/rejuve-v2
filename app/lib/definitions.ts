@@ -335,6 +335,16 @@ export interface IBook {
     }
 }
 
+export interface IAboutUs {
+    title: string;
+    sub_title: string;
+    image: {
+        title: string;
+        url: string;
+        link: string;
+    };
+    editor: string;
+}
 export interface IHomePageContent {
     features_title: {
         title: string;
@@ -358,6 +368,7 @@ export interface IHomePageContent {
     }[];
     section_title: ISectionTitle;
     book: IBook[];
+    content: IAboutUs;
 }
 
 export interface IFrontPageContent {

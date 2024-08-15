@@ -6,10 +6,11 @@ export default function VisitClinic({ bookItem, key }: {
     bookItem: IBook,
     key: number
 }) {
-    const { background_color, button, description, image, title } = bookItem ?? {};
+    const { background_color, description, image, title } = bookItem ?? {};
+    const converted_background_color = background_color?.toLowerCase();
     return (
         <div className="flex  flex-col w-full xls:w-1/2">
-            <div className="flex flex-col justify-center gap-6 px-12 py-9 bg-lightGrayBg xls:h-[289px]">
+            <div className={`flex flex-col justify-center gap-6 px-12 py-9 bg-[${converted_background_color ?? "lightGrayBg"}] xls:h-[289px]`}>
                 <h3 className="text-[40px] font-bold">{title}</h3>
                 <div className="text-secondaryDark"
                     dangerouslySetInnerHTML={{ __html: description }}

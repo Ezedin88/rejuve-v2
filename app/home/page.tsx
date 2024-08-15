@@ -8,6 +8,7 @@ import Offerings from '../components/FrontPage/Offerings';
 import IVDripsHero from '../components/FrontPage/IVDripsHero';
 import VisitClinic from '../components/FrontPage/VisitClinic';
 import { IBook } from '../lib/definitions';
+import AboutUsContent from '../components/FrontPage/AboutUs';
 
 const Home = async () => {
   const productData = await fetchProducts();
@@ -17,7 +18,8 @@ const Home = async () => {
   const { title } = button ?? {};
   const { section_title } = homepage_content?.[1] ?? {};
   const { book } = homepage_content?.[2] ?? {};
-  console.log('the book==>', book);
+  const { content } = homepage_content?.[3] ?? {};
+  const { title: mission_title, sub_title, image } = content ?? {};
   return (
     <>
       <FrontPageHero title={heroTitle} subtitle={description} btnContent={title} />
@@ -71,55 +73,7 @@ const Home = async () => {
         </section>
 
         {/* About Us */}
-        <section className="flex flex-col gap-6 w-full">
-          <div className="flex flex-col xls:flex-row gap-10 w-full mb-[75px]">
-            <div className="flex flex-col gap-4 justify-start w-full xls:w-1/2">
-              <p className="text-primaryGreen font-semibold">About Us</p>
-              <h2 className="text-2xl sm:text-5xl font-bold">
-                Rejuve&apos;s Mission: Empowering Your
-                <span className="text-primaryGreen"> Health </span> with
-                <span className="text-primaryGreen"> Biohacking </span>
-              </h2>
-            </div>
-            <div className="flex flex-col gap-4 justify-start w-full xls:w-1/2">
-              <div className="flex flex-col gap-12 text-secondaryDark">
-                <p className="text-base sm-text-[18px] text-justify hyphens-auto leading-7">
-                  Rejuve is committed to
-                  <span className="font-semibold"> empowering </span> your
-                  health with the latest
-                  <span className="font-semibold">biohacking techniques.</span>
-                  Biohacking involves leveraging advanced science, medicine, and
-                  technology to optimize your biology and enhance your overall
-                  health. Our cutting-edge therapies are designed to induce
-                  significant changes in how you
-                  <span className="font-semibold"> feel, look, </span>and
-                  <span className="font-semibold"> function, </span> so you can
-                  take control of your health and live your best life. With
-                  biohacking, prevention is taken to the next level. Discover
-                  the many benefits of biohacking and experience optimal health
-                  and vitality with Rejuve.
-                </p>
-                <ul className="list-disc pl-4 text-[12px] xls:text-base">
-                  <li>Premier biohacking treatment provider.</li>
-                  <li>
-                    Highly professional staff that administer our treatments
-                  </li>
-                  <li>The most cutting-edge therapies and services.</li>
-                  Treatments provided in a safe and clean environment.
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="w-full max-h-925px] h-full">
-            <Image
-              src={'/images/consultation-home.png'}
-              width={1480}
-              height={1000}
-              alt="consultation session"
-              className="w-full h-full object-cover rounded-xl"
-            />
-          </div>
-        </section>
+        <AboutUsContent content={content} />
 
         {/* Reviews */}
         <section className="flex flex-col gap-6 w-full">
