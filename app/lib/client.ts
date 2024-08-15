@@ -84,6 +84,9 @@ export const fetchOptions = async () => {
                 Authorization: `Basic ${encodedCredentials}`,
                 "Content-Type": "application/json",
             },
+            next: {
+                revalidate: 86400,
+            },
         });
 
         const data = await res.json();
