@@ -421,3 +421,19 @@ export interface IFaqDetail {
         }[]
     }
 }[]
+
+export interface IMenuItem {
+    ID: number;
+    title: string;
+    url: string;
+    short_description: string;
+    children: IMenuItem[];
+}
+
+interface Menu {
+    menu_id: number;
+    menu_name: string;
+    items: IMenuItem[];
+}
+
+export type TMenuData = Menu[];
