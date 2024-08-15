@@ -1,18 +1,23 @@
-export default function BookBtn({
-    children,
-    onclick
-}: {
-    children: React.ReactNode,
-    onclick?: (e: any) => void
-}) {
+import { ButtonHTMLAttributes } from "react";
 
-    return (
-        <button
-            onClick={onclick}
-            className="
+export default function BookBtn({
+  children,
+  onclick,
+  type,
+  className
+}: {
+  children: React.ReactNode,
+  onclick?: (e: any) => void,
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
+  className?: string
+}) {
+  return (
+    <button
+      type={`${type ?? 'button'}`}
+      onClick={onclick}
+      className={`
                        text-center
                        lg:font-inter
-                       lg:font-normal
                        lg:font-bold
                        lg:text-[16px]
                        lg:leading-[19px]
@@ -28,9 +33,10 @@ export default function BookBtn({
                        transition
                        duration-200
                        max-[167px]:w-[100%]
-                    "
-        >
-            {children}
-        </button>
-    );
+                       ${className}
+                    `}
+    >
+      {children}
+    </button>
+  );
 }

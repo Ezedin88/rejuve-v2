@@ -74,6 +74,14 @@
   .primary-rounded-input {
     @apply flex items-center justify-center w-[20px] p-0 appearance-none box-border border-2 border-datePickerPlaceholder checked:border-primaryGreen rounded-full relative before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:border-2 before:border-primaryGreen before:bg-primaryGreen before:rounded before:opacity-0 checked:before:opacity-100 ml-[10px] mr-[8px] cursor-pointer
   }
+
+  .delete-person-btn {
+    @apply bg-transparent border-2 border-red-400 hover:border-red-500 rounded-[5px] flex gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[150px] h-[45px] max-sm:w-[150px] active:border-red-400 text-red-400 hover:text-red-500 active:text-red-300
+  }
+
+  .add-person-btn {
+    @apply bg-primaryGreen rounded-[5px] flex py-[10px] px-[20px] text-white gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[250px] h-[55px] max-sm:w-[302px] hover:bg-secondaryGreenHover active:bg-primaryGreen max-sm:mx-auto mt-[46px] mb-[56px] max-xls:my-[29px] max-sm:mt-[51px] max-sm:mb-[66px]
+  }
 }
 
 :root {
@@ -141,6 +149,16 @@
 
   body {
     color: #282D41;
+  }
+
+  .product-description > p, .product-description > h4, .text-rejuve-paragraph {
+    font-size: 13px !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    --webkit-line-clamp: 2 !important;
+    --webkit-box-orient: vertical !important;
   }
 
   @layer utilities {
@@ -400,12 +418,12 @@
     }
 
     /* max-width media query for 461px max*/
-    @media (max-width:461px) {
+    /* @media (max-width:461px) { */
 
       .customDatePickerWidth>div.react-datepicker-wrapper,
       .customDatePickerWidth>div>div.react-datepicker__input-container .customDatePickerWidth>div>div.react-datepicker__input-container input {
-        width: 100%;
+        width: 100% !important;
       }
-    }
+    /* } */
   }
 }

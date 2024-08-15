@@ -1,35 +1,37 @@
 import Text from "@/app/components/Buttons/Text";
 import PrimaryFormWrapper from "@/app/components/Form/PrimaryFormWrapper";
+import { IInitialValues } from "@/app/lib/definitions";
 import { Field, useFormikContext } from "formik";
 import { useState } from "react";
 
 export default function AlmostDone() {
     const [otherTip, setOtherTip] = useState(0);
-    const { setFieldValue } = useFormikContext();
+    const { setFieldValue, values } = useFormikContext<IInitialValues>();
+    const { tip } = values ?? {};
     const tipData = [{
         tip: '5%',
-        value: 5,
+        value: "5",
         name: 'tip'
     },
     {
         tip: '10%',
-        value: 10,
+        value: "10",
         name: 'tip'
     },
     {
         tip: '15%',
-        value: 15,
+        value: "15",
         name: 'tip'
     },
     {
         tip: '20%',
-        value: 20,
+        value: "20",
         name: 'tip'
     }
     ]
     return (
         <>
-            <Text className="form-wrapper-title">Almost Done</Text>
+            <Text className="form-wrapper-title mt-[46px] mb-[24px] max-xls:mt-[26px] max-xls:mb-[24px] max-xsm:mt-[64px] max-xsm:mb-[24px]">Almost Done</Text>
             <PrimaryFormWrapper className="grid-cols-2 gap-y-3">
                 <div className="tip_radio_container flex flex-col gap-10 col-start-1 col-end-2 ">
                     <Text className="form-wrapper-title text-[16px] leading-[22px]">Tip</Text>
@@ -75,7 +77,7 @@ export default function AlmostDone() {
                             setFieldValue('tip', value);
                         }}
                     />
-                    <Text className="form-wrapper-title text-[16px] leading-[22px] font-semibold">Tip total: <span className="primaryGreen">$0</span></Text>
+                    <Text className="form-wrapper-title text-[16px] leading-[22px] font-semibold">Tip total: <span className="primaryGreen">${' ' + Number(tip) ?? '-'}</span></Text>
                 </div>
             </PrimaryFormWrapper>
         </>

@@ -21,19 +21,23 @@ interface MetaData {
     value: string;
 }
 
-interface LineItem {
+export interface ILineItem {
     meta_data: MetaData[];
     price: number;
     productName: string;
+    categoryName?: string;
     product_id: number;
     quantity: number;
-    variation_id?: number;
+    variation_id?: {
+        type: bookingChoice;
+        variant_id: number;
+    };
     userIndex: number;
 }
 
 interface UserData {
     billing: Billing;
-    line_items: LineItem[];
+    line_items: ILineItem[];
 }
 
 interface Address {
@@ -55,15 +59,17 @@ interface BookingAddress {
 }
 
 interface BillerDetails {
-    name: string;
+    card_holder_name: string;
     email: string;
     address: Address;
 }
 
+export type bookingChoice = 'atourclinics' | 'housecall';
+type paymentMethod = 'Visa' | 'pay at location';
 export interface IInitialValues {
     userData: UserData[];
     bookingAddress: BookingAddress;
-    bookingChoice: 'atourclinics' | 'housecall';
+    bookingChoice: bookingChoice;
     clinicChoice: string;
     biller_details: BillerDetails;
     bookingDate: string;
@@ -72,10 +78,10 @@ export interface IInitialValues {
     termsAgreed: boolean;
     recieveExclusiveOffers: boolean;
     createAccount: boolean;
-    paymentMethod: string;
+    paymentMethod: paymentMethod;
     specialInstructions: string;
     meta_data: MetaData[];
-    tip: number;
+    tip: string;
 }
 
 export interface ProductData {
@@ -89,7 +95,7 @@ export interface ProductData {
     image: string;
     short_description: string;
     acf: Acf;
-    bookingChoice: string;
+    bookingChoice: bookingChoice;
     product_image: ProductImage;
     variations: Variation[];
 }
@@ -255,9 +261,10 @@ export interface productInfo {
     product_clinic_price: number;
     clinic_price_id: number;
     variant_products_info?: ITransformedProduct;
-    bookingChoice: string;
+    bookingChoice: bookingChoice;
     currently_selected_product?: currently_selected_product;
     categorized_products?: ICategorizedTreatments;
+    categoryName: string;
 }
 
 export interface currently_selected_product {
@@ -267,7 +274,10 @@ export interface currently_selected_product {
     product_id?: number;
     productPrice?: number;
     productImage?: string;
+    categoryName?: string;
     type: 'housecall' | 'atourclinics';
+    product_clinic_price?: number;
+    product_home_price?: number;
 }
 
 export interface BaseProduct {
@@ -281,6 +291,7 @@ export interface HouseProduct extends BaseProduct {
 }
 
 export interface ClinicProduct extends BaseProduct {
+    clinicPriceId: number;
     product_clinic_price: number;
 }
 

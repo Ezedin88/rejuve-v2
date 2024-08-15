@@ -17,7 +17,7 @@ const CustomDatePicker = ({ field, form, ...props }: {
             selected={field.value}
             onChange={(date) => setFieldValue(field.name, date)}
             customInput={
-                <input className={props.className + " w-[494px] text-datePickerPlaceholder max-sm:w-[100%]"} />
+                <input className={props.className + "w-full text-datePickerPlaceholder max-sm:w-[100%]"} />
             }
         />
     );

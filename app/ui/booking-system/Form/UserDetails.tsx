@@ -12,8 +12,8 @@ export default function UserDetails({ remove, index }: {
         <div>
             <div>
                 <div className="user_details_wrapper" key={index}>
-                    <div className="row" key={index}>
-                        <Text className="form-wrapper-title">Fill out your details</Text>
+                    <div className="row grid gap-y-[28px] max-xsm:gap-y-[23px]" key={index}>
+                        <Text className="form-wrapper-title max-xls:text-center">Fill out your details</Text>
                         <PrimaryFormWrapper>
                             {/* first name */}
                             <InputLabelWrapper
@@ -49,7 +49,7 @@ export default function UserDetails({ remove, index }: {
                                 name={`userData.${index}.billing.email`}
                                 placeholder="jonathans@gmail.com"
                                 type="email"
-                                inputClassName="primary-input-box"
+                                inputClassName="primary-input-box bg-white"
                             />
                             {/* phone number */}
                             <InputLabelWrapper

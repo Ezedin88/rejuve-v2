@@ -1,126 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Parallax from './parallax';
+import DiscoverBenefits from '../components/DiscoverBenefits';
+import Faq from '../components/Faq';
+import { fetchProducts } from '../lib/client';
 
 const IVTherapy = () => {
-  const products = [
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-  ];
+  const [productData, setProductData] = useState([])
+
+  useEffect(() => {
+    async function getProducts() {
+      const res = await fetchProducts();
+      if (res) {
+        const products = res?.sort((a: any, b: any) => a.name?.localeCompare(b.name));
+        setProductData(products);
+      } else {
+        setProductData([]);
+      }
+    }
+
+    getProducts();
+  }, []);
 
   return (
     <>
@@ -181,8 +85,8 @@ const IVTherapy = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 xls:grid-cols-4 gap-6 gap-y-[61px] place-content-center">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+            {productData?.filter((p: any) => p.image && p.product_slug?.includes("iv-treatment"))?.map((product: any) => (
+              <ProductCard key={product?.id} product={product} />
             ))}
           </div>
         </section>
@@ -246,122 +150,16 @@ const IVTherapy = () => {
       </section>
 
       <div className="max-w-[1480px] flex items-center h-full flex-col w-[90%] xls:w-[85%] mx-auto mt-[170px] gap-[200px]">
+        {/* <WhyRejuve /> */}
         {/* Parallax */}
         <Parallax />
 
-        <div className="flex flex-col xls:flex-row gap-[52px] justify-center">
-          <div className="flex flex-col gap-6 w-full xls:w-1/2">
-            <h3 className="text-[32px] sm:text-[40px] font-bold text-primaryDark">
-              Discover the Benefits of
-              <span className="text-brightYellow"> IV Therapy </span> for
-              Improved Well-Being
-            </h3>
-            <p className="text-base sm:text-[18px] text-secondaryDark">
-              IV therapy provides a safe and effective way to deliver essential
-              vitamins and minerals directly into your bloodstream. With faster
-              absorption and targeted delivery, IV drip therapy can offer quick
-              relief from symptoms and boost your energy levels. Whether
-              you&apos;re looking to replenish electrolytes or improve your
-              overall health and well-being, IV therapy can help. Plus, with
-              minimal risks and easy, quick treatments, IV therapy is a low-risk
-              option for relief. Contact our IV therapy clinic today to learn
-              more and schedule your appointment.
-            </p>
-          </div>
-          <div className="flex flex-col gap-10 relative w-full xls:w-1/2">
-            <div className="flex flex-col gap-4 pl-8 border-l-2 border-primaryGreen">
-              <h3 className="text-[32px] text-primaryDark font-bold">
-                Fight Hangovers
-              </h3>
-              <p className="text-secondaryDark">
-                May help you to quickly and effectively fight hangover symptoms
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 pl-8 ">
-              <h3 className="text-[32px] text-primaryDark font-bold">
-                Anti-Aging
-              </h3>
-              <p className="text-secondaryDark">
-                May help lessen the appearance of fine lines and wrinkles
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 pl-8 ">
-              <h3 className="text-[32px] text-primaryDark font-bold">
-                Weight Loss
-              </h3>
-              <p className="text-secondaryDark">May help aid weight loss</p>
-            </div>
-            <div className="flex flex-col gap-4 pl-8 ">
-              <h3 className="text-[32px] text-primaryDark font-bold">
-                Immune System
-              </h3>
-              <p className="text-secondaryDark">
-                May boost your immune system by providing it with essential
-                vitamins and minerals that help fortify the immune response
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 pl-8 ">
-              <h3 className="text-[32px] text-primaryDark font-bold">Energy</h3>
-              <p className="text-secondaryDark">
-                May provide you with energy, increase concentration, and may
-                even help you beat your jet lag
-              </p>
-            </div>
-            <div className="flex w-full absolute bottom-0 right-0 left-0 min-h-[100px] bg-primaryWhite opacity-60"></div>
-          </div>
-        </div>
+        <DiscoverBenefits />
       </div>
 
       {/* FAQ */}
-      <section className="w-full bg-gradient-to-b from-primaryWhite from-10% via-lightGreenFade/40 via-55% to-primaryWhite to-90%">
-        <div className="max-w-[1480px] flex items-start flex-col w-[90%] xls:w-[85%] mx-auto mt-[170px] gap-[70px] py-7">
-          <div className="flex flex-col gap-6 w-full">
-            <h3 className="font-bold text-[32px] sm:text-[48px] text-center w-full">
-              Frequently Asked Questions
-            </h3>
-            <p className="text-secondaryDark text-base sm:text-[18px] text-center">
-              Here are the answers to some of the most common questions we hear
-              from our appreciated customers.
-            </p>
-          </div>
-          <div className="flex flex-col gap-16">
-            <div className="flex flex-col xls:flex-row justify-center xls:justify-between gap-6">
-              <p className="text-primaryGreen tex-base font-bold sm:text-[18px] w-full xls:w-1/4">
-                Is IV Therapy Safe?
-              </p>
-              <p className="text-base sm:text-[18px] text-secondaryDark w-full xls:w-3/4 text-left">
-                Yes, we only use reputable and accredited compounding pharmacies
-                for our ingredients. These infusions are administered by
-                licensed skilled IV specialists.
-              </p>
-            </div>
-            <div className="flex flex-col xls:flex-row justify-center xls:justify-between gap-6">
-              <p className="text-primaryGreen tex-base font-bold sm:text-[18px] w-full xls:w-1/4">
-                Are there side effects?
-              </p>
-              <p className="text-base sm:text-[18px] text-secondaryDark w-full xls:w-3/4 text-left">
-                Side effects rarely happen if at all. If they do they are
-                usually minor and short lived. Bruising or bleeding at IV site,
-                warming or cooling sensation in arm, chest or stomach, tasting
-                the vitamins or having vitamin smell in your urine. Our licensed
-                staff are trained to manage all side effects that may occur.
-              </p>
-            </div>
-            <div className="flex flex-col xls:flex-row justify-center xls:justify-between gap-6">
-              <p className="text-primaryGreen tex-base font-bold sm:text-[18px] w-full xls:w-1/4">
-                Does IV Treatment hurt?
-              </p>
-              <p className="text-base sm:text-[18px] text-secondaryDark w-full xls:w-3/4 text-left">
-                We use only skilled professionals for IV placement to ensure the
-                least amount of pain is felt if any at all. A numbing topical
-                cream can be purchased for use to dull the sensation at request.
-                Once the IV is in place only a very small straw will be left in
-                the vein ensuring a comfortable session.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Faq />
+
       {/* CTA */}
       <section className="flex flex-col w-full items-center justify-center relative sm:max-h-[972px] h-full mt-10 xls:mt-[200px]">
         <div className="flex h-[103px] bg-transparent w-full"></div>

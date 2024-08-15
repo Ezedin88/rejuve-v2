@@ -1,13 +1,16 @@
-import type { Metadata } from 'next';
+'use client';
+
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from './ui/Base/Header';
 import Footer from './ui/Base/Footer';
-import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Head from 'next/head';
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Rejuve Clinics',
   description: 'Iv therapy',
 };
@@ -17,16 +20,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAuth = pathname.includes('/sign') || pathname.includes('/my-account');
+
+
   return (
     <html lang="en">
+      <Head>
+        <title>{metadata.title as string}</title>
+        <meta name="description" content={metadata.description || ''} />
+      </Head>
       <body className={inter.className}>
-        {/* <Header /> */}
+        <Header />
         {children}
-        {/* <Footer /> */}
-        <h1>Welcome</h1>
-        <Link href={{
-          pathname: "/product/hangover-fix",
-        }}>Home</Link>
+        {!isAuth && <Footer />}
       </body>
     </html>
   );

@@ -4,122 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Reviews from '../components/Reviews';
+import { useEffect, useState } from 'react';
+import { fetchProducts } from '../lib/client';
 
-const page = () => {
-  const products = [
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Hangover-Fix',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: "Myer's Cocktail",
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-    {
-      title: 'Immunity-Boost',
-      description:
-        'Ascorbic Acid, Methylcobalamin (B12), Calcium, Vitamin B complex and more.',
-      image: '/images/product-01.png',
-      link: '',
-    },
-  ];
+const Home = () => {
+  const [productData, setProductData] = useState([])
+
+  useEffect(() => {
+    async function getProducts() {
+      const res = await fetchProducts();
+      if (res) {
+        const products = res?.sort((a: any, b: any) => a.name?.localeCompare(b.name));
+        setProductData(products);
+      } else {
+        setProductData([]);
+      }
+    }
+
+    getProducts();
+  }, []);
 
   return (
     <>
@@ -190,7 +93,7 @@ const page = () => {
                   and effectively to help you feel your best.
                 </p>
                 <Link
-                  href=""
+                  href="/iv-therapy"
                   className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
                 >
                   View Therapies
@@ -236,7 +139,7 @@ const page = () => {
                     beauty.
                   </p>
                   <Link
-                    href=""
+                    href="/iv-therapy"
                     className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
                   >
                     View Therapies
@@ -321,12 +224,12 @@ const page = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 xls:grid-cols-4 gap-6 gap-y-[61px] place-content-center">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+            {productData?.filter((p: any) => p.image && p.product_slug?.includes("iv-treatment"))?.slice(0, 12)?.map((product: any) => (
+              <ProductCard key={product?.id} product={product} />
             ))}
-            <div className="flex absolute justify-center items-center bg-gradient-to-t from-primaryWhite from-10% via-primaryWhite via-70% to-transparent to-100% min-h-[420px] w-full bottom-0 text-[20px] z-50">
+            <div className="flex absolute justify-center items-center bg-gradient-to-t from-primaryWhite from-10% via-primaryWhite via-70% to-transparent to-100% min-h-[420px] w-full bottom-0 text-[20px] z-10">
               <Link
-                href=""
+                href="/iv-therapy"
                 className="flex gap-2 items-center text-primaryGreen font-semibold mt-4"
               >
                 View Therapies
@@ -542,4 +445,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Home;

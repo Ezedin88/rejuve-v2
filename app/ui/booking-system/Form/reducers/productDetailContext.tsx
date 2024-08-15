@@ -47,7 +47,8 @@ const defaultState: productDataContextState = {
             clinicProducts: [{
                 productName: '',
                 product_clinic_price: 0,
-                image: ''
+                image: '',
+                clinicPriceId: 0
             }]
         },
         currently_selected_product: {
@@ -57,9 +58,13 @@ const defaultState: productDataContextState = {
             home_price_id: undefined,
             productPrice: 0,
             productImage: '',
-            type: 'atourclinics'
+            type: 'atourclinics',
+            categoryName: '',
+            product_clinic_price: 0,
+            product_home_price: 0
         },
         bookingChoice: 'atourclinics',
+        categoryName: '',
         categorized_products: {}
     },
     dispatch: () => { }

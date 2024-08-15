@@ -1,12 +1,25 @@
 import PlacesAutocomplete from "react-places-autocomplete";
+import { getCode } from "country-list";
 import InputLabelWrapper from "./InputLabelWrapper";
 import useLocationAutoComplete from "@/app/hooks/LocationAutoComplete";
 import { useEffect } from "react";
 import { IInitialValues } from "@/app/lib/definitions";
 import { useFormikContext } from "formik";
 
-export default function PlacesAutoCompleteComponent({ placeholder }: {
+const getCountryCode = (countryName: string) => {
+    return countryName === 'United States' ? 'USA' : getCode(countryName) || '';
+};
+
+export default function PlacesAutoCompleteComponent({ placeholder, addressData, fromVisaPayment }: {
     placeholder: string;
+    addressData: {
+        address: string;
+        city: string;
+        country: string;
+        state: string;
+        zipCode: string;
+    };
+    fromVisaPayment?: boolean;
 }) {
     const { setFieldValue } = useFormikContext<IInitialValues>();
     const { address, selectedAddress, handleChangeAddress, handleSelectAddress, } = useLocationAutoComplete();
@@ -14,21 +27,21 @@ export default function PlacesAutoCompleteComponent({ placeholder }: {
 
     useEffect(() => {
         if (selectedAddressData) {
-            setFieldValue("bookingAddress.address_1", selectedAddressData);
+            setFieldValue(addressData?.address, selectedAddressData);
         }
         if (city) {
-            setFieldValue("bookingAddress.city", city);
+            setFieldValue(addressData?.city, city);
         }
         if (country) {
-            setFieldValue("bookingAddress.country", country);
+            setFieldValue(addressData?.country, fromVisaPayment ? getCountryCode(country) : country);
         }
         if (selectedState) {
-            setFieldValue("bookingAddress.state", selectedState);
+            setFieldValue(addressData?.state, selectedState);
         }
         if (zipCode) {
-            setFieldValue("bookingAddress.postcode", zipCode);
+            setFieldValue(addressData?.zipCode, zipCode);
         }
-    }, [selectedAddressData, city, country, selectedState, zipCode, setFieldValue]);
+    }, [selectedAddressData, city, country, selectedState, zipCode, setFieldValue, addressData?.address, addressData?.city, addressData?.country, addressData?.state, addressData?.zipCode, fromVisaPayment]);
 
     return (
         <PlacesAutocomplete
