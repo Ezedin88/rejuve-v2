@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import AccountLayout from '../page';
+import AccountLayout from '../AccountPage';
 
 const Billing = () => {
   const [addModalOpen, setAddModalOpen] = useState(false);

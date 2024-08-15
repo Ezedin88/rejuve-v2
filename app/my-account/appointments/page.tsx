@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import AccountLayout from '../page';
+import AccountLayout from '../AccountPage';
 
 const Appointments = () => {
   const router = useRouter();

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import OrderCard from '../../components/OrderCard';
 import { useRouter } from 'next/navigation';
-import AccountLayout from '../page';
+import AccountLayout from '../AccountPage';
 
 const Activity = () => {
   const router = useRouter();
