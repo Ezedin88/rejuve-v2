@@ -7,6 +7,7 @@ export default function IVDripsHero({
     section_title: ISectionTitle
 }) {
     const { title, description } = section_title ?? {};
+    console.log('my section==>', section_title)
     return (
         <div className={`flex flex-col justify-center items-center gap-6`}>
             <div className={`text-[24px] sm:text-[48px] font-bold text-center max-w-[1236px] text-primaryDark text-balance ${styles.drips_title}`}

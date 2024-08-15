@@ -345,6 +345,7 @@ export interface IAboutUs {
     };
     editor: string;
 }
+
 export interface IHomePageContent {
     features_title: {
         title: string;
@@ -371,15 +372,42 @@ export interface IHomePageContent {
     content: IAboutUs;
 }
 
-export interface IFrontPageContent {
-    hero: {
+export interface IHero {
+    title: string;
+    button: {
         title: string;
-        button: {
-            title: string;
-            url: string;
-            target: string;
-        };
-        description: string;
-    },
+        url: string;
+        target: string;
+    };
+    description: string;
+    iv_image: {
+        title: string;
+        url: string;
+        link: string;
+    }
+}
+
+export interface IFrontPageContent {
+    hero: IHero,
     homepage_content: IHomePageContent[];
+}
+
+export interface IIvTherapyPageContent {
+    hero: IHero;
+    button: {
+        title: string;
+        url: string;
+    };
+    iv_therapy_content: {
+        section_title: ISectionTitle;
+    }[];
+    benefits_of_iv_therapy: IBenefits;
+}
+
+export interface IBenefits {
+    [key: string]: {
+        benefits_title: string,
+        benefits_sub_title: string,
+        benefits_description: string
+    }
 }

@@ -1,3 +1,4 @@
+import FooterHero from "@/app/components/FooterHero";
 import { ICategorizedTreatments, ProductData } from "@/app/lib/definitions";
 import { getProductData, getCategorizedProductData } from "@/app/lib/getProductData";
 import FormComponents from "@/app/ui/booking-system";
@@ -19,6 +20,7 @@ export default async function Page({ params }: Params) {
     return (
         <>
             <FormComponents product={product} categorizedTreatments={categorizedTreatments} slug={decodedSlug} />
+            <FooterHero />
         </>
     )
 }

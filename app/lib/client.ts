@@ -1,4 +1,4 @@
-import { IFrontPageContent } from "./definitions";
+import { IFrontPageContent, IIvTherapyPageContent } from "./definitions";
 
 const encodedCredentials = btoa(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`);
 
@@ -151,4 +151,21 @@ export const fetchFrontPageContent = async (): Promise<IFrontPageContent> => {
     const data = await res.json();
     return data;
 
+}
+
+export const fetchIvTherapyPageContent = async (): Promise<IIvTherapyPageContent> => {
+    const url = "https://rejuve.md/wp-json/wp/v2/custom/iv-therapy-page";
+
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+            "Content-Type": "application/json",
+        },
+        next: {
+            revalidate: 86400,
+        },
+    });
+
+    const data = await res.json();
+    return data;
 }
