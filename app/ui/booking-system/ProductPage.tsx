@@ -70,6 +70,7 @@ export default function ProductPage({ product, categorizedTreatments, slug }: {
                 }
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categorizedTreatments, dispatch, product, transformedData]);
 
     const pageIsCheckMenu = slug === 'checkmenu';

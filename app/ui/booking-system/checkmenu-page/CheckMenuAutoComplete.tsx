@@ -29,7 +29,7 @@ export default function CheckMenuPlacesAutoCompleteComponent({
             state: selectedState,
             zipCode
         });
-    }, [selectedAddressData, city, country, selectedState, zipCode]);
+    }, [selectedAddressData, city, country, selectedState, zipCode, setBookingAddress]);
 
     return (
         <PlacesAutocomplete
@@ -54,6 +54,7 @@ export default function CheckMenuPlacesAutoCompleteComponent({
                                         className,
                                         style
                                     })}
+                                    key={suggestion.placeId}
                                 >
                                     <span>{suggestion.description}</span>
                                 </div>

@@ -33,11 +33,12 @@ export default function CheckMenuLocation({
 }) {
     const isAtClinic = bookingChoice === 'atourclinics';
     const { dispatch, state } = useMapApi();
-    const handleLoadMapApi = () => {
-        dispatch({ type: 'LOAD_MAP_API' });
-    }
 
     useEffect(() => {
+        const handleLoadMapApi = () => {
+            dispatch({ type: 'LOAD_MAP_API' });
+        }
+
         const loader = new Loader({
             apiKey: process.env.NEXT_PUBLIC_MAP_API_KEY || '',
             version: 'weekly',
@@ -46,7 +47,7 @@ export default function CheckMenuLocation({
         loader.load().then(() => {
             handleLoadMapApi();
         });
-    }, []);
+    }, [dispatch]);
 
     const { loadedMapApi } = state;
 

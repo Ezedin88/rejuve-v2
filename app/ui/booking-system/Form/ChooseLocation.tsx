@@ -53,6 +53,7 @@ export default function ChooseLocation() {
             setIsInitiallyRendered(true);
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type]);
 
     useEffect(() => {
@@ -65,6 +66,7 @@ export default function ChooseLocation() {
                 }
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bookingChoice, selectedProductExist])
 
 

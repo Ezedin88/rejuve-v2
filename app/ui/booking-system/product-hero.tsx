@@ -1,3 +1,4 @@
+"use client";
 import { ProductHeroBtnWrapper } from '@/app/components/ProductHero/ProductHeroBtnWrapper';
 import { ProductHeroInfoWrapper } from '@/app/components/ProductHero/ProductHeroInfoWrapper';
 import Image from 'next/image';
@@ -42,6 +43,7 @@ export default function ProductHero() {
             });
             setIsInitiallyDispatched(true); // Mark as dispatched
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productData])
     return (
         <div className='hero-container h-[862px] grid grid-cols-2 items-center max-sm:grid-cols-1 max-sm:h-[969px] bg-lightBlue min-w-[215px]'>

@@ -70,8 +70,11 @@ export default function Form() {
       setFieldValue('userData[0].line_items', formattedLineItems);
     }
 
-    localStorage.removeItem('lineItems');
-    localStorage.removeItem('bookingChoice');
+    () => {
+      localStorage.removeItem('lineItems');
+      localStorage.removeItem('bookingChoice');
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -93,10 +96,7 @@ export default function Form() {
                       <div className="col">
                         <button
                           type="button"
-                          className="secondary secondary bg-transparent border-2 border-red-400 hover:border-red-500 rounded-[5px] flex gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[150px] h-[45px] max-sm:w-[150px]
-                                                            active:border-red-400
-                                                            text-red-400 hover:text-red-500 active-text-red-300
-                                                            "
+                          className="delete-person-btn"
                           onClick={() => remove(index)}
                         >
                           <Text className="text-[14px]">Delete Person {index + 1}</Text>
@@ -117,7 +117,7 @@ export default function Form() {
                   }
                   <button
                     type="button"
-                    className="secondary bg-primaryGreen rounded-[5px] flex py-[10px] px-[20px] text-white gap-[10px] items-center justify-center text-[16px] font-semibold box-border w-[250px] h-[55px] max-sm:w-[302px] hover:bg-secondaryGreenHover active:bg-primaryGreen max-sm:mx-auto mt-[46px] mb-[56px] max-xls:my-[29px] max-sm:mt-[51px] max-sm:mb-[66px] "
+                    className="add-person-btn "
                     onClick={() => {
                       if (!noUserDataErrors) {
                         setHasErrors(true);
