@@ -1,6 +1,6 @@
 "use client";
-import { ProductHeroBtnWrapper } from '@/app/components/ProductHero/ProductHeroBtnWrapper';
-import { ProductHeroInfoWrapper } from '@/app/components/ProductHero/ProductHeroInfoWrapper';
+import { ProductHeroBtnWrapper } from '@/app/components/HeroSections/ProductHero/ProductHeroBtnWrapper';
+import { ProductHeroInfoWrapper } from '@/app/components/HeroSections/ProductHero/ProductHeroInfoWrapper';
 import Image from 'next/image';
 import { useProductData } from './Form/reducers/productDetailContext';
 import { bookingChoice } from '@/app/lib/definitions';

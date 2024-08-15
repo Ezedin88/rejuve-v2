@@ -1,59 +1,19 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Reviews from '../components/Reviews';
-import { useEffect, useState } from 'react';
-import { fetchProducts } from '../lib/client';
+import { fetchFrontPageContent, fetchProducts } from '../lib/client';
+import FrontPageHero from '../components/HeroSections/FrontPageHero';
 
-const Home = () => {
-  const [productData, setProductData] = useState([])
-
-  useEffect(() => {
-    async function getProducts() {
-      const res = await fetchProducts();
-      if (res) {
-        const products = res?.sort((a: any, b: any) => a.name?.localeCompare(b.name));
-        setProductData(products);
-      } else {
-        setProductData([]);
-      }
-    }
-
-    getProducts();
-  }, []);
-
+const Home = async () => {
+  const productData = await fetchProducts();
+  const frontPageContent = await fetchFrontPageContent();
+  const { hero } = frontPageContent ?? {};
+  const { title: heroTitle, button, description } = hero ?? {};
+  const { title } = button ?? {};
   return (
     <>
-      <section className="flex flex-col justify-start sm:justify-center mx-auto items-start w-full h-[80vh] sm:h-screen bg-cover mt-5 sm:mt-0 bg-center bg-no-repeat bg-opacity-20 bg-blur-5xl bg-primaryWhite bg-hero-image relative">
-        <div className="max-w-hxl mx-auto absolute top-5 sm:relative flex flex-col justify-center gap-10 bg-gradient-to-b from-primaryWhite from-70% via-white via-80% to-transparent to-100% sm:bg-none h-fit w-full sm:w-[90%] xls:w-[85%] py-0 pt-20 sm:py-[54px] self-start max-h-[280px] sm:max-h-full z-20">
-          <h2 className="text-[32px] sm:text-[64px] text-center sm:text-left font-bold text-primaryDark text-balance max-w-[840px] leading-tight">
-            Discover Your Path to Total Optimization
-          </h2>
-          <p className="text-base text-secondaryDark sm:text-[24px] text-center sm:text-left text-balance max-w-[840px] leading-tight">
-            with In-Clinic Advanced Therapies, Medical Aesthetics, and Mobile IV
-            Therapy
-          </p>
-          <Link
-            href="/iv-therapy"
-            className="px-8 py-5 min-w-[265px] flex justify-center font-semibold text-base bg-primaryGreen text-primaryWhite rounded w-fit mx-auto sm:mx-0"
-          >
-            Book IV Therapy
-          </Link>
-        </div>
-        <div
-          className="w-full flex sm:hidden max-h-[450px] h-full mt-[224px] relative"
-          style={{
-            backgroundImage: "url('/Hero-Image.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'right',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-primaryWhite from-20% to-primaryWhite/10 to-35%"></div>
-        </div>
-      </section>
+      <FrontPageHero title={heroTitle} subtitle={description} btnContent={title} />
 
       <div className="max-w-[1480px] flex items-center flex-col gap-[150px] w-[90%] xls:w-[85%] mx-auto">
         <section className="flex flex-col gap-10 sm:gap-[107px] w-full min-h-screen">

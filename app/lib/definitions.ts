@@ -312,3 +312,35 @@ export interface IProductTreatment {
 export interface ICategorizedTreatments {
     [key: string]: IProductTreatment[];
 }
+
+export interface IFrontPageContent {
+    hero: {
+        title: string;
+        button: {
+            title: string;
+            url: string;
+            target: string;
+        };
+        description: string;
+    },
+    homepage_content: [
+        {
+            features_title: {
+                title: string,
+                description: string
+            },
+            features: [
+                {
+                    background_color: string,
+                    title: string,
+                    sub_title: string,
+                    button: {
+                        title: string,
+                        url: string,
+                    },
+                    description: string
+                }
+            ]
+        },
+    ]
+}
