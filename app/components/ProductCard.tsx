@@ -28,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {name}
         </h3>
         <div
-          className="product-description text-[13px] text-center overflow-hidden text-ellipsis"
+          className="product-description text-[13px] text-center"
           style={{
             display: '-webkit-box',
             WebkitLineClamp: 2,
