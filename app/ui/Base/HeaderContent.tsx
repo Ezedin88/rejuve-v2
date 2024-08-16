@@ -37,6 +37,7 @@ export default function HeaderContent({ megaMenuList }: {
                     quality={100}
                     alt="rejuve logo"
                     className="w-full h-full object-cover bg-primaryWhite"
+                    priority
                 />
             </Link>
 
@@ -47,10 +48,12 @@ export default function HeaderContent({ megaMenuList }: {
                 {!isOpen ? (
                     <SmallIcon
                         icon="/megaMenuHumberger.svg"
+                        width={35}
                     />
                 ) : (
                     <SmallIcon
                         icon="/megaMenuCloseIcon.svg"
+                        width={35}
                     />
                 )}
             </button>
@@ -171,7 +174,7 @@ export default function HeaderContent({ megaMenuList }: {
 
             {
                 isOpen && (
-                    <div className="flex flex-col gap-6 xls:hidden absolute top-[78px] left-0 right-0 bg-primaryWhite shadow-lg p-8 h-screen overflow-y-scroll pb-64">
+                    <div className="flex flex-col gap-6 xls:hidden absolute top-[78px] left-0 right-0 bg-primaryWhite shadow-lg p-8 h-screen overflow-y-scroll pb-28">
                         {primaryMenuItems?.map((menu: IMenuItem, key: number) => {
                             const { title, children, url: baseUrl } = menu ?? {};
                             const url = getAbsolutePath(baseUrl);
@@ -244,6 +247,25 @@ export default function HeaderContent({ megaMenuList }: {
                                 </div>
                             );
                         })}
+
+
+                        <div className="max-xls:flex gap-8 justify-center items-end h-full bottom-0 relative">
+                            <button
+                                className="px-5 py-2 font-semibold text-4 bg-primaryGreen text-primaryWhite rounded transition-colors hover:bg-primaryGreenHover"
+                                onClick={() => {
+                                    setIsOpen(!isOpen);
+                                    return router.push('/menu');
+                                }}
+                            >
+                                Check Menu
+                            </button>
+                            <Link
+                                href="/my-account"
+                                className="py-2 text-base text-primaryGreen font-semibold"
+                            >
+                                My Account
+                            </Link>
+                        </div>
 
                     </div>
                 )
