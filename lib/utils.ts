@@ -6,18 +6,28 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const sanitizeTitle = (title: string) => {
-  // Create a temporary DOM element to decode HTML entities
-  const tempElement = document.createElement('div');
-  tempElement.innerHTML = title;
+  // Decode HTML entities
+  const decodeEntities = (input: string) => {
+    return input.replace(/&#(\d+);/g, (match, dec) => {
+      return String.fromCharCode(dec);
+    }).replace(/&(#x[\da-fA-F]+);/g, (match, hex) => {
+      return String.fromCharCode(parseInt(hex.substring(2), 16));
+    }).replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'");
+  };
 
-  // Extract the decoded text from the element
-  let decodedTitle = tempElement.textContent || tempElement.innerText || '';
+  // Apply decoding
+  let decodedTitle = decodeEntities(title);
 
   // Convert to lowercase (optional, based on your needs)
   decodedTitle = decodedTitle.toLowerCase();
 
   return decodedTitle;
-}
+};
+
 
 export const getAbsolutePath = (baseUrl: string) => {
   let url = '';

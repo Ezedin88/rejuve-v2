@@ -1,4 +1,4 @@
-import { IFrontPageContent, IHomePageContent } from "@/app/lib/definitions";
+import { IHomePageContent } from "@/app/lib/definitions";
 import Image from "next/image";
 import Link from "next/link";
 
