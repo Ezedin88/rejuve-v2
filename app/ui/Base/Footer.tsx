@@ -8,9 +8,13 @@ const Footer = async () => {
   const firstMenu = await fetchOptions();
   const footer_first_menu = firstMenu?.footer_first_menu;
   const footer_second_menu = firstMenu?.footer_second_menu;
+  const social_media = firstMenu?.social_media;
+  const copyright_area = firstMenu?.copyright_area;
 
   const { page_link } = footer_first_menu ?? {};
   const { page_link: second_page_link } = footer_second_menu ?? {};
+  const { page_link: social_media_link } = social_media ?? {};
+
   return (
     <footer className="flex flex-col bottom-0 w-full h-full xls:h-[475px] px-5 xls:px-[85px] pt-16 pb-10 bg-primaryDark">
       <div className="flex flex-col xls:flex-row gap-[70px] xls:gap-[128px] items-start justify-start mb-10">
@@ -88,81 +92,33 @@ const Footer = async () => {
               <h4 className="font-semibold text-primaryWhite">Follow Us</h4>
               <ul className="flex flex-row xls:flex-col gap-4 items-start w-full">
                 <div className="flex flex-col gap-4 w-1/2 xls:w-full">
-                  <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200 w-full">
-                    <Link
-                      href="https://fb.com/rejuve"
-                      className="flex items-center gap-3"
-                    >
-                      <div className="flex w-6 h-6 p-0.5">
-                        <Image
-                          src={'/images/fb.svg'}
-                          width={24}
-                          height={24}
-                          quality={100}
-                          alt="facebook icon"
-                          className="w-full h-full bg-cover"
-                        />
-                      </div>
-                      <p>Facebook</p>
-                    </Link>
-                  </li>
-                  <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200 w-full">
-                    <Link
-                      href="https://instagram.com/rejuve"
-                      className="flex items-center gap-3"
-                    >
-                      <div className="flex w-6 h-6 p-0.5">
-                        <Image
-                          src={'/images/ig.svg'}
-                          width={24}
-                          height={24}
-                          quality={100}
-                          alt="facebook icon"
-                          className="w-full h-full bg-cover"
-                        />
-                      </div>
-                      <p>Instagram</p>
-                    </Link>
-                  </li>
-                </div>
-
-                <div className="flex flex-col gap-4 w-1/2 xls:w-full">
-                  <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200 w-full">
-                    <Link
-                      href="https://twitter.com/rejuve"
-                      className="flex items-center gap-3"
-                    >
-                      <div className="flex w-6 h-6 p-0.5">
-                        <Image
-                          src={'/images/tw.svg'}
-                          width={24}
-                          height={24}
-                          quality={100}
-                          alt="facebook icon"
-                          className="w-full h-full bg-cover"
-                        />
-                      </div>
-                      <p>Twitter</p>
-                    </Link>
-                  </li>
-                  <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200 w-full">
-                    <Link
-                      href="https://youtube.com/rejuve"
-                      className="flex items-center gap-3"
-                    >
-                      <div className="flex w-6 h-6 p-0.5">
-                        <Image
-                          src={'/images/yt.svg'}
-                          width={24}
-                          height={24}
-                          quality={100}
-                          alt="facebook icon"
-                          className="w-full h-full bg-cover"
-                        />
-                      </div>
-                      <p>YouTube</p>
-                    </Link>
-                  </li>
+                  {
+                    social_media?.map((item: any, key: number) => {
+                      const { title, url: social_url } = item?.link ?? {};
+                      const { url } = item?.social_icon ?? {};
+                      return (
+                        social_url &&
+                        <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200 w-full" key={key}>
+                          <Link
+                            href={social_url}
+                            className="flex items-center gap-3"
+                          >
+                            <div className="flex w-6 h-6 p-0.5">
+                              <Image
+                                src={url}
+                                width={24}
+                                height={24}
+                                quality={100}
+                                alt={`${title} icon`}
+                                className="w-full h-full bg-cover"
+                              />
+                            </div>
+                            <p>{title}</p>
+                          </Link>
+                        </li>
+                      )
+                    })
+                  }
                 </div>
               </ul>
             </div>
@@ -174,24 +130,19 @@ const Footer = async () => {
 
       <div className="flex flex-col-reverse xls:flex-row gap-10 justify-between items-center mt-8 text-[14px]">
         <p className="text-footerGrayText">
-          &copy; 2023 Rejuve. All rights reserved.
+          {copyright_area?.text}
         </p>
         <ul className="text-footerGrayTextText flex gap-6 items-center whitespace-nowrap flex-wrap">
-          <li className="text-footerGrayText underline hover:text-primaryGreen">
-            <Link href="/privacy-policy">Privacy Policy</Link>
-          </li>
-          <li className="text-footerGrayText underline hover:text-primaryGreen">
-            <Link href="/terms-and-conditions">Terms & Conditions</Link>
-          </li>
-          <li className="text-footerGrayText underline hover:text-primaryGreen">
-            <Link href="/cancellation-policy">Cancellation Policy</Link>
-          </li>
-          <li className="text-footerGrayText underline hover:text-primaryGreen">
-            <Link href="/hipaa-privacy">Hipaa/Privacy</Link>
-          </li>
-          <li className="text-footerGrayText underline hover:text-primaryGreen">
-            <Link href="/research">Research</Link>
-          </li>
+          {
+            social_media_link?.map((item: any, key: number) => {
+              const { post_title, post_name } = item ?? {};
+              return (
+                <li className="text-footerGrayText underline hover:text-primaryGreen" key={key}>
+                  <Link href={`/${post_name}`}>{post_title}</Link>
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     </footer>
