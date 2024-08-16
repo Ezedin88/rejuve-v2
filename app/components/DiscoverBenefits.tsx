@@ -1,26 +1,21 @@
 import React from 'react';
+import { IBenefits } from '../lib/definitions';
 
-const DiscoverBenefits = () => {
+const DiscoverBenefits = ({
+  ivBenefits
+}: { ivBenefits: IBenefits }) => {
+  const { benefits_title, benefits_description } = ivBenefits?.[0] ?? {};
   return (
     <>
       <div className="flex flex-col xls:flex-row gap-[52px] justify-center">
         <div className="flex flex-col gap-6 w-full xls:w-1/2">
           <h3 className="text-[32px] sm:text-[40px] font-bold text-primaryDark">
-            Discover the Benefits of
-            <span className="text-brightYellow"> IV Therapy </span> for Improved
-            Well-Being
+            {benefits_title}
+            {/* <span className="text-brightYellow"> IV Therapy </span> */}
           </h3>
-          <p className="text-base sm:text-[18px] text-secondaryDark">
-            IV therapy provides a safe and effective way to deliver essential
-            vitamins and minerals directly into your bloodstream. With faster
-            absorption and targeted delivery, IV drip therapy can offer quick
-            relief from symptoms and boost your energy levels. Whether
-            you&apos;re looking to replenish electrolytes or improve your
-            overall health and well-being, IV therapy can help. Plus, with
-            minimal risks and easy, quick treatments, IV therapy is a low-risk
-            option for relief. Contact our IV therapy clinic today to learn more
-            and schedule your appointment.
-          </p>
+          <div className="text-base sm:text-[18px] text-secondaryDark"
+            dangerouslySetInnerHTML={{ __html: benefits_description }}
+          />
         </div>
         <div className="flex flex-col gap-10 relative w-full xls:w-1/2">
           <div className="flex flex-col gap-4 pl-8 border-l-2 border-primaryGreen">

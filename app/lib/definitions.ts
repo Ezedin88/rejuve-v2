@@ -312,3 +312,128 @@ export interface IProductTreatment {
 export interface ICategorizedTreatments {
     [key: string]: IProductTreatment[];
 }
+
+export interface ISectionTitle {
+    title: string,
+    button: string,
+    description: string
+}
+
+export interface IBook {
+    background_color: string;
+    title: string;
+    button: {
+        title: string;
+        url: string;
+        target: string
+    },
+    description: string;
+    image: {
+        title: string;
+        url: string;
+        link: string;
+    }
+}
+
+export interface IAboutUs {
+    title: string;
+    sub_title: string;
+    image: {
+        title: string;
+        url: string;
+        link: string;
+    };
+    editor: string;
+}
+
+export interface IHomePageContent {
+    features_title: {
+        title: string;
+        description: string;
+    };
+    features: {
+        image?: {
+            title: string;
+            url: string;
+            link: string;
+        };
+        background_color: string;
+        title: string;
+        sub_title: string;
+        button: {
+            title: string;
+            url: string;
+        };
+        description: string;
+        acf_fc_layout: string;
+    }[];
+    section_title: ISectionTitle;
+    book: IBook[];
+    content: IAboutUs;
+}
+
+export interface IHero {
+    title: string;
+    button: {
+        title: string;
+        url: string;
+        target: string;
+    };
+    description: string;
+    iv_image: {
+        title: string;
+        url: string;
+        link: string;
+    }
+}
+
+export interface IFrontPageContent {
+    hero: IHero,
+    homepage_content: IHomePageContent[];
+}
+
+export interface IIvTherapyPageContent {
+    hero: IHero;
+    button: {
+        title: string;
+        url: string;
+    };
+    iv_therapy_content: {
+        section_title: ISectionTitle;
+    }[];
+    benefits_of_iv_therapy: IBenefits;
+}
+
+export interface IBenefits {
+    [key: string]: {
+        benefits_title: string,
+        benefits_sub_title: string,
+        benefits_description: string
+    }
+}
+
+export interface IFaqDetail {
+    faq_detail: {
+        choose_product_category: string[];
+        faq_list: {
+            question: string;
+            answer: string;
+        }[]
+    }
+}[]
+
+export interface IMenuItem {
+    ID: number;
+    title: string;
+    url: string;
+    short_description: string;
+    children: IMenuItem[];
+}
+
+interface Menu {
+    menu_id: number;
+    menu_name: string;
+    items: IMenuItem[];
+}
+
+export type TMenuData = Menu[];

@@ -1,95 +1,25 @@
-'use client';
-
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import ProductCard from '../components/ProductCard';
 import Parallax from './parallax';
 import DiscoverBenefits from '../components/DiscoverBenefits';
 import Faq from '../components/Faq';
-import { fetchProducts } from '../lib/client';
+import { fetchIvTherapyPageContent, fetchProducts } from '../lib/client';
+import FooterHero from '../components/FooterHero';
+import IVTherapyHero from '../components/IVTherapy/IvHero';
+import IVDripsHero from '../components/FrontPage/IVDripsHero';
 
-const IVTherapy = () => {
-  const [productData, setProductData] = useState([])
+const IVTherapy = async () => {
+  const productData = await fetchProducts();
+  const ivTherapyContent = await fetchIvTherapyPageContent();
+  const { hero, iv_therapy_content, benefits_of_iv_therapy } = ivTherapyContent ?? {};
 
-  useEffect(() => {
-    async function getProducts() {
-      const res = await fetchProducts();
-      if (res) {
-        const products = res?.sort((a: any, b: any) => a.name?.localeCompare(b.name));
-        setProductData(products);
-      } else {
-        setProductData([]);
-      }
-    }
-
-    getProducts();
-  }, []);
-
+  const { section_title } = iv_therapy_content?.[1] ?? {};
   return (
     <>
-      <section className="flex flex-col justify-start sm:justify-center mx-auto items-start w-full h-[80vh] sm:h-screen bg-cover mt-5 sm:mt-0 bg-center bg-no-repeat bg-opacity-20 bg-blur-5xl bg-primaryWhite bg-iv-therapy-image relative">
-        <div className="iv-hero absolute top-20 sm:relative flex flex-col items-center justify-center gap-8 sm:gap-10 bg-gradient-to-b from-primaryWhite from-70% via-primaryWhite via-80% to-transparent to-100% sm:bg-none h-fit w-full py-0 pt-20 pl-0 sm:pl-[42%] pr-0 sm:pr-[72px] sm:py-[54px] px-8 sm:px-0 max-h-[280px] sm:max-h-full z-20">
-          <h2 className="text-[24px] sm:text-[48px] text-center sm:text-left font-bold text-primaryDark leading-tight">
-            Get The Best of You Get
-            <span className="text-primaryGreen"> Iv Therapy</span>
-          </h2>
-          <div className="flex flex-col px-6 sm:px-0">
-            <p className="text-[12px] sm:text-base text-secondaryDark text-center sm:text-left leading-normal">
-              Dehydration can leave you feeling weak and tired, but IV therapy
-              can help you recover quickly and get back on your feet. Our
-              clients in Los Angeles choose IV therapy for a health boost after
-              prolonged sickness, surgery, or a night out with friends. IV
-              therapy can also support weight loss efforts and aid in
-              post-workout recovery.
-            </p>
-            <p className="text-[12px] sm:text-base text-secondaryDark text-center sm:text-left leading-normal">
-              At Rejuve, our IV therapy sessions are tailored to your individual
-              needs. We offer personalized IV protocols to promote hydration and
-              provide essential nutrients to your body. Contact our doctors
-              today to schedule a free consultation and learn more about how IV
-              therapy can help you achieve your wellness goals.
-            </p>
-          </div>
-          <Link
-            href="/iv-therapy"
-            className="px-8 py-5 min-w-[185px] flex justify-center font-semibold text-base bg-primaryGreen text-primaryWhite rounded w-fit mx-auto sm:mx-0"
-          >
-            Explore IV Drips
-          </Link>
-        </div>
-        <div
-          className="w-full flex sm:hidden h-full mt-[200px] relative"
-          style={{
-            backgroundImage: "url('/Iv-therapy-hero.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'left',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-primaryWhite from-20% to-primaryWhite/10 to-75%"></div>
-        </div>
-      </section>
-
+      <IVTherapyHero heroContent={hero} />
       <div className="max-w-[1480px] flex items-center flex-col gap-[150px] w-[90%] xls:w-[85%] mx-auto mt-[170px]">
-        <section className="flex flex-col gap-[107px] w-full min-h-screen relative">
-          <div className="flex flex-col justify-center items-center gap-6">
-            <h2 className="text-[24px] sm:text-[48px] font-bold text-center max-w-[1236px] text-primaryDark text-balance">
-              Chose From Our <br />
-              Wide Selection of
-              <span className="text-primaryGreen"> IV Drips</span>
-            </h2>
-            <p className="text-base sm:text-[18px] text-secondaryDark max-w-[1236px] text-center">
-              Experience all the benefits of IV therapy in the comfort of your
-              own home.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 xls:grid-cols-4 gap-6 gap-y-[61px] place-content-center">
-            {productData?.filter((p: any) => p.image && p.product_slug?.includes("iv-treatment"))?.map((product: any) => (
-              <ProductCard key={product?.id} product={product} />
-            ))}
-          </div>
-        </section>
+        <IVDripsHero section_title={section_title} />
       </div>
 
       {/* Visit Clinic */}
@@ -154,46 +84,14 @@ const IVTherapy = () => {
         {/* Parallax */}
         <Parallax />
 
-        <DiscoverBenefits />
+        <DiscoverBenefits ivBenefits={benefits_of_iv_therapy} />
       </div>
 
       {/* FAQ */}
       <Faq />
 
       {/* CTA */}
-      <section className="flex flex-col w-full items-center justify-center relative sm:max-h-[972px] h-full mt-10 xls:mt-[200px]">
-        <div className="flex h-[103px] bg-transparent w-full"></div>
-        <div className="flex flex-col s:flex-row bg-lightBlue w-full">
-          <div className="flex flex-col justify-center items-start gap-6 max-w-hxl w-full sm:w-[85%] md:min-h-[630px] max-h-[869px] h-full mx-auto py-12 md:py-0 px-6 sm:px-0">
-            <h2 className="font-bold text-[32px] xls:text-[40px] w-full md:w-1/2">
-              Look better, feel better, and unlock the full potential of your
-              body and mind at
-              <span className="text-primaryGreen"> Rejuve</span>
-            </h2>
-            <p className="text-secondaryDark text-[18px] w-full md:w-1/2">
-              At Rejuve, you are part of an elite group of people who take their
-              health and happiness seriously, and we make sure to treat you that
-              way.
-            </p>
-            <Link
-              href="/iv-therapy"
-              className="px-8 py-5 font-semibold text-base bg-primaryGreen rounded mt-8 w-fit text-primaryWhite"
-            >
-              Book an Appointment
-            </Link>
-          </div>
-          <div className="flex relative md:absolute right-0 bottom-0 self-end w-2/3 md:w-1/2 h-fit xl:h-full">
-            <Image
-              src={'/images/cta.png'}
-              width={913}
-              height={950}
-              quality={100}
-              alt="call to action"
-              className="w-full h-full object-contain"
-            />
-          </div>
-        </div>
-      </section>
+      <FooterHero />
     </>
   );
 };

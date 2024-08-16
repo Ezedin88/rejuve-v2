@@ -64,7 +64,7 @@ export default function CheckMenuContent({ filteredProducts }: { filteredProduct
     }
 
     return (
-        <div className="div_content_wrapper max-w-[1169px] w-full mx-auto">
+        <div className="div_content_wrapper max-w-[1169px] w-[90%] xls:w-[85%] mx-auto">
             <MapApiProvider>
                 <CheckMenuLocation setBookingAddress={setBookingAddress} bookingAddress={bookingAddress} bookingChoice={bookingChoice} setBookingChoice={setBookingChoice} />
             </MapApiProvider>

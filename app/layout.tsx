@@ -1,10 +1,7 @@
-'use client';
-
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from './ui/Base/Header';
 import Footer from './ui/Base/Footer';
-import { usePathname } from 'next/navigation';
 import Head from 'next/head';
 import { Metadata } from 'next';
 
@@ -15,14 +12,20 @@ const metadata: Metadata = {
   description: 'Iv therapy',
 };
 
+type Params = {
+  slug: string
+}
+
 export default function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Params
 }>) {
-  const pathname = usePathname();
-  const isAuth = pathname.includes('/sign') || pathname.includes('/my-account');
 
+  const { slug } = params;
+  const isAuth = slug === 'sign' || slug === 'my-account';
 
   return (
     <html lang="en">

@@ -1,24 +1,12 @@
 import { fetchOptions } from '@/app/lib/client';
-import { FooterProps } from '@/app/lib/mainTypes';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Footer = () => {
-  const [firstMenu, setFirstMenu] = useState<FooterProps | any>([]);
+const Footer = async () => {
 
-  useEffect(() => {
-    async function getOptions() {
-      const res = await fetchOptions();
-      if (res?.footer_first_menu) {
-        setFirstMenu(res?.footer_first_menu);
-      } else {
-        setFirstMenu([]);
-      }
-    }
+  const firstMenu = await fetchOptions();
 
-    getOptions();
-  }, []);
   return (
     <footer className="flex flex-col bottom-0 w-full h-full xls:h-[475px] px-5 xls:px-[85px] pt-16 pb-10 bg-primaryDark">
       <div className="flex flex-col xls:flex-row gap-[70px] xls:gap-[128px] items-start justify-start mb-10">

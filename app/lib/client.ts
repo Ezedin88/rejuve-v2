@@ -1,4 +1,6 @@
-const encodedCredentials = btoa(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`)
+import { IFaqDetail, IFrontPageContent, IIvTherapyPageContent, TMenuData } from "./definitions";
+
+const encodedCredentials = btoa(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`);
 
 export const createOrder = async (order: any) => {
     const url = `https://rejuve.com/wp-json/wc/v3/orders`;
@@ -12,10 +14,10 @@ export const createOrder = async (order: any) => {
             },
             body: JSON.stringify(order),
         });
-        return response.json();
-    }
-    catch (error) {
-        console.error(error);
+        return await response.json();
+    } catch (error: any) {
+        console.error('Error creating order:', error.message || error);
+        throw new Error('Failed to create order');
     }
 };
 
@@ -25,86 +27,191 @@ export const getPaymentIntent = async (userData: {
     first_name: string;
     last_name: string;
 }) => {
+    const url = 'https://rejuve.md/wp-json/stripe/v1/create-payment-intent';
+
     try {
-        const response = await fetch(
-            'https://rejuve.md/wp-json/stripe/v1/create-payment-intent',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    totalWithTip: userData.totalValue,
-                    customer_email: userData.email,
-                    customer_name:
-                        userData.first_name +
-                        ' ' +
-                        userData.last_name,
-                }),
-            }
-        );
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                totalWithTip: userData.totalValue,
+                customer_email: userData.email,
+                customer_name: `${userData.first_name} ${userData.last_name}`,
+            }),
+        });
 
         const data = await response.json();
-        if (data) {
-            // setClientSecret(data.clientSecret);
+        if (data.clientSecret) {
             return data.clientSecret;
         } else {
             throw new Error(data.message || 'Failed to fetch client secret');
         }
     } catch (error: any) {
-        throw new Error(error.message || 'Failed to fetch client secret');
+        console.error('Error fetching payment intent:', error.message || error);
+        throw new Error('Failed to fetch client secret');
     }
-}
+};
 
 export const sendEmail = async (emailData: string) => {
     const url = 'https://rejuve.com/wp-json/custom/v1/send-email';
 
-    await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            to: 'booking@rejuve.com',
-            subject: 'Discrepancy in Cardholder Information for Patient Billing',
-            message: emailData
-        })
-    });
-}
-
+    try {
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                to: 'booking@rejuve.com',
+                subject: 'Discrepancy in Cardholder Information for Patient Billing',
+                message: emailData,
+            }),
+        });
+    } catch (error: any) {
+        console.error('Error sending email:', error.message || error);
+        throw new Error('Failed to send email');
+    }
+};
 
 export const fetchOptions = async () => {
-    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/options', {
-        headers: {
-            Authorization: `Basic ${encodedCredentials}`,
-            "Content-Type": "application/json",
-        }
-    });
+    const url = 'https://rejuve.md/wp-json/wp/v2/custom/options';
 
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+            next: {
+                revalidate: 86400,
+            },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching options:', error.message || error);
+        throw new Error('Failed to fetch options');
+    }
 };
 
 export const fetchProducts = async () => {
-    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/products', {
+    const url = 'https://rejuve.md/wp-json/wp/v2/custom/products';
+
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+            next: {
+                revalidate: 86400,
+            },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching products:', error.message || error);
+        throw new Error('Failed to fetch products');
+    }
+};
+
+export const fetchIVProducts = async () => {
+    const url = 'https://rejuve.md/wp-json/wp/v2/custom/iv-therapy-page';
+
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching IV products:', error.message || error);
+        throw new Error('Failed to fetch IV products');
+    }
+};
+
+export const fetchFrontPageContent = async (): Promise<IFrontPageContent> => {
+    const url = "https://rejuve.md/wp-json/wp/v2/custom/front-page";
+
+    const res = await fetch(url, {
         headers: {
             Authorization: `Basic ${encodedCredentials}`,
             "Content-Type": "application/json",
-        }
+        },
+        next: {
+            revalidate: 86400,
+        },
+    });
+
+    const data = await res.json();
+    return data;
+
+}
+
+export const fetchIvTherapyPageContent = async (): Promise<IIvTherapyPageContent> => {
+    const url = "https://rejuve.md/wp-json/wp/v2/custom/iv-therapy-page";
+
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+            "Content-Type": "application/json",
+        },
+        next: {
+            revalidate: 86400,
+        },
     });
 
     const data = await res.json();
     return data;
 }
 
-export const fetchIVProducts = async () => {
-    const res = await fetch('https://rejuve.md/wp-json/wp/v2/custom/iv-therapy-page', {
-        headers: {
-            Authorization: `Basic ${encodedCredentials}`,
-            "Content-Type": "application/json",
-        }
-    });
+export const getFaqData = async (): Promise<IFaqDetail[]> => {
+    const url = 'https://rejuve.md/wp-json/wp/v2/custom/faq';
 
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+            next: {
+                revalidate: 86400,
+            },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching FAQ data:', error.message || error);
+        throw new Error('Failed to fetch FAQ data');
+    }
+}
+
+export const getMenuNav = async (): Promise<TMenuData> => {
+    const url = "https://rejuve.md/wp-json/wp/v2/custom/menu";
+    try {
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+                "Content-Type": "application/json",
+            },
+            // next: {
+            //     revalidate: 86400,
+            // },
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        console.error('Error fetching menu data:', error.message || error);
+        throw new Error('Failed to fetch menu data');
+    }
 }
