@@ -6,7 +6,11 @@ import React from 'react';
 const Footer = async () => {
 
   const firstMenu = await fetchOptions();
+  const footer_first_menu = firstMenu?.footer_first_menu;
+  const footer_second_menu = firstMenu?.footer_second_menu;
 
+  const { page_link } = footer_first_menu ?? {};
+  const { page_link: second_page_link } = footer_second_menu ?? {};
   return (
     <footer className="flex flex-col bottom-0 w-full h-full xls:h-[475px] px-5 xls:px-[85px] pt-16 pb-10 bg-primaryDark">
       <div className="flex flex-col xls:flex-row gap-[70px] xls:gap-[128px] items-start justify-start mb-10">
@@ -52,9 +56,9 @@ const Footer = async () => {
         {/* Links */}
         <div className="grid grid-cols-2 xls:grid-cols-3 justify-between items-start gap-10px gap-y-10 flex-wrap w-full whitespace-nowrap">
           <div className="flex flex-col gap-6 xls:max-w-[500px] w-full max-w-full xls:w-1/3">
-            <h4 className="font-semibold text-primaryWhite">{firstMenu?.title}</h4>
+            <h4 className="font-semibold text-primaryWhite">{footer_first_menu?.title}</h4>
             <ul className="flex flex-col gap-4 justify-start items-start">
-              {firstMenu?.page_link?.map((item: any) => (
+              {page_link?.map((item: any) => (
                 <li key={item.id} className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
                   <Link href={`/product/${item.post_title}`}>
                     {item.post_title}
@@ -65,26 +69,17 @@ const Footer = async () => {
           </div>
 
           <div className="flex justify-start flex-col items-start gap-6 w-full xls:w-1/3">
-            <h4 className="font-semibold text-primaryWhite">About Us</h4>
+            <h4 className="font-semibold text-primaryWhite">{footer_second_menu?.title}</h4>
             <ul className="flex flex-col gap-4 justify-start items-start">
-              <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200">
-                <Link href="/who-we-are">Who We Are</Link>
-              </li>
-              {/* <li className="text-footerGrayText">
-                  <Link href="/nad">NAD +</Link>
-                </li>
-                <li className="text-footerGrayText">
-                  <Link href="/ozone-therapy">Ozone Therapy</Link>
-                </li>
-                <li className="text-footerGrayText">
-                  <Link href="/beauty-treatments">Beauty Treatments</Link>
-                </li>
-                <li className="text-footerGrayText">
-                  <Link href="/peptides">Peptides</Link>
-                </li>
-                <li className="text-footerGrayText">
-                  <Link href="/cells">CELLS</Link>
-                </li> */}
+              {
+                second_page_link?.map((item: any, key: number) => {
+                  return (
+                    <li className="text-footerGrayText hover:text-primaryGreen transition-colors duration-200" key={key}>
+                      <Link href={`/${item?.post_name}`}>{item?.post_title}</Link>
+                    </li>
+                  )
+                })
+              }
             </ul>
           </div>
 
