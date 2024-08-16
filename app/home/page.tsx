@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Reviews from '../components/Reviews';
@@ -20,7 +19,6 @@ const Home = async () => {
   const { section_title } = homepage_content?.[1] ?? {};
   const { book } = homepage_content?.[2] ?? {};
   const { content } = homepage_content?.[3] ?? {};
-
   return (
     <>
       <FrontPageHero title={heroTitle} subtitle={description} btnContent={title} />

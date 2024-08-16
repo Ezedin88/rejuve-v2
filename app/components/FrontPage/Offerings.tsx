@@ -8,9 +8,9 @@ export default function Offerings({ homepage_content }: { homepage_content: IHom
     return (
         <section className="flex flex-col gap-10 sm:gap-[107px] w-full min-h-screen">
             <div className="flex flex-col justify-center items-center gap-6">
-                <h2 className="text-[32px] sm:text-[48px] w-full font-bold text-left sm:text-center max-w-[1236px] text-primaryDark text-balance">
-                    {features_title.title}
-                </h2>
+                <div className="text-[32px] sm:text-[48px] w-full font-bold text-left sm:text-center max-w-[1236px] text-primaryDark text-balance"
+                    dangerouslySetInnerHTML={{ __html: features_title.title }}
+                />
                 <div className="text-[18px] text-secondaryDark max-w-[1236px] text-left sm:text-center"
                     dangerouslySetInnerHTML={{ __html: features_title.description }}
                 />

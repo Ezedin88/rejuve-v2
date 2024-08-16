@@ -1,6 +1,7 @@
 "use client";
 import { SmallIcon } from "@/app/components/Icons/Icon";
 import { IMenuItem, TMenuData } from "@/app/lib/definitions";
+import { getAbsolutePath, sanitizeTitle } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -66,9 +67,11 @@ export default function HeaderContent({ megaMenuList }: {
             <ul className="gap-8 text-base hidden xls:flex">
                 {
                     primaryMenuItems?.map((menu: IMenuItem, key: number) => {
-                        const { title, children, url } = menu ?? {};
+                        const { title, children, url: baseUrl } = menu ?? {};
+                        const url = getAbsolutePath(baseUrl);
+
                         return (
-                            title?.toLowerCase() !== 'about us' && !title?.toLocaleLowerCase().startsWith('call us') ?
+                            title?.toLowerCase() !== 'about us' && !title?.toLocaleLowerCase().startsWith('call us') && children?.length > 10 ?
                                 <li className="group py-7 items-stretch relative" key={key}>
                                     <Link
                                         href={url}
@@ -81,20 +84,24 @@ export default function HeaderContent({ megaMenuList }: {
                                         <div className="block w-full mx-auto leading-normal">
                                             <div className="w-[90%] flex gap-10 mx-auto max-w-hxl xls:w-[85%]">
                                                 <div className="grid grid-cols-3 gap-y-4 py-10">
-                                                    {children?.slice(0, 15).map((child: IMenuItem, key: number) => (
-                                                        <Link
-                                                            href={child.url}
-                                                            key={key}
-                                                            className="flex flex-col p-2 hover:bg-headerHover transition-colors duration-200 pr-4 max-w-[288px]"
-                                                        >
-                                                            <h3 className="text-base font-semibold">
-                                                                {child.title}
-                                                            </h3>
-                                                            <p className="text-secondaryDark text-[14px]">
-                                                                {child.short_description}
-                                                            </p>
-                                                        </Link>
-                                                    ))}
+                                                    {children?.slice(0, 15).map((child: IMenuItem, key: number) => {
+                                                        const { url: baseUrl } = child ?? {};
+                                                        const url = getAbsolutePath(baseUrl);
+                                                        return (
+                                                            <Link
+                                                                href={url}
+                                                                key={key}
+                                                                className="flex flex-col p-2 hover:bg-headerHover transition-colors duration-200 pr-4 max-w-[288px]"
+                                                            >
+                                                                <h3 className="text-base font-semibold">
+                                                                    {child.title}
+                                                                </h3>
+                                                                <p className="text-secondaryDark text-[14px]">
+                                                                    {child.short_description}
+                                                                </p>
+                                                            </Link>
+                                                        )
+                                                    })}
                                                 </div>
                                                 <div className="flex flex-col ml-auto gap-4 w-[416px] bg-lightGreen justify-center items-start px-16">
                                                     <h2 className="text-xl text-left font-semibold">
@@ -127,27 +134,30 @@ export default function HeaderContent({ megaMenuList }: {
                                         </div>
                                     </div>
                                 </li> :
-                                title?.toLocaleLowerCase() === 'about us' &&
                                 <li className="relative group py-7 items-stretch">
                                     <Link
                                         href={url}
                                         className="whitespace-nowrap flex gap-2 items-center hover:text-primaryGreen transition-colors duration-200"
                                     >
-                                        <p>{title}</p>
-                                        <SmallIcon icon="/nav-chevron-down.svg" width={20} />
+                                        <p>{sanitizeTitle(title)}</p>
+                                        {children?.length ? <SmallIcon icon="/nav-chevron-down.svg" width={20} /> : null}
                                     </Link>
                                     <div className="group-hover:hidden xls:group-hover:block absolute bg-primaryWhite text-primaryDark w-80 left-0 top-[78px] shadow-lg hidden">
                                         <div className="flex flex-col">
                                             {
-                                                children?.map((child: IMenuItem, key: number) => (
-                                                    <Link
-                                                        href={child.url}
-                                                        key={key}
-                                                        className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
-                                                    >
-                                                        {child.title}
-                                                    </Link>
-                                                ))
+                                                children?.map((child: IMenuItem, key: number) => {
+                                                    const { url: baseUrl } = child ?? {};
+                                                    const url = getAbsolutePath(baseUrl);
+                                                    return (
+                                                        <Link
+                                                            href={url}
+                                                            key={key}
+                                                            className="w-full px-4 py-4  hover:text-primaryGreen font-semibold transition-colors duration-200"
+                                                        >
+                                                            {child.title}
+                                                        </Link>
+                                                    )
+                                                })
                                             }
                                         </div>
                                     </div>

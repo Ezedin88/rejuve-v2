@@ -12,8 +12,6 @@ const DiscoverBenefits = ({
           <h3 className="text-[32px] sm:text-[40px] font-bold text-primaryDark">
             {benefits_title}
             {/* <span className="text-brightYellow"> IV Therapy </span> */}
-            &nbsp;  for Improved
-            Well-Being
           </h3>
           <div className="text-base sm:text-[18px] text-secondaryDark"
             dangerouslySetInnerHTML={{ __html: benefits_description }}
